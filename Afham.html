@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Interaktif - Muhammad Afham Muayyad</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.4);
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(45deg, #00d2ff, #a8ff78);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .greeting {
+            color: #a8ff78;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            font-size: 0.9rem;
+            color: #00d2ff;
+            margin-bottom: 25px;
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #00d2ff;
+        }
+
+        .info-item:hover {
+            background: rgba(0, 210, 255, 0.15);
+            padding-left: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #a8ff78;
+            font-size: 0.9rem;
+        }
+
+        .value {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Bagian Interaktif */
+        .interactive-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-physics {
+            background: linear-gradient(45deg, #00d2ff, #0072ff);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            width: 100%;
+        }
+
+        .btn-physics:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .fact-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #e0e0e0;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="avatar">⚛️</div>
+        <div class="greeting" id="timeGreeting">Selamat Datang!</div>
+        <h1>Muhammad Afham Muayyad</h1>
+        <p class="sub-title">MTs Tsanawiyah Informatika</p>
+
+        <div class="info-group">
+            <div class="info-item">
+                <span class="label">TTL</span>
+                <span class="value">Bandung, 20 Maret 2012</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Kelas</span>
+                <span class="value">9A Al-Himmah</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Sekolah</span>
+                <span class="value">MTs Tsanawiyah Informatika</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Hobi</span>
+                <span class="value">Segala hal mengenai Fisika</span>
+            </div>
+        </div>
+
+        <div class="interactive-section">
+            <button class="btn-physics" onclick="generateFact()">Klik untuk Fakta Fisika! 🚀</button>
+            <div class="fact-box" id="factDisplay">
+                Klik tombol di atas untuk menampilkan rumus atau fakta fisika menarik.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Fitur Sapaan Otomatis berdasarkan Waktu
+        const hours = new Date().getHours();
+        const timeGreeting = document.getElementById('timeGreeting');
+        
+        if (hours < 11) {
+            timeGreeting.innerText = "Selamat Pagi! ☀️";
+        } else if (hours < 15) {
+            timeGreeting.innerText = "Selamat Siang! 🌤️";
+        } else if (hours < 18) {
+            timeGreeting.innerText = "Selamat Sore! 🌥️";
+        } else {
+            timeGreeting.innerText = "Selamat Malam! 🌙";
+        }
+
+        // 2. Daftar Fakta / Rumus Fisika Interaktif
+        const physicsFacts = [
+            "E = mc² — Energi sama dengan massa dikali kecepatan cahaya kuadrat (Albert Einstein).",
+            "F = m × a — Hukum II Newton: Gaya adalah hasil kali massa dengan percepatan.",
+            "Kecepatan cahaya di ruang hampa adalah sekitar 299.792.458 meter per detik!",
+            "Air memiliki massa jenis terbesar pada suhu 4°C, fenomena ini disebut anomali air.",
+            "Foton (partikel cahaya) tidak memiliki massa diam sama sekali!",
+            "Teori Relativitas membuktikan bahwa waktu berjalan lebih lambat di dekat objek bermassa sangat besar."
+        ];
+
+        function generateFact() {
+            const factDisplay = document.getElementById('factDisplay');
+            const randomIndex = Math.floor(Math.random() * physicsFacts.length);
+            
+            // Efek transisi sederhana
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.innerText = physicsFacts[randomIndex];
+                factDisplay.style.opacity = 1;
+            }, 200);
+        }
+    </script>
+</body>
+</html>
