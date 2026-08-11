@@ -107,6 +107,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+            cursor: pointer;
         }
 
         .controls {
@@ -126,7 +127,7 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 2px 2px 0 #2b2d42;
-            transition: transform 0.1s;
+            transition: transform 0.1s, box-shadow 0.1s;
         }
 
         button:active {
@@ -200,14 +201,31 @@
         let score = 0;
         let gameOver = false;
 
-        // Global Game Variables
         let player, entities, frames;
-
-        // Input Handling
         let keys = {};
-        window.addEventListener('keydown', e => { keys[e.code] = true; });
+
+        // Mencegah layar ter-scroll saat main game
+        window.addEventListener('keydown', function(e) {
+            if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
+            keys[e.code] = true;
+        }, { passive: false });
+
         window.addEventListener('keyup', e => { keys[e.code] = false; });
-        canvas.addEventListener('mousedown', () => { keys['Space'] = true; setTimeout(() => keys['Space'] = false, 100); });
+
+        // Dukungan klik & sentuh untuk loncat
+        function handleJump() {
+            keys['Space'] = true; 
+            setTimeout(() => keys['Space'] = false, 100);
+            
+            // Restart game jika game over dan layar ditekan
+            if(gameOver && currentGame) {
+                startGame(currentGame);
+            }
+        }
+        canvas.addEventListener('mousedown', handleJump);
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleJump(); }, { passive: false });
 
         function stopGame() {
             if (gameLoop) cancelAnimationFrame(gameLoop);
@@ -215,6 +233,7 @@
             gameOver = false;
             score = 0;
             frames = 0;
+            keys = {}; // Reset tombol
             updateScore();
         }
 
@@ -223,14 +242,14 @@
         }
 
         function drawGameOver() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "white";
-            ctx.font = "20px Arial";
+            ctx.font = "bold 24px Arial";
             ctx.textAlign = "center";
-            ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2);
-            ctx.font = "12px Arial";
-            ctx.fillText("Klik tombol game untuk mengulang", canvas.width/2, canvas.height/2 + 20);
+            ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 10);
+            ctx.font = "14px Arial";
+            ctx.fillText("Klik layar untuk mengulang", canvas.width/2, canvas.height/2 + 20);
         }
 
         function startGame(gameName) {
@@ -238,25 +257,25 @@
             currentGame = gameName;
             
             if (gameName === 'flappy') {
-                instructionText.innerText = "Tekan SPASI atau KLIK area game untuk melompat hindari pipa.";
-                player = { x: 50, y: 150, size: 20, velocity: 0, gravity: 0.5, jump: -7 };
-                entities = []; // Pipes
+                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompat hindari pipa.";
+                player = { x: 50, y: 150, size: 20, velocity: 0, gravity: 0.4, jump: -7 };
+                entities = []; 
                 loopFlappy();
             } else if (gameName === 'snake') {
                 instructionText.innerText = "Gunakan tombol PANAH untuk mengarahkan ular memakan apel merah.";
                 player = { body: [{x: 140, y: 140}], dx: 20, dy: 0, size: 20 };
-                entities = { x: 60, y: 60 }; // Food
-                frames = 0; // Control speed
+                entities = { x: 60, y: 60 }; 
+                frames = 0; 
                 loopSnake();
             } else if (gameName === 'parkour') {
-                instructionText.innerText = "Tekan SPASI atau KLIK untuk melompati rintangan hitam.";
-                player = { x: 50, y: 250, size: 20, velocity: 0, gravity: 0.8, jump: -12, grounded: true };
-                entities = []; // Obstacles
+                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompati rintangan hitam.";
+                player = { x: 50, y: 250, size: 20, velocity: 0, gravity: 0.6, jump: -10, grounded: true };
+                entities = []; 
                 loopParkour();
             } else if (gameName === 'racing') {
                 instructionText.innerText = "Gunakan tombol PANAH KIRI/KANAN untuk menghindari mobil hitam.";
-                player = { x: 130, y: 250, width: 30, height: 40 };
-                entities = []; // Enemy cars
+                player = { x: 135, y: 240, width: 30, height: 45 };
+                entities = []; 
                 loopRacing();
             }
         }
@@ -267,183 +286,37 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             frames++;
 
-            // Player logic
             if (keys['Space']) { player.velocity = player.jump; keys['Space'] = false; }
             player.velocity += player.gravity;
             player.y += player.velocity;
 
-            // Draw Player
             ctx.fillStyle = '#e07a5f';
             ctx.fillRect(player.x, player.y, player.size, player.size);
 
-            // Pipes logic
-            if (frames % 90 === 0) {
-                let gapPosition = Math.random() * 150 + 50;
-                entities.push({ x: canvas.width, y: 0, width: 30, height: gapPosition - 40 }); // Top
-                entities.push({ x: canvas.width, y: gapPosition + 40, width: 30, height: canvas.height }); // Bottom
+            if (frames % 100 === 0) {
+                let gapPosition = Math.random() * 120 + 60;
+                entities.push({ x: canvas.width, y: 0, width: 40, height: gapPosition - 50 }); // Pipa Atas
+                entities.push({ x: canvas.width, y: gapPosition + 50, width: 40, height: canvas.height }); // Pipa Bawah
             }
 
             ctx.fillStyle = '#81b29a';
-            entities.forEach((pipe, i) => {
+            entities.forEach((pipe) => {
                 pipe.x -= 2;
                 ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
                 
-                // Collision
+                // Deteksi Tabrakan
                 if (player.x < pipe.x + pipe.width && player.x + player.size > pipe.x &&
                     player.y < pipe.y + pipe.height && player.y + player.size > pipe.y) {
                     gameOver = true;
                 }
                 
-                // Score
                 if (pipe.x === player.x && pipe.y === 0) { score++; updateScore(); }
             });
-            entities = entities.filter(p => p.x > -30);
+            entities = entities.filter(p => p.x > -50);
 
             if (player.y > canvas.height || player.y < 0) gameOver = true;
 
             gameLoop = requestAnimationFrame(loopFlappy);
         }
 
-        // --- 2. SNAKE ---
-        function loopSnake() {
-            if (gameOver) return drawGameOver();
-            gameLoop = requestAnimationFrame(loopSnake);
-            if (++frames < 8) return; // Control speed
-            frames = 0;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Direction
-            if (keys['ArrowLeft'] && player.dx === 0) { player.dx = -player.size; player.dy = 0; }
-            else if (keys['ArrowUp'] && player.dy === 0) { player.dy = -player.size; player.dx = 0; }
-            else if (keys['ArrowRight'] && player.dx === 0) { player.dx = player.size; player.dy = 0; }
-            else if (keys['ArrowDown'] && player.dy === 0) { player.dy = player.size; player.dx = 0; }
-
-            // Move
-            let head = { x: player.body[0].x + player.dx, y: player.body[0].y + player.dy };
-            player.body.unshift(head);
-
-            // Eat Food
-            if (head.x === entities.x && head.y === entities.y) {
-                score += 10; updateScore();
-                entities.x = Math.floor(Math.random() * (canvas.width/player.size)) * player.size;
-                entities.y = Math.floor(Math.random() * (canvas.height/player.size)) * player.size;
-            } else {
-                player.body.pop();
-            }
-
-            // Draw Food
-            ctx.fillStyle = '#e07a5f';
-            ctx.fillRect(entities.x, entities.y, player.size, player.size);
-
-            // Draw Snake & Collision
-            ctx.fillStyle = '#81b29a';
-            player.body.forEach((segment, i) => {
-                ctx.fillRect(segment.x, segment.y, player.size - 1, player.size - 1);
-                // Self collision or wall collision
-                if (i !== 0 && head.x === segment.x && head.y === segment.y) gameOver = true;
-            });
-
-            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) gameOver = true;
-        }
-
-        // --- 3. PARKOUR RUN ---
-        function loopParkour() {
-            if (gameOver) return drawGameOver();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            frames++;
-
-            // Ground
-            ctx.fillStyle = '#d8cebe';
-            ctx.fillRect(0, 270, canvas.width, 30);
-
-            // Jump Logic
-            if (keys['Space'] && player.grounded) { 
-                player.velocity = player.jump; 
-                player.grounded = false; 
-                keys['Space'] = false; 
-            }
-            player.velocity += player.gravity;
-            player.y += player.velocity;
-
-            if (player.y >= 250) { player.y = 250; player.grounded = true; player.velocity = 0; }
-
-            // Draw Player
-            ctx.fillStyle = '#3d405b';
-            ctx.fillRect(player.x, player.y, player.size, player.size);
-
-            // Obstacles
-            if (frames % 80 === 0) {
-                entities.push({ x: canvas.width, y: 250, size: 20 });
-            }
-
-            ctx.fillStyle = 'black';
-            entities.forEach(obs => {
-                obs.x -= 4; // Speed
-                ctx.fillRect(obs.x, obs.y, obs.size, obs.size);
-                
-                // Collision
-                if (player.x < obs.x + obs.size && player.x + player.size > obs.x &&
-                    player.y < obs.y + obs.size && player.y + player.size > obs.y) {
-                    gameOver = true;
-                }
-                
-                if (obs.x === player.x) { score += 5; updateScore(); }
-            });
-            entities = entities.filter(o => o.x > -20);
-
-            gameLoop = requestAnimationFrame(loopParkour);
-        }
-
-        // --- 4. CAR RACING ---
-        function loopRacing() {
-            if (gameOver) return drawGameOver();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            frames++;
-
-            // Road Lines
-            ctx.fillStyle = '#d8cebe';
-            ctx.fillRect(100, 0, 2, canvas.height);
-            ctx.fillRect(200, 0, 2, canvas.height);
-
-            // Move Car
-            if (keys['ArrowLeft'] && player.x > 30) player.x -= 5;
-            if (keys['ArrowRight'] && player.x < canvas.width - 30 - player.width) player.x += 5;
-
-            // Draw Player
-            ctx.fillStyle = '#e07a5f';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-
-            // Enemies
-            if (frames % 50 === 0) {
-                let lanes = [35, 135, 235];
-                let lane = lanes[Math.floor(Math.random() * lanes.length)];
-                entities.push({ x: lane, y: -50, width: 30, height: 40 });
-            }
-
-            ctx.fillStyle = '#2b2d42';
-            entities.forEach(enemy => {
-                enemy.y += 4;
-                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
-
-                // Collision
-                if (player.x < enemy.x + enemy.width && player.x + player.width > enemy.x &&
-                    player.y < enemy.y + enemy.height && player.y + player.height > enemy.y) {
-                    gameOver = true;
-                }
-
-                if (enemy.y === player.y) { score += 10; updateScore(); }
-            });
-            entities = entities.filter(e => e.y < canvas.height + 50);
-
-            gameLoop = requestAnimationFrame(loopRacing);
-        }
-
-        // Auto start empty state
-        ctx.fillStyle = "#8d8d8d";
-        ctx.font = "14px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText("PILIH GAME DI BAWAH", canvas.width/2, canvas.height/2);
-
-    </script>
-</body>
-</html>
+        // --- 2. SNA
