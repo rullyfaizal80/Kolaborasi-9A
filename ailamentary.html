@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Cute Matcha Strawberry 🍵🍓</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Warna Palette Matcha Strawberry */
+        :root {
+            --bg-matcha: #e8f0e3;
+            --matcha-dark: #88a070;
+            --matcha-card: #d3e2c7;
+            --strawberry-pink: #ffb7c5;
+            --strawberry-dark: #ff6f91;
+            --text-color: #4a5d3f;
+        }
+
+        body {
+            background-color: var(--bg-matcha);
+            font-family: 'Fredoka', cursive, sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--strawberry-dark);
+            text-shadow: 2px 2px 0px #fff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Container untuk membungkus 2 biodata agar sejajar */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Kartu Biodata */
+        .card {
+            background: white;
+            border: 4px solid var(--matcha-dark);
+            border-radius: 25px;
+            padding: 25px;
+            width: 320px;
+            box-shadow: 0 8px 15px rgba(136, 160, 112, 0.3);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotate(-1deg);
+        }
+
+        /* Hiasan pita/header kartu */
+        .card-header {
+            background-color: var(--strawberry-pink);
+            color: white;
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border: 2px dashed var(--strawberry-dark);
+        }
+
+        /* Avatar Unyu */
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background-color: var(--matcha-card);
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid var(--strawberry-pink);
+        }
+
+        /* Detail Biodata */
+        .info-group {
+            background-color: #fcfbf7;
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--matcha-dark);
+        }
+
+        .info-group strong {
+            color: var(--strawberry-dark);
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .info-group span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Hiasan Tambahan */
+        .decoration {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🍵 Biodata Cute Bestie 🍓</h1>
+
+    <div class="container">
+        
+        <div class="card">
+            <div class="avatar">🍓</div>
+            <div class="card-header">
+                ✨ Biodata Mentary ✨
+            </div>
+            
+            <div class="info-group">
+                <strong>Nama Lengkap</strong>
+                <span>Mentary Assyifa Putri</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Tanggal Lahir</strong>
+                <span>12 Oktober 2011</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Umur</strong>
+                <span>14 Tahun</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Kelas</strong>
+                <span>9A</span>
+            </div>
+
+            <div class="decoration">🍵✨🍓✨🍵</div>
+        </div>
+
+        <div class="card">
+            <div class="avatar">🍵</div>
+            <div class="card-header">
+                ✨ Biodata Aila ✨
+            </div>
+            
+            <div class="info-group">
+                <strong>Nama Lengkap</strong>
+                <span>Aila Kireina Putri</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Tanggal Lahir</strong>
+                <span>12 Januari 2012</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Umur</strong>
+                <span>14 Tahun</span>
+            </div>
+
+            <div class="info-group">
+                <strong>Kelas</strong>
+                <span>9A</span>
+            </div>
+
+            <div class="decoration">🍓✨🍵✨🍓</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
