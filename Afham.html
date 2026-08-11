@@ -161,6 +161,53 @@
             font-size: 0.82rem;
             line-height: 1.4;
             color: #d1d5db;
+            margin-bottom: 12px;
+        }
+
+        /* Target Kualifikasi SMA Box */
+        .qual-box {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px dashed rgba(168, 255, 120, 0.4);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        .qual-title {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #a8ff78;
+            margin-bottom: 8px;
+        }
+
+        .qual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .qual-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .qual-name {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .qual-desc {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            line-height: 1.3;
+            margin-bottom: 8px;
         }
 
         /* Bagian Universitas & Jurusan Impian */
@@ -173,6 +220,7 @@
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
             position: relative;
             overflow: hidden;
+            margin-bottom: 12px;
         }
 
         .dream-card::before {
@@ -202,6 +250,43 @@
             font-size: 0.82rem;
             line-height: 1.4;
             color: #d1d5db;
+            margin-bottom: 10px;
+        }
+
+        /* Bagian Platform Belajar */
+        .learning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .learning-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .learning-card:hover {
+            border-color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        .learning-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #00d2ff;
+            margin-bottom: 4px;
+        }
+
+        .learning-desc {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            line-height: 1.35;
             margin-bottom: 10px;
         }
 
@@ -237,22 +322,50 @@
             font-weight: 500;
         }
 
-        .dream-link {
+        .card-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #ffd700;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: bold;
-            padding: 6px 12px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .school-link {
+            color: #a8ff78;
+            background: rgba(168, 255, 120, 0.1);
+            border: 1px solid rgba(168, 255, 120, 0.3);
+        }
+
+        .school-link:hover {
+            background: rgba(168, 255, 120, 0.2);
+            color: #ffffff;
+        }
+
+        .dream-link {
+            color: #ffd700;
             background: rgba(255, 215, 0, 0.1);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 6px;
         }
 
         .dream-link:hover {
             background: rgba(255, 215, 0, 0.2);
+            color: #ffffff;
+        }
+
+        .learn-link {
+            color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            font-size: 0.73rem;
+            padding: 5px 8px;
+        }
+
+        .learn-link:hover {
+            background: rgba(0, 210, 255, 0.25);
             color: #ffffff;
         }
 
@@ -362,13 +475,42 @@
         </div>
 
         <!-- Section Spesial: Target SMA -->
-        <div class="section-title">🏫 SMA Tujuan</div>
+        <div class="section-title">🏫 SMA Tujuan & Target Akademik</div>
         <div class="school-card">
             <div class="school-header">SMA Alfa Centauri Bandung</div>
             <div class="school-sub">Bandung, Jawa Barat 📍</div>
             <p class="school-desc">
                 Target sekolah menengah atas pilihan utama untuk memperdalam pemahaman sains, matematika, dan teknologi. Lingkungan akademik yang mendukung serta fokus pada pembentukan karakter dan kompetensi sains menjadi batu loncatan yang tepat menuju jenjang universitas.
             </p>
+
+            <!-- Target Kualifikasi di SMA -->
+            <div class="qual-box">
+                <div class="qual-title">🎯 Target Kualifikasi Selama SMA:</div>
+                <div class="qual-grid">
+                    <div class="qual-item">
+                        <div>
+                            <div class="qual-name">IELTS 📝</div>
+                            <p class="qual-desc">Sertifikasi kemampuan bahasa Inggris standar internasional.</p>
+                        </div>
+                        <a href="https://www.ielts.org" target="_blank" class="card-link school-link" style="font-size: 0.7rem; padding: 4px 6px;">
+                            Website IELTS 🌐
+                        </a>
+                    </div>
+                    <div class="qual-item">
+                        <div>
+                            <div class="qual-name">SAT 📊</div>
+                            <p class="qual-desc">Ujian standar internasional untuk pendaftaran universitas global.</p>
+                        </div>
+                        <a href="https://satsuite.collegeboard.org" target="_blank" class="card-link school-link" style="font-size: 0.7rem; padding: 4px 6px;">
+                            Website SAT 🌐
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://smaalfacentauri.sch.id" target="_blank" class="card-link school-link">
+                Kunjungi Website SMA Alfa Centauri 🌐
+            </a>
         </div>
 
         <!-- Section Spesial: Universitas & Jurusan Impian -->
@@ -393,10 +535,33 @@
                 <span class="tag">🔬 Applied Physics</span>
             </div>
 
-            <!-- Link Resmi NTU Aerospace Engineering -->
-            <a href="https://www.ntu.edu.sg/mae" target="_blank" class="dream-link">
+            <a href="https://www.ntu.edu.sg/mae" target="_blank" class="card-link dream-link">
                 Kunjungi Website NTU MAE 🌐
             </a>
+        </div>
+
+        <!-- Section: Website Belajar Favorit -->
+        <div class="section-title">📚 Website Belajar Favorit</div>
+        <div class="learning-grid">
+            <div class="learning-card">
+                <div>
+                    <div class="learning-title">Khan Academy 📖</div>
+                    <p class="learning-desc">Platform pembelajaran gratis berkelas dunia untuk memperdalam Fisika, Matematika, dan Sains Dasar.</p>
+                </div>
+                <a href="https://www.khanacademy.org" target="_blank" class="card-link learn-link">
+                    Buka Khan Academy 🌐
+                </a>
+            </div>
+
+            <div class="learning-card">
+                <div>
+                    <div class="learning-title">Brilliant.org 💡</div>
+                    <p class="learning-desc">Platform interaktif berbasis <i>problem-solving</i> untuk mengasah logika Fisika dan STEM secara mendalam.</p>
+                </div>
+                <a href="https://brilliant.org" target="_blank" class="card-link learn-link">
+                    Buka Brilliant.org 🌐
+                </a>
+            </div>
         </div>
 
         <!-- Section Fakta Fisika -->
