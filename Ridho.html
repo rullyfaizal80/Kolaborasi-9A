@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Biodata Ridho ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(-45deg,#00c6ff,#0072ff,#6a11cb,#ff0099,#00ff88);
+background-size:500% 500%;
+animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Bintang */
+
+.star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100vh);
+}
+100%{
+transform:translateY(100vh);
+}
+}
+
+.card{
+position:relative;
+width:430px;
+padding:35px;
+border-radius:30px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(18px);
+border:2px solid rgba(255,255,255,.3);
+box-shadow:
+0 0 25px cyan,
+0 0 50px #00e5ff,
+0 0 80px #7c4dff;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-15px);
+}
+}
+
+.avatar{
+width:150px;
+height:150px;
+margin:auto;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:70px;
+background:linear-gradient(45deg,#FFD700,#ff9800,#ff00cc);
+box-shadow:
+0 0 20px gold,
+0 0 40px orange,
+0 0 70px deeppink;
+animation:spin 8s linear infinite;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+h1{
+margin-top:20px;
+text-align:center;
+font-size:33px;
+color:white;
+text-shadow:
+0 0 10px cyan,
+0 0 20px cyan,
+0 0 40px blue;
+}
+
+.sub{
+text-align:center;
+margin:10px;
+font-size:18px;
+color:#fff176;
+}
+
+.info{
+margin-top:25px;
+}
+
+.box{
+margin:12px 0;
+padding:15px;
+border-radius:15px;
+background:rgba(255,255,255,.15);
+transition:.4s;
+color:white;
+font-size:17px;
+}
+
+.box:hover{
+transform:translateX(10px) scale(1.05);
+background:rgba(255,255,255,.3);
+box-shadow:0 0 20px white;
+}
+
+span{
+color:#ffe600;
+font-weight:bold;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+font-weight:bold;
+font-size:15px;
+color:white;
+animation:blink 2s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:.4;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<120;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.animationDuration=2+Math.random()*6+"s";
+star.style.animationDelay=Math.random()*5+"s";
+document.body.appendChild(star);
+}
+</script>
+
+<div class="card">
+
+<div class="avatar">👑</div>
+
+<h1>M. Ridho Luqmanulhakim</h1>
+
+<div class="sub">
+🚀 BIODATA SUPER GG 🚀
+</div>
+
+<div class="info">
+
+<div class="box">
+<span>🏫 Sekolah</span><br>
+MTs MIFTAHUL HUDA
+</div>
+
+<div class="box">
+<span>📚 Kelas</span><br>
+9 Al-Himmah
+</div>
+
+<div class="box">
+<span>🎂 Tanggal Lahir</span><br>
+10 Maret 2012
+</div>
+
+<div class="box">
+<span>📍 Tempat Lahir</span><br>
+Kota Bandung
+</div>
+
+<div class="box">
+<span>🎯 Cita-cita</span><br>
+YouTuber 🎥 / Pengusaha 💼
+</div>
+
+</div>
+
+<div class="footer">
+🔥 NEVER GIVE UP • KEEP LEARNING • STAY AWESOME 🔥
+</div>
+
+</div>
+
+</body>
+</html>
