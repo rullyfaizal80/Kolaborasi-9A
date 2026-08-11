@@ -88,7 +88,7 @@
             margin: 20px 0;
         }
 
-        .btn-fact, .btn-game {
+        .btn-fact, .btn-game, .btn-converter, .btn-car {
             width: 100%;
             padding: 12px 18px;
             background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
@@ -104,13 +104,13 @@
             margin-bottom: 10px;
         }
 
-        .btn-fact:hover, .btn-game:hover {
+        .btn-fact:hover, .btn-game:hover, .btn-converter:hover, .btn-car:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
             background: linear-gradient(135deg, #ffe082 0%, #d4af37 100%);
         }
 
-        .fact-box {
+        .fact-box, .converter-box, .car-box {
             margin-top: 10px;
             margin-bottom: 15px;
             padding: 15px;
@@ -122,6 +122,76 @@
             line-height: 1.5;
             display: none;
             animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* --- Style Input Groups --- */
+        .input-group {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .field-box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .field-box label {
+            color: #ffe082;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .custom-input, .custom-select {
+            width: 100%;
+            padding: 8px 12px;
+            background: rgba(5, 10, 9, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13.5px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .custom-select option {
+            background: #0d1614;
+            color: #fff;
+        }
+
+        .converter-field {
+            display: flex;
+            align-items: center;
+            background: rgba(5, 10, 9, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+
+        .converter-field span {
+            color: #ffe082;
+            font-weight: bold;
+            font-size: 13px;
+            min-width: 65px;
+        }
+
+        .converter-field input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .rate-info {
+            font-size: 11px;
+            color: #9ca3af;
+            text-align: center;
+            margin-top: 8px;
         }
 
         /* --- Style Mini Game --- */
@@ -225,6 +295,48 @@
 
         <div class="divider"></div>
 
+        <!-- Tombol Kalkulator Mobil Impian -->
+        <button class="btn-car" onclick="toggleCarCalculator()">🚘 Kalkulator Mobil Impian</button>
+        <div class="car-box" id="carBox">
+            <strong style="color: #ffe082;">Simulasi Tabungan Mobil Impian</strong>
+            <div class="input-group">
+                <div class="field-box">
+                    <label for="carSelect">Pilih Mobil Impian:</label>
+                    <select id="carSelect" class="custom-select" onchange="updateHargaMobil()">
+                        <option value="600000000">Toyota Fortuner (~Rp 600.000.000)</option>
+                        <option value="800000000">Destinator (~Rp 800.000.000)</option>
+                    </select>
+                </div>
+                <div class="field-box">
+                    <label for="tabunganAwal">Tabungan Awal (Rp):</label>
+                    <input type="number" id="tabunganAwal" class="custom-input" value="10000000" placeholder="0">
+                </div>
+                <div class="field-box">
+                    <label for="tabunganBulanan">Alokasi Tabungan Bulanan (Rp):</label>
+                    <input type="number" id="tabunganBulanan" class="custom-input" value="15000000" placeholder="0">
+                </div>
+                <button class="btn-game" style="margin-top: 5px;" onclick="hitungWaktuMobil()">Hitung Estimasi Waktu</button>
+            </div>
+            <div id="carResult" class="result-desc" style="margin-top: 12px; margin-bottom: 0; font-weight: bold; text-align: left;"></div>
+        </div>
+
+        <!-- Tombol Konverter Kurs Dirham -->
+        <button class="btn-converter" onclick="toggleConverter()">🪙 Konverter Kurs Dirham (AED ➔ IDR)</button>
+        <div class="converter-box" id="converterBox">
+            <strong style="color: #ffe082;">Kalkulator Dirham Uni Emirat Arab</strong>
+            <div class="input-group">
+                <div class="converter-field">
+                    <span>AED (د.إ):</span>
+                    <input type="number" id="inputAed" value="1" oninput="konversiKurs()" placeholder="Masukkan Dirham">
+                </div>
+                <div class="converter-field">
+                    <span>IDR (Rp):</span>
+                    <input type="text" id="outputIdr" readonly>
+                </div>
+            </div>
+            <div class="rate-info">*Estimasi kurs: 1 AED ≈ Rp 4.850</div>
+        </div>
+
         <!-- Tombol Fakta -->
         <button class="btn-fact" onclick="tampilkanFakta()">💡 Fakta Keuangan Dunia</button>
         <div class="fact-box" id="factBox"></div>
@@ -243,6 +355,67 @@
     </div>
 
     <script>
+        // --- Skrip Kalkulator Mobil Impian ---
+        function toggleCarCalculator() {
+            const carBox = document.getElementById('carBox');
+            if (carBox.style.display === 'none' || carBox.style.display === '') {
+                carBox.style.display = 'block';
+                hitungWaktuMobil();
+            } else {
+                carBox.style.display = 'none';
+            }
+        }
+
+        function hitungWaktuMobil() {
+            const hargaMobil = parseFloat(document.getElementById('carSelect').value) || 0;
+            const tabunganAwal = parseFloat(document.getElementById('tabunganAwal').value) || 0;
+            const tabunganBulanan = parseFloat(document.getElementById('tabunganBulanan').value) || 0;
+            const resBox = document.getElementById('carResult');
+
+            if (tabunganBulanan <= 0) {
+                resBox.innerHTML = "<span style='color: #f87171;'>Masukkan nominal tabungan bulanan yang valid (> 0)!</span>";
+                return;
+            }
+
+            const sisaHarga = hargaMobil - tabunganAwal;
+
+            if (sisaHarga <= 0) {
+                resBox.innerHTML = "<span style='color: #4ade80;'>Selamat! Tabunganmu sudah cukup untuk membeli mobil ini secara tunai! 🎉</span>";
+                return;
+            }
+
+            const totalBulan = Math.ceil(sisaHarga / tabunganBulanan);
+            const tahun = Math.floor(totalBulan / 12);
+            const sisaBulan = totalBulan % 12;
+
+            let durasiTeks = "";
+            if (tahun > 0) durasiTeks += `${tahun} tahun `;
+            if (sisaBulan > 0) durasiTeks += `${sisaBulan} bulan`;
+
+            resBox.innerHTML = `
+                Dibutuhkan sekitar <span style="color: #ffe082;">${durasiTeks.trim()}</span> (${totalBulan} bulan) untuk membawa pulang mobil impianmu! 🚀
+            `;
+        }
+
+        // --- Skrip Widget Konverter Dirham ke Rupiah ---
+        const KURS_AED_TO_IDR = 4850;
+
+        function toggleConverter() {
+            const converterBox = document.getElementById('converterBox');
+            if (converterBox.style.display === 'none' || converterBox.style.display === '') {
+                converterBox.style.display = 'block';
+                konversiKurs();
+            } else {
+                converterBox.style.display = 'none';
+            }
+        }
+
+        function konversiKurs() {
+            const aedVal = parseFloat(document.getElementById('inputAed').value) || 0;
+            const idrVal = aedVal * KURS_AED_TO_IDR;
+            document.getElementById('outputIdr').value = idrVal.toLocaleString('id-ID');
+        }
+
         // --- Skrip Fakta Keuangan ---
         const faktaKeuangan = [
             "Mata uang kertas pertama di dunia diciptakan di Tiongkok pada abad ke-7 selama Dinasti Tang.",
