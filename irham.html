@@ -13,29 +13,43 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Background Tema Dark Luxury & Money (Emas + Emerald Elegan) */
+            /* Background Tema Dark Luxury & Money */
             background: radial-gradient(circle at center, #1b2e2b 0%, #0d1614 60%, #050a09 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas untuk Efek Hujan Uang */
+        #money-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .card {
-            /* Tampilan Kaca Gelap dengan Akses List Emas */
-            background: rgba(20, 35, 30, 0.75);
+            background: rgba(20, 35, 30, 0.85);
             padding: 35px 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.15);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             backdrop-filter: blur(12px);
             border: 1px solid rgba(212, 175, 55, 0.4);
+            position: relative;
+            z-index: 2;
+            margin: 20px 0;
         }
 
         h1 {
-            /* Warna Teks Judul Emas Gradien */
             background: linear-gradient(135deg, #ffe082 0%, #d4af37 50%, #aa7c11 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -57,12 +71,8 @@
             line-height: 1.5;
         }
 
-        .info:last-child {
-            margin-bottom: 0;
-        }
-
         strong {
-            color: #f3e5ab; /* Akses warna emas muda untuk label */
+            color: #f3e5ab;
             min-width: 120px;
             font-weight: 600;
         }
@@ -71,9 +81,120 @@
             flex: 1;
             color: #e2e8f0;
         }
+
+        .divider {
+            height: 1px;
+            background: rgba(212, 175, 55, 0.3);
+            margin: 20px 0;
+        }
+
+        .btn-fact, .btn-game {
+            width: 100%;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+            color: #0d1614;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .btn-fact:hover, .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #ffe082 0%, #d4af37 100%);
+        }
+
+        .fact-box {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(10, 20, 18, 0.6);
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-size: 13.5px;
+            line-height: 1.5;
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* --- Style Mini Game --- */
+        .game-box {
+            display: none;
+            background: rgba(10, 20, 18, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .game-title {
+            color: #ffe082;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .game-question {
+            color: #e2e8f0;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #e2e8f0;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            border-color: #d4af37;
+            color: #fff;
+        }
+
+        .result-title {
+            color: #ffe082;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .result-desc {
+            color: #d1d5db;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
+
+    <canvas id="money-canvas"></canvas>
 
     <div class="card">
         <h1>Biodata Diri</h1>
@@ -93,7 +214,237 @@
             <strong>Hobi:</strong>
             <span class="value">Pingpong dan Jalan-jalan</span>
         </div>
+
+        <div class="divider"></div>
+
+        <!-- Tombol Fakta -->
+        <button class="btn-fact" onclick="tampilkanFakta()">💡 Fakta Keuangan Dunia</button>
+        <div class="fact-box" id="factBox"></div>
+
+        <!-- Tombol Game -->
+        <button class="btn-game" onclick="toggleGame()">🎮 Game: Cek Karakter Keuanganmu</button>
+
+        <!-- Area Game Keuangan -->
+        <div class="game-box" id="gameBox">
+            <div id="gameContent">
+                <div class="game-title">Kuis Karakter Keuangan</div>
+                <div class="game-question" id="questionText">Loading...</div>
+                <div id="optionsContainer"></div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // --- Skrip Fakta Keuangan ---
+        const faktaKeuangan = [
+            "Mata uang kertas pertama di dunia diciptakan di Tiongkok pada abad ke-7 selama Dinasti Tang.",
+            "Uang tunai fisik saat ini diperkirakan hanya mencakup sekitar 8% dari total seluruh uang yang ada di dunia.",
+            "Lebih banyak uang monopoli yang dicetak setiap tahunnya daripada uang kertas asli yang dicetak di seluruh dunia.",
+            "Simbol Dolar ($) diciptakan pada tahun 1778 oleh Oliver Pollock untuk mempermudah penulisan mata uang Peso Spanyol.",
+            "Uang kertas sebenarnya bukan terbuat dari kertas biasa, melainkan campuran kapas dan serat linen agar lebih tahan lama."
+        ];
+
+        let indeksTerakhir = -1;
+
+        function tampilkanFakta() {
+            const factBox = document.getElementById('factBox');
+            factBox.style.display = 'block';
+
+            let indeksBaru;
+            do {
+                indeksBaru = Math.floor(Math.random() * faktaKeuangan.length);
+            } while (indeksBaru === indeksTerakhir && faktaKeuangan.length > 1);
+
+            indeksTerakhir = indeksBaru;
+            factBox.innerHTML = `<strong>Tahu Kah Kamu?</strong><br>${faktaKeuangan[indeksBaru]}`;
+        }
+
+        // --- Skrip Game Keuangan ---
+        const questions = [
+            {
+                q: "1. Kalau kamu dapat hadiah uang Rp 1.000.000, apa yang pertama kali kamu lakukan?",
+                options: [
+                    { text: "Langsung ditabung semuanya di celengan/bank.", type: "saver" },
+                    { text: "Dipakai buat beli barang impian yang sudah lama diincar.", type: "spender" },
+                    { text: "Cari tahu cara memutarkan uangnya (misal: modal bisnis/investasi).", type: "investor" },
+                    { text: "Traktir teman-teman dan sisanya disumbangkan.", type: "giver" }
+                ]
+            },
+            {
+                q: "2. Bagaimana caramu saat ingin membeli sesuatu yang mahal?",
+                options: [
+                    { text: "Menabung konsisten sedikit demi sedikit sampai cukup.", type: "saver" },
+                    { text: "Beli langsung kalau ada uang, tidak perlu mikir lama.", type: "spender" },
+                    { text: "Hitung dulu apakah barang itu memberikan manfaat jangka panjang.", type: "investor" },
+                    { text: "Membeli jika barang itu juga bermanfaat buat orang sekitar.", type: "giver" }
+                ]
+            },
+            {
+                q: "3. Menurutmu, uang itu paling tepat digambarkan sebagai...",
+                options: [
+                    { text: "Jaminan keamanan masa depan.", type: "saver" },
+                    { text: "Alat untuk menikmati hidup saat ini.", type: "spender" },
+                    { text: "Alat untuk membangun kebebasan finansial.", type: "investor" },
+                    { text: "Alat untuk berbagi kebaikan kepada sesama.", type: "giver" }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let scores = { saver: 0, spender: 0, investor: 0, giver: 0 };
+
+        function toggleGame() {
+            const gameBox = document.getElementById('gameBox');
+            if (gameBox.style.display === 'none' || gameBox.style.display === '') {
+                gameBox.style.display = 'block';
+                restartGame();
+            } else {
+                gameBox.style.display = 'none';
+            }
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionText').innerText = q.q;
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt.text;
+                btn.onclick = () => selectOption(opt.type);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(type) {
+            scores[type]++;
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            let highest = 'saver';
+            for (let type in scores) {
+                if (scores[type] > scores[highest]) {
+                    highest = type;
+                }
+            }
+
+            const results = {
+                saver: {
+                    title: "🛡️ Tipe: Sang Penyimpan (The Saver)",
+                    desc: "Kamu sangat berhati-hati dan pandai mengamankan uang. Masa depanmu terencana dengan baik, namun jangan lupa sesekali menikmati hasil jerih payahmu!"
+                },
+                spender: {
+                    title: "🛍️ Tipe: Sang Penikmat (The Spender)",
+                    desc: "Kamu tahu cara menikmati hidup dan tidak ragu membahagiakan diri sendiri. Tapi ingat untuk selalu menyisihkan tabungan darurat ya!"
+                },
+                investor: {
+                    title: "📈 Tipe: Sang Visioner (The Investor)",
+                    desc: "Kamu berpikir kritis tentang peluang masa depan. Kamu suka memutarkan uang agar bekerja untukmu. Pertahankan pemikiran bijak ini!"
+                },
+                giver: {
+                    title: "🤝 Tipe: Sang Dermawan (The Philanthropist)",
+                    desc: "Hati emas! Kamu melihat uang sebagai sarana membawa dampak positif bagi orang lain. Tetap pastikan keuangan pribadimu aman dulu ya."
+                }
+            };
+
+            const res = results[highest];
+            const gameContent = document.getElementById('gameContent');
+            gameContent.innerHTML = `
+                <div class="result-title">${res.title}</div>
+                <div class="result-desc">${res.desc}</div>
+                <button class="btn-game" onclick="restartGame()">🔄 Main Lagi</button>
+            `;
+        }
+
+        function restartGame() {
+            currentQuestion = 0;
+            scores = { saver: 0, spender: 0, investor: 0, giver: 0 };
+            document.getElementById('gameContent').innerHTML = `
+                <div class="game-title">Kuis Karakter Keuangan</div>
+                <div class="game-question" id="questionText"></div>
+                <div id="optionsContainer"></div>
+            `;
+            loadQuestion();
+        }
+
+        // --- Skrip Animasi Hujan Uang ---
+        const canvas = document.getElementById('money-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const moneySymbols = ['💸', '💵', '💰', '💲'];
+        const numParticles = 35;
+        const particles = [];
+
+        class MoneyParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.speed = Math.random() * 2 + 1;
+                this.size = Math.random() * 12 + 18;
+                this.symbol = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
+                this.opacity = Math.random() * 0.6 + 0.3;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                this.sway = Math.random() * 1 - 0.5;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.y * 0.02) + this.sway;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                    this.y = -20;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.symbol, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new MoneyParticle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p) => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 
 </body>
 </html>

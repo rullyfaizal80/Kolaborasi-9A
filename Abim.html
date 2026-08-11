@@ -3,52 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata Sederhana + CSS</title>
+    <title>Biodata & Arcade Seniman - Abimanyu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #9edbc78f;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4efe6;
+            background-image: radial-gradient(#d8cebe 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            gap: 30px;
+        }
+
+        /* Biodata Card Styles */
+        .art-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 35px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(80, 65, 45, 0.1);
+            border: 1px solid #e8decb;
+            position: relative;
+        }
+
+        .profile-frame {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px auto;
+            background: #fdfbf7;
+            border: 3px solid #3d405b;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-size: 32px;
+            box-shadow: 4px 4px 0px #3d405b;
         }
-        .card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
-        }
+
         h1 {
-            color: #333333;
+            font-family: 'Caveat', cursive;
+            color: #3d405b;
             text-align: center;
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #8d8d8d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 20px;
-            border-bottom: 2px solid #9edbc78f;
-            padding-bottom: 10px;
+            font-weight: 600;
         }
-        .info {
+
+        .info-group { display: flex; flex-direction: column; gap: 12px; }
+        .info-item {
+            background: #fdfbf7;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border-left: 4px solid #81b29a;
+        }
+        .info-item.highlight { border-left-color: #e07a5f; }
+        .label { font-size: 11px; text-transform: uppercase; color: #999; font-weight: 700; }
+        .value { font-size: 14px; color: #2b2d42; font-weight: 600; }
+
+        /* Arcade Styles */
+        .arcade-container {
+            background-color: #3d405b;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 4px solid #e07a5f;
+        }
+
+        .arcade-title {
+            color: #f2cc8f;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
             margin-bottom: 15px;
-            font-size: 16px;
-            color: #726d6d;
+            letter-spacing: 1px;
         }
-        strong {
-            color: #333333;
-            display: inline-block;
-            width: 120px;
+
+        canvas {
+            background-color: #f4efe6;
+            border: 4px solid #2b2d42;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #81b29a;
+            color: white;
+            border: 2px solid #2b2d42;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 #2b2d42;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0 #2b2d42;
+        }
+
+        .instructions {
+            color: white;
+            font-size: 12px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        
+        #scoreBoard {
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Biodata Diri</h1>
-        <div class="info"><strong>Nama:</strong> Abimanyu putra radana</div>
-        <div class="info"><strong>Tanggal Lahir:</strong> 25 maret 2012</div>
-        <div class="info"><strong>Alamat:</strong> Desa cilajahilir,sindanglaya</div>
-        <div class="info"><strong>Hobi:</strong> menggambar</div>
+    <div class="art-card">
+        <div class="profile-frame">🎨</div>
+        <h1>Abimanyu Putra Radana</h1>
+        <p class="subtitle">Art & Creative Profile</p>
+        <div class="info-group">
+            <div class="info-item">
+                <div class="label">Tanggal Lahir</div>
+                <div class="value">25 Maret 2012</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Alamat</div>
+                <div class="value">Desa Cikajahilir, Sindanglaya</div>
+            </div>
+            <div class="info-item highlight">
+                <div class="label">Minat & Hobi</div>
+                <div class="value">✏️ Menggambar & 🎮 Gaming</div>
+            </div>
+        </div>
     </div>
 
+    <div class="arcade-container">
+        <h2 class="arcade-title">SKETCHBOOK ARCADE</h2>
+        <div id="scoreBoard">Score: 0</div>
+        
+        <canvas id="gameCanvas" width="300" height="300"></canvas>
+
+        <div class="controls">
+            <button onclick="startGame('flappy')">Flappy Cube</button>
+            <button onclick="startGame('snake')">Snake</button>
+            <button onclick="startGame('parkour')">Parkour Run</button>
+            <button onclick="startGame('racing')">Car Race</button>
+        </div>
+        
+        <div class="instructions" id="instructionText">
+            Pilih game di atas untuk mulai bermain!
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreBoard = document.getElementById('scoreBoard');
+        const instructionText = document.getElementById('instructionText');
+
+        let gameLoop;
+        let currentGame = '';
+        let score = 0;
+        let gameOver = false;
+
+        // Global Game Variables
+        let player, entities, frames;
+
+        // Input Handling
+        let keys = {};
+        window.addEventListener('keydown', e => { keys[e.code] = true; });
+        window.addEventListener('keyup', e => { keys[e.code] = false; });
+        canvas.addEventListener('mousedown', () => { keys['Space'] = true; setTimeout(() => keys['Space'] = false, 100); });
+
+        function stopGame() {
+            if (gameLoop) cancelAnimationFrame(gameLoop);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            gameOver = false;
+            score = 0;
+            frames = 0;
+            updateScore();
+        }
+
+        function updateScore() {
+            scoreBoard.innerText = `Score: ${score}`;
+        }
+
+        function drawGameOver() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2);
+            ctx.font = "12px Arial";
+            ctx.fillText("Klik tombol game untuk mengulang", canvas.width/2, canvas.height/2 + 20);
+        }
+
+        function startGame(gameName) {
+            stopGame();
+            currentGame = gameName;
+            
+            if (gameName === 'flappy') {
+                instructionText.innerText = "Tekan SPASI atau KLIK area game untuk melompat hindari pipa.";
+                player = { x: 50, y: 150, size: 20, velocity: 0, gravity: 0.5, jump: -7 };
+                entities = []; // Pipes
+                loopFlappy();
+            } else if (gameName === 'snake') {
+                instructionText.innerText = "Gunakan tombol PANAH untuk mengarahkan ular memakan apel merah.";
+                player = { body: [{x: 140, y: 140}], dx: 20, dy: 0, size: 20 };
+                entities = { x: 60, y: 60 }; // Food
+                frames = 0; // Control speed
+                loopSnake();
+            } else if (gameName === 'parkour') {
+                instructionText.innerText = "Tekan SPASI atau KLIK untuk melompati rintangan hitam.";
+                player = { x: 50, y: 250, size: 20, velocity: 0, gravity: 0.8, jump: -12, grounded: true };
+                entities = []; // Obstacles
+                loopParkour();
+            } else if (gameName === 'racing') {
+                instructionText.innerText = "Gunakan tombol PANAH KIRI/KANAN untuk menghindari mobil hitam.";
+                player = { x: 130, y: 250, width: 30, height: 40 };
+                entities = []; // Enemy cars
+                loopRacing();
+            }
+        }
+
+        // --- 1. FLAPPY CUBE ---
+        function loopFlappy() {
+            if (gameOver) return drawGameOver();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            frames++;
+
+            // Player logic
+            if (keys['Space']) { player.velocity = player.jump; keys['Space'] = false; }
+            player.velocity += player.gravity;
+            player.y += player.velocity;
+
+            // Draw Player
+            ctx.fillStyle = '#e07a5f';
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+
+            // Pipes logic
+            if (frames % 90 === 0) {
+                let gapPosition = Math.random() * 150 + 50;
+                entities.push({ x: canvas.width, y: 0, width: 30, height: gapPosition - 40 }); // Top
+                entities.push({ x: canvas.width, y: gapPosition + 40, width: 30, height: canvas.height }); // Bottom
+            }
+
+            ctx.fillStyle = '#81b29a';
+            entities.forEach((pipe, i) => {
+                pipe.x -= 2;
+                ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
+                
+                // Collision
+                if (player.x < pipe.x + pipe.width && player.x + player.size > pipe.x &&
+                    player.y < pipe.y + pipe.height && player.y + player.size > pipe.y) {
+                    gameOver = true;
+                }
+                
+                // Score
+                if (pipe.x === player.x && pipe.y === 0) { score++; updateScore(); }
+            });
+            entities = entities.filter(p => p.x > -30);
+
+            if (player.y > canvas.height || player.y < 0) gameOver = true;
+
+            gameLoop = requestAnimationFrame(loopFlappy);
+        }
+
+        // --- 2. SNAKE ---
+        function loopSnake() {
+            if (gameOver) return drawGameOver();
+            gameLoop = requestAnimationFrame(loopSnake);
+            if (++frames < 8) return; // Control speed
+            frames = 0;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Direction
+            if (keys['ArrowLeft'] && player.dx === 0) { player.dx = -player.size; player.dy = 0; }
+            else if (keys['ArrowUp'] && player.dy === 0) { player.dy = -player.size; player.dx = 0; }
+            else if (keys['ArrowRight'] && player.dx === 0) { player.dx = player.size; player.dy = 0; }
+            else if (keys['ArrowDown'] && player.dy === 0) { player.dy = player.size; player.dx = 0; }
+
+            // Move
+            let head = { x: player.body[0].x + player.dx, y: player.body[0].y + player.dy };
+            player.body.unshift(head);
+
+            // Eat Food
+            if (head.x === entities.x && head.y === entities.y) {
+                score += 10; updateScore();
+                entities.x = Math.floor(Math.random() * (canvas.width/player.size)) * player.size;
+                entities.y = Math.floor(Math.random() * (canvas.height/player.size)) * player.size;
+            } else {
+                player.body.pop();
+            }
+
+            // Draw Food
+            ctx.fillStyle = '#e07a5f';
+            ctx.fillRect(entities.x, entities.y, player.size, player.size);
+
+            // Draw Snake & Collision
+            ctx.fillStyle = '#81b29a';
+            player.body.forEach((segment, i) => {
+                ctx.fillRect(segment.x, segment.y, player.size - 1, player.size - 1);
+                // Self collision or wall collision
+                if (i !== 0 && head.x === segment.x && head.y === segment.y) gameOver = true;
+            });
+
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) gameOver = true;
+        }
+
+        // --- 3. PARKOUR RUN ---
+        function loopParkour() {
+            if (gameOver) return drawGameOver();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            frames++;
+
+            // Ground
+            ctx.fillStyle = '#d8cebe';
+            ctx.fillRect(0, 270, canvas.width, 30);
+
+            // Jump Logic
+            if (keys['Space'] && player.grounded) { 
+                player.velocity = player.jump; 
+                player.grounded = false; 
+                keys['Space'] = false; 
+            }
+            player.velocity += player.gravity;
+            player.y += player.velocity;
+
+            if (player.y >= 250) { player.y = 250; player.grounded = true; player.velocity = 0; }
+
+            // Draw Player
+            ctx.fillStyle = '#3d405b';
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+
+            // Obstacles
+            if (frames % 80 === 0) {
+                entities.push({ x: canvas.width, y: 250, size: 20 });
+            }
+
+            ctx.fillStyle = 'black';
+            entities.forEach(obs => {
+                obs.x -= 4; // Speed
+                ctx.fillRect(obs.x, obs.y, obs.size, obs.size);
+                
+                // Collision
+                if (player.x < obs.x + obs.size && player.x + player.size > obs.x &&
+                    player.y < obs.y + obs.size && player.y + player.size > obs.y) {
+                    gameOver = true;
+                }
+                
+                if (obs.x === player.x) { score += 5; updateScore(); }
+            });
+            entities = entities.filter(o => o.x > -20);
+
+            gameLoop = requestAnimationFrame(loopParkour);
+        }
+
+        // --- 4. CAR RACING ---
+        function loopRacing() {
+            if (gameOver) return drawGameOver();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            frames++;
+
+            // Road Lines
+            ctx.fillStyle = '#d8cebe';
+            ctx.fillRect(100, 0, 2, canvas.height);
+            ctx.fillRect(200, 0, 2, canvas.height);
+
+            // Move Car
+            if (keys['ArrowLeft'] && player.x > 30) player.x -= 5;
+            if (keys['ArrowRight'] && player.x < canvas.width - 30 - player.width) player.x += 5;
+
+            // Draw Player
+            ctx.fillStyle = '#e07a5f';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+
+            // Enemies
+            if (frames % 50 === 0) {
+                let lanes = [35, 135, 235];
+                let lane = lanes[Math.floor(Math.random() * lanes.length)];
+                entities.push({ x: lane, y: -50, width: 30, height: 40 });
+            }
+
+            ctx.fillStyle = '#2b2d42';
+            entities.forEach(enemy => {
+                enemy.y += 4;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+
+                // Collision
+                if (player.x < enemy.x + enemy.width && player.x + player.width > enemy.x &&
+                    player.y < enemy.y + enemy.height && player.y + player.height > enemy.y) {
+                    gameOver = true;
+                }
+
+                if (enemy.y === player.y) { score += 10; updateScore(); }
+            });
+            entities = entities.filter(e => e.y < canvas.height + 50);
+
+            gameLoop = requestAnimationFrame(loopRacing);
+        }
+
+        // Auto start empty state
+        ctx.fillStyle = "#8d8d8d";
+        ctx.font = "14px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("PILIH GAME DI BAWAH", canvas.width/2, canvas.height/2);
+
+    </script>
 </body>
 </html>
