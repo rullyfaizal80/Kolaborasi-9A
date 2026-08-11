@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Profile - Kahlil Mizano Nadhytia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0c20;
+            background: radial-gradient(circle at center, #1a103c 0%, #080612 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        /* Kartu Profil Berbentuk Music Player */
+        .player-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                        0 0 30px rgba(138, 43, 226, 0.2);
+            width: 360px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Vinyl Record / Cover Art Animation */
+        .album-art {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #111, #333);
+            margin: 0 auto 20px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #1db954;
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.4);
+            animation: spin 12s linear infinite;
+        }
+
+        /* Animasi piringan hitam berputar */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .album-art::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            background: #0f0c20;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .album-art i {
+            position: absolute;
+            font-size: 24px;
+            color: #1db954;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #1db954;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Daftar Informasi Biodata */
+        .track-list {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .track-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background 0.3s ease;
+        }
+
+        .track-item:hover {
+            background: rgba(29, 185, 84, 0.15);
+        }
+
+        .track-item i {
+            font-size: 16px;
+            color: #1db954;
+            width: 20px;
+            text-align: center;
+        }
+
+        .track-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-label {
+            font-size: 10px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .track-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Music Progress Bar Mockup */
+        .progress-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, #1db954, #8a2be2);
+            border-radius: 3px;
+        }
+
+        /* Mock Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .controls i {
+            font-size: 18px;
+            color: #b3b3b3;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .controls i:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .controls i.play-btn {
+            font-size: 24px;
+            color: #1db954;
+            background: rgba(29, 185, 84, 0.2);
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .controls i.play-btn:hover {
+            color: #ffffff;
+            background: #1db954;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-card">
+        <div class="album-art">
+            <i class="fa-solid fa-music"></i>
+        </div>
+
+        <h1>Kahlil M. Nadhytia</h1>
+        <div class="subtitle">NOW PLAYING • BIODATA</div>
+
+        <div class="track-list">
+            <div class="track-item">
+                <i class="fa-solid fa-user"></i>
+                <div class="track-info">
+                    <span class="track-label">Nama Lengkap</span>
+                    <span class="track-value">Kahlil Mizano Nadhytia</span>
+                </div>
+            </div>
+
+            <div class="track-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <div class="track-info">
+                    <span class="track-label">Tanggal Lahir</span>
+                    <span class="track-value">21 Juni 2011</span>
+                </div>
+            </div>
+
+            <div class="track-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="track-info">
+                    <span class="track-label">Kota Asal</span>
+                    <span class="track-value">Bandung</span>
+                </div>
+            </div>
+
+            <div class="track-item">
+                <i class="fa-solid fa-guitar"></i>
+                <div class="track-info">
+                    <span class="track-label">Hobi & Passion</span>
+                    <span class="track-value">Bermain Musik 🎵</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="controls">
+            <i class="fa-solid fa-shuffle"></i>
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+    </div>
+
+</body>
+</html>

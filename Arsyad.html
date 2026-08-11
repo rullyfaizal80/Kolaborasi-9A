@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata & Fakta Catur - Muhammad Arsyad Fauzan</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #4f46e5, #06b6d4, #2563eb, #3b82f6);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Card Utama */
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 440px;
+      padding: 32px 24px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* Profil Header */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      font-size: 32px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .divider {
+      width: 40px;
+      height: 4px;
+      background: #2563eb;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* List Informasi */
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border-left: 4px solid #2563eb;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .info-card:hover {
+      background: #f1f5f9;
+      transform: translateX(4px);
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* Section Tombol & Widget Fakta Catur */
+    .fact-section {
+      border-top: 2px dashed #e2e8f0;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .btn-fact {
+      width: 100%;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-fact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+    }
+
+    .btn-fact:active {
+      transform: translateY(0);
+    }
+
+    .fact-box {
+      margin-top: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: left;
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .fact-box.active {
+      display: block;
+    }
+
+    .fact-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1e40af;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .fact-content {
+      font-size: 13px;
+      color: #1e293b;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <div class="avatar">M</div>
+      <h1 class="title">Biodata Diri</h1>
+      <div class="divider"></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">Nama Lengkap</div>
+        <div class="value">Muhammad Arsyad Fauzan</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Kelas</div>
+        <div class="value">9A Al-Himmah</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Sekolah</div>
+        <div class="value">MTs Tsanawiyah Informatika</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Tanggal Lahir</div>
+        <div class="value">19 Juni 2012</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Alamat</div>
+        <div class="value">Batara Indah Land 08, Cilengkrang, Bandung</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Hobi</div>
+        <div class="badge">
+          <i class="fa-solid fa-chess"></i> Bermain Catur dan Tertarik terhadap Dunia Catur.
+        </div>
+      </div>
+    </div>
+
+    <div class="fact-section">
+      <button class="btn-fact" id="factBtn">
+        <i class="fa-solid fa-lightbulb"></i> Tahukah Kamu? (Fakta Catur)
+      </button>
+
+      <div class="fact-box" id="factBox">
+        <div class="fact-header">
+          <i class="fa-solid fa-chess-knight"></i>
+          <span>Fakta Unik Catur</span>
+        </div>
+        <p class="fact-content" id="factText">Klik tombol di atas untuk menampilkan fakta unik catur!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chessFacts = [
+      "Kata 'Skakmat' berasal dari frasa bahasa Persia 'Shah Mat', yang berarti 'Raja telah terjebak' atau 'Raja tidak berdaya'.",
+      "Jumlah kemungkinan variasi langkah dalam catur (Shannon Number) diperkirakan lebih banyak daripada jumlah atom di seluruh alam semesta!",
+      "Permainan catur terpanjang dalam sejarah resmi berlangsung selama 269 langkah dan memakan waktu hingga 20 jam 15 menit.",
+      "Langkah pion yang bisa maju 2 kotak pada awal permainan pertama kali diperkenalkan di Spanyol pada tahun 1280 untuk mempercepat jalannya pertandingan.",
+      "Komputer catur pertama yang berhasil mengalahkan Juara Dunia Catur bertahan (Garry Kasparov) adalah 'Deep Blue' milik IBM pada tahun 1997.",
+      "Papan catur lipat pertama kali ditemukan oleh seorang pendeta pada tahun 1125 yang dilarang bermain catur, sehingga ia menyembunyikan papan caturnya agar terlihat seperti dua buku yang berdampingan."
+    ];
+
+    const factBtn = document.getElementById('factBtn');
+    const factBox = document.getElementById('factBox');
+    const factText = document.getElementById('factText');
+
+    let currentIndex = -1;
+
+    factBtn.addEventListener('click', () => {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * chessFacts.length);
+      } while (newIndex === currentIndex && chessFacts.length > 1);
+
+      currentIndex = newIndex;
+
+      factBox.classList.remove('active');
+      
+      setTimeout(() => {
+        factText.textContent = chessFacts[currentIndex];
+        factBox.classList.add('active');
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>

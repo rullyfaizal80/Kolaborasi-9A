@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Interactive - Black & Gold</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a, #080808);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+
+        /* Kartu Utama */
+        .card {
+            background: linear-gradient(145deg, #181818, #0d0d0d);
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 
+                        0 0 15px rgba(212, 175, 55, 0.15);
+            width: 380px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiasan Efek Cahaya / Glow */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Foto Profil / Avatar Placeholder */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #111;
+            border: 2px solid #d4af37;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d4af37;
+            font-size: 32px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            color: #d4af37;
+            font-size: 22px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 8px auto 0;
+        }
+
+        /* List Informasi */
+        .info-container {
+            text-align: left;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .info {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info:last-child {
+            margin-bottom: 0;
+        }
+
+        .info i {
+            color: #d4af37;
+            width: 25px;
+            font-size: 14px;
+        }
+
+        .info strong {
+            color: #cccccc;
+            width: 110px;
+            font-weight: 500;
+        }
+
+        .info span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Bagian Tombol-Tombol Interaktif */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            background: transparent;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #d4af37;
+            color: #000000;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #d4af37, #f3e5ab);
+            color: #000;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #f3e5ab, #d4af37);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* Notifikasi Pesan saat Tombol Ditekan */
+        #alert-box {
+            display: none;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #2ecc71;
+        }
+
+        /* Modal Pop-up untuk Informasi Bola */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #181818;
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            font-size: 16px;
+            color: #d4af37;
+        }
+
+        .close-btn {
+            color: #d4af37;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-body h3 {
+            font-size: 13px;
+            color: #d4af37;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            font-size: 12px;
+            color: #dddddd;
+        }
+
+        .modal-body li {
+            margin-bottom: 6px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .modal-body li::before {
+            content: "•";
+            color: #d4af37;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="avatar">
+            <i class="fa-solid fa-futbol"></i>
+        </div>
+
+        <h1>Biodata Diri</h1>
+
+        <div class="info-container">
+            <div class="info">
+                <i class="fa-solid fa-id-card"></i>
+                <strong>Nama:</strong> 
+                <span>Akmal Shiddiq S.</span>
+            </div>
+            <div class="info">
+                <i class="fa-solid fa-calendar-days"></i>
+                <strong>Tgl Lahir:</strong> 
+                <span>21 Maret 2011</span>
+            </div>
+            <div class="info">
+                <i class="fa-solid fa-location-dot"></i>
+                <strong>Alamat:</strong> 
+                <span>Bandung</span>
+            </div>
+            <div class="info">
+                <i class="fa-solid fa-futbol"></i>
+                <strong>Hobi:</strong> 
+                <span>Bermain Bola</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="showPemain()">
+                <i class="fa-solid fa-star"></i> Pemain Sepakbola Hebat
+            </button>
+            <button class="btn btn-primary" onclick="showMomen()">
+                <i class="fa-solid fa-trophy"></i> Momen Hebat Sepakbola
+            </button>
+
+            <div class="social-grid">
+                <button class="btn" onclick="copyInfo()">
+                    <i class="fa-solid fa-copy"></i> Salin Data
+                </button>
+                <button class="btn" onclick="sapa()">
+                    <i class="fa-solid fa-hand"></i> Sapa Akmal
+                </button>
+            </div>
+        </div>
+
+        <div id="alert-box"></div>
+    </div>
+
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Informasi</h2>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        function showPemain() {
+            document.getElementById('modalTitle').innerText = "Pemain Sepakbola Hebat";
+            document.getElementById('modalBody').innerHTML = `
+                <h3>🌍 Dunia</h3>
+                <ul>
+                    <li><strong>Lionel Messi:</strong> Peraih Ballon d'Or terbanyak & Juara Piala Dunia 2022.</li>
+                    <li><strong>Cristiano Ronaldo:</strong> Pencetak gol terbanyak dalam sejarah sepakbola resmi.</li>
+                    <li><strong>Pelé:</strong> Legenda Brasil, satu-satunya pemain yang meraih 3 Piala Dunia.</li>
+                    <li><strong>Diego Maradona:</strong> Legenda Argentina dengan gol "Tangan Tuhan" dan "Gol Abad Ini".</li>
+                </ul>
+                <h3>🇮🇩 Indonesia</h3>
+                <ul>
+                    <li><strong>Bambang Pamungkas:</strong> Legenda striker dan topskor sepanjang masa Persija & Timnas.</li>
+                    <li><strong>Boaz Solossa:</strong> Penyerang genius asal Papua dengan naluri gol luar biasa.</li>
+                    <li><strong>Asnawi Mangkualam:</strong> Bek tangguh yang berkarier profesional di luar negeri.</li>
+                    <li><strong>Marselino Ferdinan:</strong> Talenta muda berbakat yang bersinar di panggung internasional.</li>
+                </ul>
+            `;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function showMomen() {
+            document.getElementById('modalTitle').innerText = "Momen Hebat Sepakbola";
+            document.getElementById('modalBody').innerHTML = `
+                <h3>🌍 Dunia</h3>
+                <ul>
+                    <li><strong>Argentina Juara Piala Dunia 2022:</strong> Final paling dramatis dalam sejarah melawan Prancis.</li>
+                    <li><strong>Remontada Barcelona (2017):</strong> Membalikkan keadaan dari kalah 0-4 menjadi menang 6-1 atas PSG.</li>
+                    <li><strong>Agüeroooo! (2012):</strong> Gol menit ke-93:20 Sergio Agüero yang membawa Man City juara Liga Inggris.</li>
+                </ul>
+                <h3>🇮🇩 Indonesia</h3>
+                <ul>
+                    <li><strong>Medali Emas SEA Games 2023:</strong> Timnas U-22 mengakhiri dahaga emas selama 32 tahun.</li>
+                    <li><strong>Lolos Perempat Final Piala Asia U-23:</strong> Pencapaian sejarah baru Garuda Muda di level Asia.</li>
+                    <li><strong>Kemenangan vs Kuwait (2022):</strong> Kemenangan bersejarah di kandang Kuwait yang meloloskan Indonesia ke Piala Asia.</li>
+                </ul>
+            `;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        function copyInfo() {
+            const text = "Nama: Akmal Shiddiq Saputra\nTanggal Lahir: 21 Maret 2011\nAlamat: Bandung\nHobi: Bermain Bola";
+            navigator.clipboard.writeText(text);
+            showAlert("📋 Biodata Akmal berhasil disalin!");
+        }
+
+        function sapa() {
+            showAlert("👋 Halo! Salam kenal dari Akmal!");
+        }
+
+        function showAlert(pesan) {
+            const box = document.getElementById('alert-box');
+            box.innerText = pesan;
+            box.style.display = 'block';
+            setTimeout(() => {
+                box.style.display = 'none';
+            }, 3000);
+        }
+
+        // Tutup modal jika klik di luar area konten
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
