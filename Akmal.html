@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akmal Shiddiq - Ranked Quiz Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Latar Belakang Animasi Partikel Bola */
+        .bg-ornaments {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+
+        .floating-ball {
+            position: absolute;
+            color: rgba(212, 175, 55, 0.2);
+            animation: float-around 20s infinite linear;
+        }
+
+        @keyframes float-around {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100vw, 50vh) rotate(90deg); }
+            50% { transform: translate(50vw, 100vh) rotate(180deg); }
+            75% { transform: translate(-10vw, 50vh) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* Bingkai Beranimasi (Glowing Border) */
+        .card-container {
+            position: relative;
+            padding: 4px;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #d4af37, #ffffff, #d4af37);
+            background-size: 200% 200%;
+            animation: border-glow 4s linear infinite;
+        }
+
+        @keyframes border-glow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Kartu Utama */
+        .card {
+            background: #0a0a0a;
+            padding: 40px 30px;
+            border-radius: 22px;
+            width: 390px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+            position: relative;
+        }
+
+        /* Efek Shimmer pada Foto */
+        .avatar-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%; height: 100%;
+            border-radius: 50%; background: #111;
+            border: 3px solid #d4af37;
+            display: flex; justify-content: center; align-items: center;
+            color: #d4af37; font-size: 40px;
+            z-index: 2; position: relative;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .avatar-glow {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #d4af37; border-radius: 50%; filter: blur(15px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        /* Nama yang Bisa Diklik */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #d4af37; font-size: 20px;
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            cursor: pointer; transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        h1:hover {
+            transform: scale(1.08); color: #ffffff;
+            text-shadow: 0 0 20px #d4af37;
+        }
+
+        .club-tag {
+            font-size: 10px; color: #d4af37; background: #000;
+            border: 1px solid #d4af37; padding: 3px 12px;
+            border-radius: 20px; display: inline-block;
+            margin-bottom: 25px; letter-spacing: 1px; font-weight: 600;
+        }
+
+        /* Info Item */
+        .info-container { text-align: left; margin-bottom: 25px; }
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px; padding: 12px 15px;
+            border-radius: 10px; border-left: 0px solid #d4af37;
+            transition: all 0.3s ease; display: flex; align-items: center;
+        }
+
+        .info-box:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 5px solid #d4af37; transform: translateX(10px);
+        }
+
+        .info-box i { color: #d4af37; margin-right: 15px; font-size: 18px; }
+        .info-box span { font-size: 13px; font-weight: 600; }
+
+        /* Tombol */
+        .btn-madrid {
+            background: #ffffff; color: #000; border: none;
+            padding: 12px; width: 100%; border-radius: 8px;
+            font-family: 'Montserrat', sans-serif; font-weight: 700;
+            font-size: 12px; cursor: pointer; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; transition: 0.3s; text-transform: uppercase;
+        }
+
+        .btn-madrid:hover {
+            background: #d4af37; color: white;
+            box-shadow: 0 0 15px #d4af37;
+        }
+
+        .btn-gold-outline {
+            background: transparent; border: 1px solid #d4af37;
+            color: #d4af37; padding: 10px; width: 48%;
+            font-size: 11px; font-weight: bold; cursor: pointer;
+            border-radius: 5px; transition: 0.3s; text-transform: uppercase;
+        }
+
+        .btn-gold-outline:hover {
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Timer Bar UI */
+        .timer-container {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 8px; font-size: 12px; font-weight: bold; color: #d4af37;
+        }
+
+        .timer-wrapper {
+            width: 100%; background: #222; border-radius: 10px;
+            height: 8px; overflow: hidden; margin-bottom: 15px;
+            border: 1px solid #d4af37;
+        }
+
+        .timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(90deg, #2ecc71, #d4af37, #e74c3c);
+            transition: width 1s linear;
+        }
+
+        /* Rank Badge Style */
+        .rank-badge {
+            display: inline-block; background: rgba(212, 175, 55, 0.2);
+            border: 2px solid #d4af37; padding: 8px 16px; border-radius: 20px;
+            color: #d4af37; font-weight: bold; font-size: 14px;
+            margin: 10px 0; text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Input Jawaban Kuis */
+        .quiz-input {
+            width: 100%; padding: 10px 15px; margin: 15px 0 10px 0;
+            background: #222; border: 1px solid #d4af37; border-radius: 8px;
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; outline: none;
+        }
+
+        .quiz-input:focus { box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+
+        /* Modal Popup */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+        }
+
+        .modal-content {
+            background: #111; border: 2px solid #d4af37; border-radius: 20px;
+            padding: 25px; max-width: 450px; width: 100%;
+            max-height: 80vh; overflow-y: auto;
+        }
+
+        .modal-content h2 { 
+            color: #d4af37; border-bottom: 1px solid #d4af37;
+            padding-bottom: 10px; margin-bottom: 15px;
+            font-size: 18px; text-align: center;
+        }
+        
+        .momen-item { margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .momen-item strong { color: #d4af37; display: block; font-size: 14px; }
+        .momen-item p { font-size: 12px; color: #ccc; margin-top: 3px; line-height: 1.5; }
+        .highlight-text { color: #d4af37; font-weight: bold; }
+        .close-modal { color: #fff; float: right; cursor: pointer; font-size: 25px; }
+
+        #alert-box {
+            display: none; position: fixed; bottom: 20px;
+            background: #d4af37; color: black; padding: 10px 20px;
+            border-radius: 50px; font-weight: bold; font-size: 13px; z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-ornaments" id="ornaments"></div>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="avatar-wrapper">
+                <div class="avatar-glow"></div>
+                <div class="avatar">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+            </div>
+
+            <h1 onclick="showAbout()">Akmal Shiddiq S.</h1>
+            <div class="club-tag" onclick="showAbout()" style="cursor:pointer;">👈 KLIK NAMAKU UNTUK PROFIL</div>
+
+            <div class="info-container">
+                <div class="info-box">
+                    <i class="fa-solid fa-id-card"></i>
+                    <span>Akmal Shiddiq Saputra</span>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-calendar-star"></i>
+                    <span>21 Maret 2011</span>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Bandung, Indonesia</span>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-futbol"></i>
+                    <span>Bermain Bola & Madridista</span>
+                </div>
+            </div>
+
+            <button class="btn-madrid" onclick="showLegends()">
+                <i class="fa-solid fa-users-rays"></i> Legenda El Real
+            </button>
+            <button class="btn-madrid" onclick="showMoments()">
+                <i class="fa-solid fa-trophy"></i> Momen Magis Real Madrid
+            </button>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <button class="btn-gold-outline" onclick="startQuiz()"><i class="fa-solid fa-brain"></i> Kuis 20 Soal</button>
+                <button class="btn-gold-outline" onclick="sapa()"><i class="fa-solid fa-hand"></i> Sapa Akmal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="madridModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Judul</h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="alert-box"></div>
+
+    <script>
+        // Efek Suara dengan Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+            } else if (type === 'correct') {
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            }
+        }
+
+        // Ornamen Bola Melayang
+        const ornamentsContainer = document.getElementById('ornaments');
+        for (let i = 0; i < 15; i++) {
+            const ball = document.createElement('i');
+            ball.className = 'fa-solid fa-futbol floating-ball';
+            ball.style.left = Math.random() * 100 + 'vw';
+            ball.style.top = Math.random() * 100 + 'vh';
+            ball.style.fontSize = Math.random() * 20 + 10 + 'px';
+            ball.style.animationDuration = Math.random() * 15 + 10 + 's';
+            ball.style.animationDelay = Math.random() * 5 + 's';
+            ornamentsContainer.appendChild(ball);
+        }
+
+        // Profil "Tentang Akmal"
+        function showAbout() {
+            playSound('click');
+            confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 }, colors: ['#d4af37', '#ffffff', '#ffd700'] });
+
+            document.getElementById('modalTitle').innerText = "🙋‍♂️ TENTANG AKMAL";
+            document.getElementById('modalBody').innerHTML = `
+                <div class="momen-item" style="text-align: left; padding: 10px 5px;">
+                    <p style="font-size:14px; color:#fff; line-height: 1.8;">
+                        HALOO AKU <span class="highlight-text">AKMAL</span>, aku anak ke 2 dari 3 bersaudara, saat ini aku berusia <span class="highlight-text">15 tahun</span>, tinggi badan ku <span class="highlight-text">170cm</span> dengan berat badan <span class="highlight-text">59 kg</span>.
+                    </p>
+                    <br>
+                    <p style="font-size:14px; color:#fff; line-height: 1.8;">
+                        Aku bersekolah di sekolah <span class="highlight-text">MTs MIMHa Tsanawiyah Informatika</span>. Pembelajaran favorit ku adalah <span class="highlight-text">PJOK dan Informatika</span>, rencananya aku akan melanjutkan jenjang SMA ku di <span class="highlight-text">SMA PGII 1 Bandung</span>.
+                    </p>
+                    <br>
+                    <p style="font-size:14px; color:#d4af37; text-align:center; font-weight:bold; border-top: 1px dashed #d4af37; padding-top: 15px;">
+                        "Jika kita bertemu sapa saja yaa 👋"
+                    </p>
+                </div>
+            `;
+            document.getElementById('madridModal').style.display = 'flex';
+        }
+
+        function showLegends() {
+            playSound('click');
+            document.getElementById('modalTitle').innerText = "Legenda Terbesar Real Madrid";
+            document.getElementById('modalBody').innerHTML = `
+                <div class="momen-item"><strong>Cristiano Ronaldo</strong><p>Pencetak gol terbanyak sepanjang masa klub (450 gol) dan 4 gelar UCL.</p></div>
+                <div class="momen-item"><strong>Alfredo Di Stéfano</strong><p>Pionir kejayaan Madrid, memenangkan 5 Piala Eropa berturut-turut.</p></div>
+                <div class="momen-item"><strong>Zinedine Zidane</strong><p>Pahlawan La Novena sebagai pemain, dan pelatih pertama yang hattrick UCL.</p></div>
+                <div class="momen-item"><strong>Luka Modrić</strong><p>Sang maestro yang masih aktif, pemenang Ballon d'Or di era Ronaldo-Messi.</p></div>
+                <div class="momen-item"><strong>Sergio Ramos</strong><p>Kapten abadi dengan mentalitas baja dan gol penyelamat di menit krusial.</p></div>
+            `;
+            document.getElementById('madridModal').style.display = 'flex';
+        }
+
+        function showMoments() {
+            playSound('click');
+            document.getElementById('modalTitle').innerText = "Momen Keajaiban El Real";
+            document.getElementById('modalBody').innerHTML = `
+                <div class="momen-item"><strong>La Decima (Menit 92:48)</strong><p>Sundulan Sergio Ramos melawan Atletico di menit akhir yang mengubah sejarah.</p></div>
+                <div class="momen-item"><strong>The Three-Peat (2016-2018)</strong><p>Satu-satunya klub yang menjuarai Liga Champions 3 tahun berturut-turut di era modern.</p></div>
+                <div class="momen-item"><strong>The Miracle of Bernabéu (2022)</strong><p>Comeback mustahil melawan PSG, Chelsea, dan Man City dalam satu musim UCL.</p></div>
+                <div class="momen-item"><strong>La Decimoquinta (2024)</strong><p>Gelar ke-15 yang mengukuhkan Real Madrid sebagai Raja Eropa sejati.</p></div>
+                <div class="momen-item"><strong>Overhead Kick Ronaldo (Turin)</strong><p>Gol salto ikonik yang membuat seluruh fans lawan berdiri memberikan tepuk tangan.</p></div>
+            `;
+            document.getElementById('madridModal').style.display = 'flex';
+        }
+
+        // Kuis 20 Soal Sepak Bola
+        const kuisList = [
+            { q: "Negara manakah yang menjuarai Piala Dunia 2022 di Qatar?", a: ["argentina"] },
+            { q: "Siapa pencetak gol ikonik 'Tangan Tuhan' di Piala Dunia 1986?", a: ["maradona", "diego maradona"] },
+            { q: "Negara mana yang memegang rekor trofi Piala Dunia terbanyak (5 kali)?", a: ["brasil", "brazil"] },
+            { q: "Momen comeback ajaib Liverpool di final UCL 2005 dikenal sebagai Miracle of...?", a: ["istanbul"] },
+            { q: "Siapa pemain termuda yang menjuarai Piala Dunia (1958)?", a: ["pele", "pelé"] },
+            { q: "Klub mana yang mengejutkan dunia dengan menjuarai Liga Inggris musim 2015/2016?", a: ["leicester city", "leicester"] },
+            { q: "Pemain yang mencetak gol sundulan penyelamat menit 92:48 di Final UCL 2014 adalah...?", a: ["sergio ramos", "ramos"] },
+            { q: "Siapa pencetak gol terbanyak sepanjang masa klub Real Madrid?", a: ["cristiano ronaldo", "ronaldo", "cr7"] },
+            { q: "Berapa total gelar Liga Champions (UCL) Real Madrid hingga tahun 2024?", a: ["15", "limabelas", "lima belas"] },
+            { q: "Stadion kandang kebanggaan Real Madrid bernama...?", a: ["santiago bernabeu", "bernabeu"] },
+            { q: "Pelatih yang membawa Real Madrid menjuarai UCL 3 kali berturut-turut adalah...?", a: ["zinedine zidane", "zidane"] },
+            { q: "Pemain dengan rekor penghargaan Ballon d'Or terbanyak di dunia adalah...?", a: ["lionel messi", "messi"] },
+            { q: "Negara manakah yang menjadi tuan rumah sekaligus juara Piala Dunia pertama kali tahun 1930?", a: ["uruguay"] },
+            { q: "Klub mana yang dijuluki 'The Invincibles' karena tidak pernah kalah dalam semusim Liga Inggris (2003/04)?", a: ["arsenal"] },
+            { q: "Pencetak gol terbanyak sepanjang masa dalam sejarah turnamen Piala Dunia (16 gol) adalah...?", a: ["miroslav klose", "klose"] },
+            { q: "Negara mana dari Benua Asia yang pernah menembus Babak Semifinal Piala Dunia (2002)?", a: ["korea selatan", "korsel", "south korea"] },
+            { q: "Stadion dengan kapasitas penonton terbesar di Eropa adalah...?", a: ["camp nou"] },
+            { q: "Negara kejutan yang berhasil menjuarai Euro 2004 setelah mengalahkan tuan rumah Portugal di final adalah...?", a: ["yunani", "greece"] },
+            { q: "Siapa pemain yang mencetak gol penentu gelar juara Liga Inggris Man City di detik akhir (93:20) tahun 2012?", a: ["sergio aguero", "aguero"] },
+            { q: "Slogan atau teriakan kebanggaan pendukung Real Madrid yang terkenal adalah...?", a: ["hala madrid"] }
+        ];
+
+        let currentQuizIndex = 0;
+        let score = 0;
+        let timerInterval;
+        let timeLeft = 15;
+
+        function startQuiz() {
+            playSound('click');
+            currentQuizIndex = 0;
+            score = 0;
+            loadQuestion();
+            document.getElementById('madridModal').style.display = 'flex';
+        }
+
+        function loadQuestion() {
+            clearInterval(timerInterval);
+            timeLeft = 15;
+
+            const quiz = kuisList[currentQuizIndex];
+            document.getElementById('modalTitle').innerText = `🧠 Kuis Sepak Bola (${currentQuizIndex + 1}/${kuisList.length})`;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="timer-container">
+                    <span><i class="fa-solid fa-hourglass-half"></i> WAKTU:</span>
+                    <span id="timerText">15s</span>
+                </div>
+                <div class="timer-wrapper"><div id="timerBar" class="timer-bar"></div></div>
+                <div class="momen-item">
+                    <strong>Pertanyaan ${currentQuizIndex + 1}:</strong>
+                    <p style="font-size:14px; color:#fff; margin-top:5px;">${quiz.q}</p>
+                </div>
+                <input type="text" id="userAnswer" class="quiz-input" placeholder="Ketik jawabanmu di sini..." onkeypress="handleKeyPress(event)">
+                <button class="btn-madrid" onclick="checkAnswer()">Jawab</button>
+                <div id="feedback" style="margin-top:10px; font-weight:bold; font-size:13px; text-align:center;"></div>
+            `;
+
+            startTimer();
+
+            setTimeout(() => {
+                const input = document.getElementById('userAnswer');
+                if(input) input.focus();
+            }, 100);
+        }
+
+        function startTimer() {
+            const bar = document.getElementById('timerBar');
+            const text = document.getElementById('timerText');
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                if (text) text.innerText = timeLeft + 's';
+                if (bar) bar.style.width = (timeLeft / 15 * 100) + '%';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    playSound('wrong');
+                    const feedback = document.getElementById('feedback');
+                    feedback.style.color = "#e74c3c";
+                    feedback.innerText = `⏳ Waktu habis! Jawaban: ${kuisList[currentQuizIndex].a[0].toUpperCase()}`;
+                    setTimeout(nextQuestion, 1200);
+                }
+            }, 1000);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') checkAnswer();
+        }
+
+        function checkAnswer() {
+            clearInterval(timerInterval);
+            const userInput = document.getElementById('userAnswer').value.trim().toLowerCase();
+            const quiz = kuisList[currentQuizIndex];
+            const feedback = document.getElementById('feedback');
+
+            if (userInput === "") {
+                feedback.style.color = "#e74c3c";
+                feedback.innerText = "Isi jawabanmu terlebih dahulu!";
+                startTimer();
+                return;
+            }
+
+            if (quiz.a.includes(userInput)) {
+                score++;
+                playSound('correct');
+                feedback.style.color = "#2ecc71";
+                feedback.innerText = "✅ Benar sekali!";
+            } else {
+                playSound('wrong');
+                feedback.style.color = "#e74c3c";
+                feedback.innerText = `❌ Salah! Jawaban tepat: ${quiz.a[0].toUpperCase()}`;
+            }
+
+            setTimeout(nextQuestion, 1200);
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < kuisList.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            clearInterval(timerInterval);
+
+            // Sistem Penentuan Rank / Gelar Berdasarkan Skor
+            let rankTitle = "";
+            let rankIcon = "";
+
+            if (score >= 19) {
+                rankTitle = "👑 LEGENDA BOLA SEJATI";
+                rankIcon = "🏆";
+            } else if (score >= 15) {
+                rankTitle = "⭐ MAESTRO SEPAK BOLA";
+                rankIcon = "🥇";
+            } else if (score >= 10) {
+                rankTitle = "⚽ PENONTON SETIA";
+                rankIcon = "🥈";
+            } else {
+                rankTitle = "🐣 FANS KARBITAN";
+                rankIcon = "🥉";
+            }
+
+            if (score >= 15) {
+                playSound('correct');
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+            }
+
+            document.getElementById('modalTitle').innerText = "🏆 HASIL AKHIR KUIS";
+            document.getElementById('modalBody').innerHTML = `
+                <div class="momen-item" style="text-align:center;">
+                    <strong>Skor Akhir Kamu:</strong>
+                    <h2 style="font-size:40px; color:#d4af37; margin:10px 0;">${score} / ${kuisList.length}</h2>
+                    <div class="rank-badge">${rankIcon} ${rankTitle}</div>
+                    <p style="font-size:13px; color:#fff; margin-top:10px;">
+                        ${score >= 15 ? "Luar biasa! Pengetahuan sepak bola kamu tingkat dewa! 🔥" : "Terus asah pengetahuan sepak bola kamu biar naik rank! ⚽"}
+                    </p>
+                </div>
+                <button class="btn-madrid" onclick="startQuiz()">Main Lagi</button>
+            `;
+        }
+
+        function closeModal() {
+            playSound('click');
+            clearInterval(timerInterval);
+            document.getElementById('madridModal').style.display = 'none';
+        }
+
+        function sapa() {
+            playSound('click');
+            showAlert("⚽ Salam kenal dari Akmal Shiddiq!");
+        }
+
+        function showAlert(pesan) {
+            const box = document.getElementById('alert-box');
+            box.innerText = pesan;
+            box.style.display = 'block';
+            setTimeout(() => { box.style.display = 'none'; }, 3000);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('madridModal')) closeModal();
+        }
+    </script>
+</body>
+</html>
