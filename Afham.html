@@ -121,7 +121,49 @@
             gap: 8px;
         }
 
-        /* Bagian Spesial: Universitas & Jurusan Impian */
+        /* Bagian SMA Tujuan */
+        .school-card {
+            background: linear-gradient(135deg, rgba(32, 58, 67, 0.8), rgba(15, 32, 39, 0.9));
+            border: 1px solid rgba(168, 255, 120, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(168, 255, 120, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .school-card::before {
+            content: '⭐';
+            position: absolute;
+            right: 12px;
+            top: 10px;
+            font-size: 1.8rem;
+            opacity: 0.8;
+        }
+
+        .school-header {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #a8ff78;
+            margin-bottom: 4px;
+        }
+
+        .school-sub {
+            font-size: 0.8rem;
+            color: #00d2ff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .school-desc {
+            font-size: 0.82rem;
+            line-height: 1.4;
+            color: #d1d5db;
+        }
+
+        /* Bagian Universitas & Jurusan Impian */
         .dream-card {
             background: linear-gradient(135deg, rgba(18, 38, 58, 0.8), rgba(10, 25, 47, 0.9));
             border: 1px solid rgba(255, 215, 0, 0.4);
@@ -317,6 +359,16 @@
                 <span class="label">Hobi</span>
                 <span class="value">Segala hal mengenai Fisika</span>
             </div>
+        </div>
+
+        <!-- Section Spesial: Target SMA -->
+        <div class="section-title">🏫 SMA Tujuan</div>
+        <div class="school-card">
+            <div class="school-header">SMA Alfa Centauri Bandung</div>
+            <div class="school-sub">Bandung, Jawa Barat 📍</div>
+            <p class="school-desc">
+                Target sekolah menengah atas pilihan utama untuk memperdalam pemahaman sains, matematika, dan teknologi. Lingkungan akademik yang mendukung serta fokus pada pembentukan karakter dan kompetensi sains menjadi batu loncatan yang tepat menuju jenjang universitas.
+            </p>
         </div>
 
         <!-- Section Spesial: Universitas & Jurusan Impian -->
