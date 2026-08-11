@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biodata Diri - Muhammad Arsyad Fauzan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
@@ -18,87 +21,209 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      background-color: #0f172a;
+      overflow-x: hidden;
+      position: relative;
       padding: 20px;
     }
 
+    /* --- ANIMASI BACKGROUND ORB (Cahaya Bergerak) --- */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.6;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 350px;
+      height: 350px;
+      background: #2563eb;
+      top: -50px;
+      left: -50px;
+      animation-duration: 12s;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: #7c3aed;
+      bottom: -100px;
+      right: -100px;
+      animation-duration: 14s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #06b6d4;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 16s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -60px) scale(1.15); }
+      100% { transform: translate(-30px, 40px) scale(0.95); }
+    }
+
+    /* --- ANIMASI BIDAK CATUR MELAYANG (Floating Chess Particles) --- */
+    .chess-particle {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.18);
+      font-size: 28px;
+      user-select: none;
+      animation: floatChess 12s linear infinite;
+      bottom: -60px;
+    }
+
+    @keyframes floatChess {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.3;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* --- KARTU UTAMA (Glassmorphism Modern) --- */
     .card {
-      background: #ffffff;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       width: 100%;
-      max-width: 420px;
-      padding: 32px 28px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      max-width: 440px;
+      padding: 32px 24px;
+      border-radius: 28px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.8);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -12px rgba(37, 99, 235, 0.25);
     }
 
-    .card-header {
+    /* Header & Avatar */
+    .header {
       text-align: center;
       margin-bottom: 24px;
     }
 
+    .avatar-container {
+      position: relative;
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 12px;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(135deg, #2563eb, #60a5fa, #8b5cf6);
+      border-radius: 50%;
+      filter: blur(6px);
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
     .avatar {
-      width: 70px;
-      height: 70px;
+      position: relative;
+      width: 100%;
+      height: 100%;
       background: linear-gradient(135deg, #2563eb, #3b82f6);
       color: white;
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 34px;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      margin: 0 auto 16px;
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+      border: 3px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
     }
 
-    .card-title {
+    .title {
       font-size: 22px;
-      font-weight: 700;
-      color: #1e293b;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
     }
 
     .divider {
-      height: 3px;
-      width: 40px;
-      background: #2563eb;
-      margin: 12px auto 0;
+      width: 44px;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      margin: 8px auto 0;
       border-radius: 2px;
     }
 
-    .info-list {
+    /* List Informasi */
+    .info-grid {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
-    .info-item {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 16px;
+    .info-card {
       background: #f8fafc;
-      border-radius: 12px;
+      padding: 12px 16px;
+      border-radius: 16px;
       border-left: 4px solid #2563eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .info-card:hover {
+      background: #ffffff;
+      transform: translateX(6px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+      border-left-color: #3b82f6;
     }
 
     .label {
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: #64748b;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
+      letter-spacing: 0.6px;
     }
 
     .value {
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 700;
       color: #0f172a;
+      margin-top: 2px;
       line-height: 1.4;
     }
 
@@ -106,50 +231,221 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #dbeafe;
-      color: #1e40af;
-      padding: 4px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-weight: 600;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      color: #1d4ed8;
+      font-weight: 700;
       font-size: 13px;
-      width: fit-content;
-      margin-top: 2px;
+      margin-top: 4px;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* --- SECTION TOMBOL & WIDGET FAKTA CATUR --- */
+    .fact-section {
+      border-top: 2px dashed #e2e8f0;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .btn-fact {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animasi Kilauan Cahaya pada Tombol */
+    .btn-fact::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: rotate(30deg);
+      animation: shine 4s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(30deg); }
+      20% { transform: translateX(100%) rotate(30deg); }
+      100% { transform: translateX(100%) rotate(30deg); }
+    }
+
+    .btn-fact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-fact:active {
+      transform: translateY(1px);
+    }
+
+    .fact-box {
+      margin-top: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: left;
+      display: none;
+      animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fact-box.active {
+      display: block;
+    }
+
+    .fact-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .fact-content {
+      font-size: 13px;
+      color: #1e293b;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
   </style>
 </head>
 <body>
 
+  <div class="bg-animation">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="chess-particle" style="left: 10%; animation-delay: 0s;">♟</div>
+    <div class="chess-particle" style="left: 25%; animation-delay: 3s;">♞</div>
+    <div class="chess-particle" style="left: 40%; animation-delay: 6s;">♝</div>
+    <div class="chess-particle" style="left: 60%; animation-delay: 1.5s;">♜</div>
+    <div class="chess-particle" style="left: 75%; animation-delay: 4.5s;">♛</div>
+    <div class="chess-particle" style="left: 90%; animation-delay: 7.5s;">♚</div>
+  </div>
+
   <div class="card">
-    <div class="card-header">
-      <div class="avatar">M</div>
-      <h1 class="card-title">Biodata Diri</h1>
+    <div class="header">
+      <div class="avatar-container">
+        <div class="avatar-glow"></div>
+        <div class="avatar">M</div>
+      </div>
+      <h1 class="title">Biodata Diri</h1>
       <div class="divider"></div>
     </div>
 
-    <div class="info-list">
-      <div class="info-item">
-        <span class="label">Nama Lengkap</span>
-        <span class="value">Muhammad Arsyad Fauzan</span>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">Nama Lengkap</div>
+        <div class="value">Muhammad Arsyad Fauzan</div>
       </div>
 
-      <div class="info-item">
-        <span class="label">Tanggal Lahir</span>
-        <span class="value">19 Juni 2012</span>
+      <div class="info-card">
+        <div class="label">Kelas</div>
+        <div class="value">9A Al-Himmah</div>
       </div>
 
-      <div class="info-item">
-        <span class="label">Alamat</span>
-        <span class="value">Batara Indah Land 08, Cilengkrang, Bandung</span>
+      <div class="info-card">
+        <div class="label">Sekolah</div>
+        <div class="value">MTs Tsanawiyah Informatika</div>
       </div>
 
-      <div class="info-item">
-        <span class="label">Hobi</span>
-        <div class="value">
-          <span class="badge">♟️ Catur</span>
+      <div class="info-card">
+        <div class="label">Tanggal Lahir</div>
+        <div class="value">19 Juni 2012</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Alamat</div>
+        <div class="value">Batara Indah Land 08, Cilengkrang, Bandung</div>
+      </div>
+
+      <div class="info-card">
+        <div class="label">Hobi</div>
+        <div class="badge">
+          <i class="fa-solid fa-chess"></i> Bermain Catur dan Tertarik terhadap Dunia Catur
         </div>
       </div>
     </div>
+
+    <div class="fact-section">
+      <button class="btn-fact" id="factBtn">
+        <i class="fa-solid fa-lightbulb"></i> Tahukah Kamu? (Fakta Catur)
+      </button>
+
+      <div class="fact-box" id="factBox">
+        <div class="fact-header">
+          <i class="fa-solid fa-chess-knight"></i>
+          <span>Fakta Unik Catur</span>
+        </div>
+        <p class="fact-content" id="factText">Klik tombol di atas untuk menampilkan fakta unik catur!</p>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const chessFacts = [
+      "Komputer catur pertama yang berhasil mengalahkan Juara Dunia Catur bertahan (Garry Kasparov) adalah 'Deep Blue' milik IBM pada tahun 1997.",
+      "Kata 'Skakmat' berasal dari frasa bahasa Persia 'Shah Mat', yang berarti 'Raja telah terjebak' atau 'Raja tidak berdaya'.",
+      "Jumlah kemungkinan variasi langkah dalam catur (Shannon Number) diperkirakan lebih banyak daripada jumlah atom di seluruh alam semesta!",
+      "Permainan catur terpanjang dalam sejarah resmi berlangsung selama 269 langkah dan memakan waktu hingga 20 jam 15 menit.",
+      "Langkah pion yang bisa maju 2 kotak pada awal permainan pertama kali diperkenalkan di Spanyol pada tahun 1280 untuk mempercepat jalannya pertandingan.",
+      "Papan catur lipat pertama kali ditemukan oleh seorang pendeta pada tahun 1125 yang menyembunyikan papan caturnya agar terlihat seperti dua buku."
+    ];
+
+    const factBtn = document.getElementById('factBtn');
+    const factBox = document.getElementById('factBox');
+    const factText = document.getElementById('factText');
+
+    let currentIndex = -1;
+
+    factBtn.addEventListener('click', () => {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * chessFacts.length);
+      } while (newIndex === currentIndex && chessFacts.length > 1);
+
+      currentIndex = newIndex;
+
+      factBox.classList.remove('active');
+      
+      setTimeout(() => {
+        factText.textContent = chessFacts[currentIndex];
+        factBox.classList.add('active');
+      }, 100);
+    });
+  </script>
 
 </body>
 </html>
