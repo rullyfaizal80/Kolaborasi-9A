@@ -3,247 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata & Car Race - Abimanyu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+    <title>Biodata Artistik Abimanyu</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS Variables untuk Tema Gelap dan Terang */
+        /* CSS Variables untuk Mode Terang (Default) */
         :root {
-            --bg-main: #f4efe6;
-            --bg-dots: #d8cebe;
+            --bg-color: #f0f4f8;
             --card-bg: #ffffff;
-            --text-main: #3d405b;
-            --text-sub: #8d8d8d;
-            --border-color: #e8decb;
-            --item-bg: #fdfbf7;
-            --accent-green: #81b29a;
-            --accent-orange: #e07a5f;
-            --arcade-bg: #3d405b;
-            --canvas-bg: #f4efe6;
-            --canvas-border: #2b2d42;
+            --text-main: #333333;
+            --text-muted: #555555;
+            --accent-color: #ff6b6b; /* Warna aksen merah seniman */
+            --border-color: #e1e1e1;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
-        /* Override Variables saat mode gelap (dark-mode) aktif */
+        /* CSS Variables untuk Mode Gelap */
         body.dark-mode {
-            --bg-main: #1a1a24;
-            --bg-dots: #2a2a3a;
-            --card-bg: #2b2d42;
-            --text-main: #f4efe6;
-            --text-sub: #a0a0b5;
-            --border-color: #3d405b;
-            --item-bg: #1f2130;
-            --accent-green: #59987b;
-            --accent-orange: #d66447;
-            --arcade-bg: #1a1a24;
-            --canvas-bg: #2b2d42;
-            --canvas-border: #f4efe6;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-main: #f5f5f5;
+            --text-muted: #b0b0b0;
+            --accent-color: #e94560;
+            --border-color: #2a365f;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s, color 0.3s; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-main);
-            background-image: radial-gradient(var(--bg-dots) 1px, transparent 1px);
-            background-size: 20px 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px; /* Motif titik-titik seperti kertas gambar */
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 350px;
+            position: relative;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+            border: 2px dashed var(--accent-color); /* Garis putus-putus ala sketsa */
+        }
+
+        /* Tombol Mode Gelap/Terang */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive; /* Font yang terlihat seperti tulisan tangan/kuas */
+            color: var(--accent-color);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 38px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .info-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-            gap: 30px;
-            color: var(--text-main);
+            gap: 15px;
         }
 
-        /* Tombol Tema */
-        #themeToggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            color: var(--text-main);
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
+        .info {
+            font-size: 15px;
+            color: var(--text-muted);
             display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            transition: border-color 0.4s ease, color 0.4s ease;
         }
 
-        /* Biodata Card Styles */
-        .art-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-            position: relative;
+        .info:last-child {
+            border-bottom: none;
         }
 
-        .profile-frame {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px auto;
-            background: var(--item-bg);
-            border: 3px solid var(--text-main);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            box-shadow: 4px 4px 0px var(--text-main);
+        strong {
+            color: var(--text-main);
+            display: inline-block;
+            width: 120px;
+            font-weight: 600;
         }
 
-        h1 { font-family: 'Caveat', cursive; text-align: center; font-size: 36px; margin-bottom: 5px; }
-        .subtitle { text-align: center; font-size: 13px; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 600; }
-
-        .info-group { display: flex; flex-direction: column; gap: 12px; }
-        .info-item {
-            background: var(--item-bg);
-            padding: 10px 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-green);
-        }
-        .info-item.highlight { border-left-color: var(--accent-orange); }
-        .label { font-size: 11px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; }
-        .value { font-size: 14px; font-weight: 600; }
-
-        /* Arcade Styles */
-        .arcade-container {
-            background-color: var(--arcade-bg);
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
+        /* Ikon palet warna kecil di sudut */
+        .art-icon {
             text-align: center;
-            border: 4px solid var(--accent-orange);
+            font-size: 40px;
+            margin-bottom: 10px;
         }
-
-        .arcade-title {
-            color: var(--accent-orange);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 14px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0px var(--canvas-border);
-        }
-
-        canvas {
-            background-color: var(--canvas-bg);
-            border: 4px solid var(--canvas-border);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            cursor: pointer;
-        }
-
-        button.btn-start {
-            background-color: var(--accent-green);
-            color: white;
-            border: 2px solid var(--canvas-border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 2px 2px 0 var(--canvas-border);
-            width: 100%;
-        }
-        button.btn-start:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0 var(--canvas-border); }
-
-        .instructions { color: #8d8d8d; font-size: 12px; margin-top: 10px; line-height: 1.5; }
-        #scoreBoard { color: white; font-family: 'Press Start 2P', cursive; font-size: 12px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
-
-    <div class="art-card">
-        <div class="profile-frame">🎨</div>
-        <h1>Abimanyu Putra Radana</h1>
-        <p class="subtitle">Art & Creative Profile</p>
-        <div class="info-group">
-            <div class="info-item">
-                <div class="label">Tanggal Lahir</div>
-                <div class="value">25 Maret 2012</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Alamat</div>
-                <div class="value">Desa Cikajahilir, Sindanglaya</div>
-            </div>
-            <div class="info-item highlight">
-                <div class="label">Minat & Hobi</div>
-                <div class="value">✏️ Menggambar & 🏎️ Balapan</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="arcade-container">
-        <h2 class="arcade-title">CAR RACE</h2>
-        <div id="scoreBoard">Score: 0</div>
+    <div class="card">
+        <button class="theme-toggle" id="toggleBtn" title="Ubah Tema">🎨</button>
         
-        <canvas id="gameCanvas" width="300" height="300"></canvas>
-
-        <button class="btn-start" onclick="startGame()">Mulai Balapan</button>
-        <div class="instructions">
-            Gunakan tombol <b>PANAH KIRI & KANAN</b> (atau <b>TAP</b> sisi kiri/kanan layar) untuk menghindari rintangan!
+        <div class="art-icon">🖌️</div>
+        <h1>Biodata Diri</h1>
+        
+        <div class="info-container">
+            <div class="info"><strong>Nama:</strong> Abimanyu Putra Radana</div>
+            <div class="info"><strong>Tanggal Lahir:</strong> 25 Maret 2012</div>
+            <div class="info"><strong>Alamat:</strong> Cilajahilir, Sindanglaya</div>
+            <div class="info"><strong>Hobi:</strong> Menggambar ✏️</div>
         </div>
     </div>
 
     <script>
-        // Tema Toggle Logic
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeToggle');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            // Menambah atau menghapus class 'dark-mode' pada elemen body
             body.classList.toggle('dark-mode');
             
+            // Ubah ikon tombol berdasarkan tema
             if (body.classList.contains('dark-mode')) {
-                btn.innerText = '☀️';
+                toggleBtn.textContent = '💡'; // Ikon lampu menyala untuk kembali ke mode terang
             } else {
-                btn.innerText = '🌙';
+                toggleBtn.textContent = '🎨'; // Ikon palet untuk mode terang
             }
-            
-            // Render ulang frame terakhir agar warna canvas ikut berubah saat game berhenti
-            if(!gameLoop && !gameOver) drawStartScreen();
-            if(gameOver) drawGameOver();
-        }
+        });
+    </script>
 
-        // Game Setup
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreBoard = document.getElementById('scoreBoard');
-
-        let gameLoop;
-        let score = 0;
-        let gameOver = false;
-        let frames = 0;
-
-        let player = { x: 135, y: 240, width: 30, height: 45 };
-        let entities = [];
-        let keys = {};
-
-        // Mencegah scroll layar & mencatat tombol
-        window.addEventListener('keydown', function(e) {
-            if(['ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
-            keys[e.code] = true;
-        }, { passive: false });
-        window.addEventListener('keyup', e => { keys[e.code] = false; });
-
-        // Kontrol Sentuh Layar Kiri/Kanan
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if(gameOver) return
+</body>
+</html>
