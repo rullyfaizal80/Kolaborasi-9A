@@ -121,7 +121,49 @@
             gap: 8px;
         }
 
-        /* Bagian Spesial: Universitas Impian (NTU) */
+        /* Bagian SMA Tujuan */
+        .school-card {
+            background: linear-gradient(135deg, rgba(32, 58, 67, 0.8), rgba(15, 32, 39, 0.9));
+            border: 1px solid rgba(168, 255, 120, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(168, 255, 120, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .school-card::before {
+            content: '⭐';
+            position: absolute;
+            right: 12px;
+            top: 10px;
+            font-size: 1.8rem;
+            opacity: 0.8;
+        }
+
+        .school-header {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #a8ff78;
+            margin-bottom: 4px;
+        }
+
+        .school-sub {
+            font-size: 0.8rem;
+            color: #00d2ff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .school-desc {
+            font-size: 0.82rem;
+            line-height: 1.4;
+            color: #d1d5db;
+        }
+
+        /* Bagian Universitas & Jurusan Impian */
         .dream-card {
             background: linear-gradient(135deg, rgba(18, 38, 58, 0.8), rgba(10, 25, 47, 0.9));
             border: 1px solid rgba(255, 215, 0, 0.4);
@@ -160,13 +202,29 @@
             font-size: 0.82rem;
             line-height: 1.4;
             color: #d1d5db;
+            margin-bottom: 10px;
+        }
+
+        .major-box {
+            background: rgba(0, 210, 255, 0.08);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            border-radius: 8px;
+            padding: 10px 12px;
             margin-bottom: 12px;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: #e2e8f0;
+        }
+
+        .major-box b {
+            color: #00d2ff;
         }
 
         .tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            margin-bottom: 12px;
         }
 
         .tag {
@@ -177,6 +235,25 @@
             padding: 4px 10px;
             border-radius: 15px;
             font-weight: 500;
+        }
+
+        .dream-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        .dream-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffffff;
         }
 
         .btn-action {
@@ -284,21 +361,42 @@
             </div>
         </div>
 
-        <!-- Section Spesial: Universitas Impian -->
-        <div class="section-title">🎓 Universitas Impian</div>
+        <!-- Section Spesial: Target SMA -->
+        <div class="section-title">🏫 SMA Tujuan</div>
+        <div class="school-card">
+            <div class="school-header">SMA Alfa Centauri Bandung</div>
+            <div class="school-sub">Bandung, Jawa Barat 📍</div>
+            <p class="school-desc">
+                Target sekolah menengah atas pilihan utama untuk memperdalam pemahaman sains, matematika, dan teknologi. Lingkungan akademik yang mendukung serta fokus pada pembentukan karakter dan kompetensi sains menjadi batu loncatan yang tepat menuju jenjang universitas.
+            </p>
+        </div>
+
+        <!-- Section Spesial: Universitas & Jurusan Impian -->
+        <div class="section-title">🎓 Impian Masa Depan</div>
         <div class="dream-card">
             <div class="dream-header">Nanyang Technological University (NTU)</div>
-            <div class="dream-sub">Singapura 🇸🇬</div>
+            <div class="dream-sub">Singapura 🇸🇬 • School of Mechanical & Aerospace Engineering</div>
+            
             <p class="dream-desc">
-                NTU merupakan salah satu universitas teknologi & sains terbaik di Asia dan dunia. Impian saya adalah menembus program studi <b>Physics & Applied Physics</b> di <i>School of Physical and Mathematical Sciences (SPMS)</i> NTU untuk mendalami riset fisika modern dan teknologi masa depan!
+                NTU Singapura adalah kampus teknologi kelas dunia. Impian terbesarku adalah menembus program studi <b>Aerospace Engineering</b>!
             </p>
+
+            <div class="major-box">
+                <b>🚀 Mengapa Aerospace Engineering?</b><br>
+                Jurusan ini menerapkan prinsip fisika terapan—seperti aerodinamika, termodinamika, mekanika orbital, dan sistem propulsi—untuk merancang penerbangan modern, pesawat luar angkasa, serta teknologi wahana antarplanet!
+            </div>
 
             <div class="tag-container">
                 <span class="tag">🏆 Top #1-2 Asia</span>
-                <span class="tag">⚛️ SPMS Physics</span>
-                <span class="tag">🚀 Future Physicist</span>
-                <span class="tag">🔬 World-Class Research</span>
+                <span class="tag">🚀 Aerospace Engineering</span>
+                <span class="tag">✈️ Aerodynamics & Space</span>
+                <span class="tag">🔬 Applied Physics</span>
             </div>
+
+            <!-- Link Resmi NTU Aerospace Engineering -->
+            <a href="https://www.ntu.edu.sg/mae" target="_blank" class="dream-link">
+                Kunjungi Website NTU MAE 🌐
+            </a>
         </div>
 
         <!-- Section Fakta Fisika -->
@@ -423,7 +521,7 @@
             gameMessage.style.display = 'block';
             
             let evaluation = "";
-            if (score >= 15) evaluation = "Luar biasa! Refleks calon mahasiswa NTU Physics! 🚀";
+            if (score >= 15) evaluation = "Luar biasa! Refleks calon insinyur Aerospace NTU! 🚀";
             else if (score >= 8) evaluation = "Bagus sekali! Kecepatan reaksimu mantap! ⚛️";
             else evaluation = "Coba lagi dan tingkatkan kecepatan reaksimu! 💪";
 
