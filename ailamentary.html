@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Siswa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fdf8fa;
+            background-image: 
+                radial-gradient(#f48fb1 0.75px, transparent 0.75px), 
+                radial-gradient(#f48fb1 0.75px, #fdf8fa 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            font-family: 'Poppins', sans-serif;
+            color: #4a4a4a;
+            padding: 50px 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #8e24aa;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #d81b60;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Dekoras garis pemisah dengan aksen belah ketupat */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            width: 180px;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #f48fb1;
+        }
+
+        .divider-diamond {
+            width: 8px;
+            height: 8px;
+            background-color: #d81b60;
+            transform: rotate(45deg);
+            margin: 0 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #f8bbd0;
+            outline: 3px double #f48fb1;
+            outline-offset: -8px;
+            border-radius: 16px;
+            width: 330px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.06);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(216, 27, 96, 0.1);
+        }
+
+        /* Dekoras sudut siku klasik */
+        .card::before, .card::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: #c2185b;
+            border-style: solid;
+        }
+
+        .card::before {
+            top: 14px;
+            left: 14px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .card::after {
+            bottom: 14px;
+            right: 14px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #8e24aa;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #c2185b;
+            background-color: #fce4ec;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .info-list {
+            margin-top: 20px;
+        }
+
+        .info-group {
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #f8bbd0;
+        }
+
+        .info-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .label {
+            font-size: 0.75rem;
+            color: #9e9e9e;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 3px;
+        }
+
+        .value {
+            font-size: 0.98rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #f8bbd0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.88rem;
+            color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1 class="header-title">Biodata Siswa</h1>
+        <div class="divider">
+            <div class="divider-diamond"></div>
+        </div>
+        <div class="header-subtitle">Fancy & Elegant Style</div>
+    </div>
+
+    <div class="container">
+        
+        <!-- Biodata Mentary -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Mentary Assyifa P.</h2>
+                <span class="card-badge">Profil Siswa</span>
+            </div>
+
+            <div class="info-list">
+                <div class="info-group">
+                    <div class="label">Nama Lengkap</div>
+                    <div class="value">Mentary Assyifa Putri</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Kelas</div>
+                    <div class="value">9A</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Tanggal Lahir</div>
+                    <div class="value">12 Oktober 2011</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Umur</div>
+                    <div class="value">14 Tahun</div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                Chic & Elegant
+            </div>
+        </div>
+
+        <!-- Biodata Aila -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Aila Kireina P.</h2>
+                <span class="card-badge">Profil Siswa</span>
+            </div>
+
+            <div class="info-list">
+                <div class="info-group">
+                    <div class="label">Nama Lengkap</div>
+                    <div class="value">Aila Kireina Putri</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Kelas</div>
+                    <div class="value">9A</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Tanggal Lahir</div>
+                    <div class="value">12 Januari 2012</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="label">Umur</div>
+                    <div class="value">14 Tahun</div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                Graceful & Stylish
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
