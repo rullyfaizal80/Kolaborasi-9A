@@ -1,54 +1,2211 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata Sederhana + CSS</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
-        }
-        h1 {
-            color: #333333;
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #4caf50;
-            padding-bottom: 10px;
-        }
-        .info {
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #555555;
-        }
-        strong {
-            color: #333333;
-            display: inline-block;
-            width: 120px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gerrard Faiq Syahreza Rizki | Barça Profile</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050b24;
+    color: white;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(4, 7, 30, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 7%;
+    border-bottom: 2px solid #ed1c24;
+}
+
+nav .logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0, 85, 180, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(237, 28, 36, 0.45), transparent 30%),
+        linear-gradient(135deg, #07144a, #330018);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "FCB";
+    position: absolute;
+    font-size: 250px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.03);
+    transform: rotate(-15deg);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #ed1c24, #ffcc00);
+    color: #111;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 75px);
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #ffcc00, #fff, #ed1c24);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    color: #61a8ff;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 13px 25px;
+    background: linear-gradient(90deg, #ed1c24, #a50044);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(237, 28, 36, 0.4);
+}
+
+/* ================= SECTION ================= */
+
+section {
+    padding: 80px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 40px;
+    color: #ffcc00;
+}
+
+.section-title p {
+    color: #aaa;
+}
+
+/* ================= BIODATA ================= */
+
+.bio-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.bio-card {
+    background: linear-gradient(145deg, #101b4a, #11152f);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.bio-card h3 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+.bio-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.bio-item:last-child {
+    border-bottom: none;
+}
+
+.bio-item span {
+    color: #58a6ff;
+    font-weight: bold;
+}
+
+.quote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+    font-style: italic;
+    color: #ddd;
+}
+
+/* ================= HISTORY ================= */
+
+.timeline {
+    max-width: 1000px;
+    margin: auto;
+    border-left: 3px solid #ed1c24;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    background: #10183b;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.timeline-item:hover {
+    transform: translateX(8px);
+    background: #152250;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 25px;
+    width: 15px;
+    height: 15px;
+    background: #ffcc00;
+    border: 4px solid #ed1c24;
+    border-radius: 50%;
+}
+
+.timeline-item h3 {
+    color: #ffcc00;
+}
+
+/* ================= PLAYERS ================= */
+
+.players {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    background: linear-gradient(145deg, #111d4d, #240a22);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.player-card:hover {
+    transform: translateY(-10px);
+    border-color: #ffcc00;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.player-number {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ed1c24;
+}
+
+.player-card h3 {
+    color: #ffcc00;
+}
+
+.player-card p {
+    color: #bbb;
+}
+
+/* ================= FACTS ================= */
+
+.facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.fact {
+    background: #10183b;
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 4px solid #ed1c24;
+    transition: 0.3s;
+}
+
+.fact:hover {
+    transform: scale(1.02);
+    background: #162452;
+}
+
+.fact strong {
+    color: #ffcc00;
+}
+
+/* ==================================================
+   MINI GAME - WORLD FOOTBALL QUIZ
+================================================== */
+
+.game-section {
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0, 90, 255, 0.15), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 50, 0.15), transparent 30%);
+}
+
+.game-box {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+    background: linear-gradient(145deg, #111b49, #26091e);
+    padding: 35px;
+    border-radius: 25px;
+    border: 2px solid #ed1c24;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-box::before {
+    content: "⚽";
+    position: absolute;
+    font-size: 180px;
+    right: -50px;
+    bottom: -70px;
+    opacity: 0.04;
+}
+
+.game-icon {
+    font-size: 65px;
+    margin-bottom: 5px;
+}
+
+.game-title {
+    color: #ffcc00;
+    font-size: 30px;
+}
+
+.game-subtitle {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* GAME HEADER */
+
+.game-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.game-stat {
+    background: rgba(255,255,255,0.06);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.game-stat span {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.game-stat strong {
+    color: #ffcc00;
+    font-size: 20px;
+}
+
+/* PROGRESS */
+
+.progress-container {
+    background: #070d2b;
+    height: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ed1c24, #ffcc00);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* TIMER */
+
+.timer-box {
+    margin: 15px auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid #ffcc00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.timer-danger {
+    border-color: #ff1e1e;
+    color: #ff3838;
+    animation: pulse 0.7s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* QUESTION */
+
+.question-number {
+    color: #58a6ff;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#question {
+    font-size: 23px;
+    margin: 15px 0 25px;
+    color: white;
+    font-weight: bold;
+}
+
+/* ANSWERS */
+
+.answer-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.answer-btn {
+    background: #172454;
+    border: 1px solid #354b89;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    min-height: 60px;
+}
+
+.answer-btn:hover:not(:disabled) {
+    background: #ed1c24;
+    transform: scale(1.03);
+}
+
+.answer-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+
+.correct {
+    background: #138a36 !important;
+    border-color: #35e06f !important;
+}
+
+.wrong {
+    background: #a31313 !important;
+    border-color: #ff5757 !important;
+}
+
+/* MESSAGE */
+
+#gameMessage {
+    margin-top: 18px;
+    min-height: 30px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.explanation {
+    background: rgba(255,204,0,0.08);
+    border-left: 4px solid #ffcc00;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 10px;
+    color: #ddd;
+    display: none;
+}
+
+/* POWER UPS */
+
+.powerups {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.powerup-btn {
+    border: none;
+    cursor: pointer;
+    padding: 11px 17px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(90deg, #174ea6, #2938a0);
+    transition: 0.3s;
+}
+
+.powerup-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+}
+
+.powerup-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* GAME BUTTONS */
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.game-control-btn {
+    margin-top: 15px;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.start-btn {
+    background: linear-gradient(90deg, #ed1c24, #a50044);
+}
+
+.skip-btn {
+    background: linear-gradient(90deg, #444, #666);
+}
+
+.game-control-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* START SCREEN */
+
+#startScreen {
+    padding: 20px;
+}
+
+#startScreen h3 {
+    font-size: 28px;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.rules {
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.rules li {
+    margin: 8px 0;
+    color: #ddd;
+}
+
+/* QUIZ SCREEN */
+
+#quizScreen {
+    display: none;
+}
+
+/* GAME OVER */
+
+#gameOver {
+    display: none;
+    padding: 20px;
+}
+
+#gameOver h3 {
+    color: #ffcc00;
+    font-size: 35px;
+}
+
+.final-score {
+    font-size: 55px;
+    font-weight: bold;
+    color: #ffcc00;
+    margin: 10px 0;
+}
+
+.rank {
+    font-size: 23px;
+    color: #58a6ff;
+    margin-bottom: 15px;
+}
+
+.high-score {
+    color: #35e06f;
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #030719;
+    border-top: 2px solid #ed1c24;
+}
+
+footer h2 {
+    color: #ffcc00;
+}
+
+footer p {
+    color: #888;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .bio-container {
+        grid-template-columns: 1fr;
+    }
+
+    .answer-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .game-header {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    section {
+        padding: 60px 5%;
+    }
+
+    .game-box {
+        padding: 22px 15px;
+    }
+
+    #question {
+        font-size: 19px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="card">
-        <h1>Biodata Diri</h1>
-        <div class="info"><strong>Nama:</strong> Gerrard </div>
-        <div class="info"><strong>Tanggal Lahir:</strong> 17 juni 2012</div>
-        <div class="info"><strong>Alamat:</strong> Jln. AH.Nasutin No:129</div>
-        <div class="info"><strong>Hobi:</strong> Sepak bola</div>
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+    <div class="logo">🔵🔴 GERRARD FCB</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#biodata">Biodata</a></li>
+        <li><a href="#sejarah">Sejarah</a></li>
+        <li><a href="#pemain">Pemain</a></li>
+        <li><a href="#fakta">50 Fakta</a></li>
+        <li><a href="#game">Mini Game</a></li>
+    </ul>
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<header class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="badge">⚽ FOOTBALL LOVER • CULER</span>
+
+        <h1>Gerrard Faiq Syahreza Rizki</h1>
+
+        <h2>My Profile & FC Barcelona Universe</h2>
+
+        <p>
+            Selamat datang di website biodata Gerrard!
+            Tempat bertemunya profil pribadi, kecintaan terhadap sepakbola,
+            sejarah FC Barcelona, fakta menarik, dan mini game seru.
+        </p>
+
+        <a href="#biodata" class="btn">
+            Jelajahi Website ⚡
+        </a>
+
     </div>
+
+</header>
+
+<!-- ================= BIODATA ================= -->
+
+<section id="biodata">
+
+    <div class="section-title">
+        <h2>👤 Biodata Saya</h2>
+        <p>Kenalan lebih dekat dengan Gerrard</p>
+    </div>
+
+    <div class="bio-container">
+
+        <div class="bio-card">
+
+            <h3>📋 Data Pribadi</h3>
+
+            <div class="bio-item">
+                <span>Nama:</span><br>
+                Gerrard Faiq Syahreza Rizki
+            </div>
+
+            <div class="bio-item">
+                <span>Tanggal Lahir:</span><br>
+                17 Juni 2012
+            </div>
+
+            <div class="bio-item">
+                <span>Alamat:</span><br>
+                Bandung
+            </div>
+
+            <div class="bio-item">
+                <span>Hobi:</span><br>
+                ⚽ Bermain sepakbola
+            </div>
+
+        </div>
+
+        <div class="bio-card quote">
+
+            <div>
+
+                <p>
+                    "Sepakbola bukan hanya tentang mencetak gol,
+                    tetapi tentang perjuangan, kerja sama,
+                    dan tidak pernah menyerah."
+                </p>
+
+                <br>
+
+                <strong style="color:#ffcc00;">
+                    — Gerrard Faiq Syahreza Rizki
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= SEJARAH ================= -->
+
+<section id="sejarah">
+
+    <div class="section-title">
+
+        <h2>🔵🔴 Sejarah FC Barcelona</h2>
+
+        <p>
+            Perjalanan panjang salah satu klub terbesar dunia
+        </p>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>1899 — Awal Berdirinya Barça</h3>
+            <p>
+                FC Barcelona didirikan pada 29 November 1899.
+                Joan Gamper dan sejumlah tokoh lainnya membentuk klub
+                sepakbola yang kemudian berkembang menjadi FC Barcelona.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>1919–1930 — Masa Keemasan Awal</h3>
+            <p>
+                Barça mulai meraih banyak prestasi dan berkembang
+                menjadi klub penting di dunia sepakbola Spanyol.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>1950–1961 — Era Kubala</h3>
+            <p>
+                Ladislao Kubala menjadi salah satu pemain paling terkenal
+                dalam sejarah Barcelona. Pada periode ini Camp Nou juga
+                mulai digunakan, dibuka pada 24 September 1957.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>1974 — Johan Cruyff</h3>
+            <p>
+                Johan Cruyff bergabung dengan Barcelona dan menjadi
+                salah satu figur paling berpengaruh dalam sejarah klub.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>1992 — Dream Team</h3>
+            <p>
+                Barcelona memenangkan European Cup pertama mereka
+                pada 1992 di bawah arahan Johan Cruyff.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2008–2020 — Era Keemasan Modern</h3>
+            <p>
+                Barcelona menikmati salah satu periode terbaik dalam
+                sejarahnya dengan gaya bermain yang sangat terkenal.
+                Lionel Messi menjadi pusat kesuksesan era tersebut.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2015 — Treble</h3>
+            <p>
+                Barcelona memenangkan La Liga, Copa del Rey,
+                dan UEFA Champions League pada musim 2014/15.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2021–Sekarang — Generasi Baru</h3>
+            <p>
+                Barça memasuki era baru dengan munculnya pemain muda
+                seperti Pedri, Gavi dan Lamine Yamal, serta pemain
+                berpengalaman seperti Robert Lewandowski.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PEMAIN ================= -->
+
+<section id="pemain">
+
+    <div class="section-title">
+
+        <h2>⭐ Pemain Legendaris & Terbaik Barça</h2>
+
+        <p>
+            Beberapa nama besar yang sangat identik dengan Barcelona
+        </p>
+
+    </div>
+
+    <div class="players">
+
+        <div class="player-card">
+            <div class="player-number">10</div>
+            <h3>🇦🇷 Lionel Messi</h3>
+            <p>
+                Salah satu pemain terhebat dalam sejarah sepakbola.
+                Ikon terbesar Barcelona di era modern.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">6</div>
+            <h3>🇪🇸 Xavi Hernández</h3>
+            <p>
+                Maestro lini tengah yang terkenal dengan passing,
+                kontrol permainan, dan visi luar biasa.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">8</div>
+            <h3>🇪🇸 Andrés Iniesta</h3>
+            <p>
+                Gelandang elegan yang terkenal karena teknik,
+                kreativitas dan ketenangannya.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">5</div>
+            <h3>🇪🇸 Sergio Busquets</h3>
+            <p>
+                Gelandang bertahan dengan kemampuan membaca permainan
+                dan distribusi bola yang luar biasa.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">9</div>
+            <h3>🇺🇾 Luis Suárez</h3>
+            <p>
+                Striker tajam yang menjadi bagian dari trio
+                MSN bersama Messi dan Neymar.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">11</div>
+            <h3>🇧🇷 Neymar</h3>
+            <p>
+                Winger berbakat dengan skill individu,
+                dribbling dan kreativitas tinggi.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">14</div>
+            <h3>🇳🇱 Johan Cruyff</h3>
+            <p>
+                Legenda Barcelona yang sangat berpengaruh
+                terhadap filosofi sepakbola klub.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">9</div>
+            <h3>🇵🇱 Robert Lewandowski</h3>
+            <p>
+                Penyerang kelas dunia yang bergabung dengan Barça
+                pada 2022 dan menjadi salah satu mesin gol tim.
+            </p>
+        </div>
+
+        <div class="player-card">
+            <div class="player-number">10</div>
+            <h3>🇪🇸 Lamine Yamal</h3>
+            <p>
+                Talenta muda generasi baru Barcelona yang
+                berkembang menjadi salah satu pemain penting klub.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= 50 FAKTA ================= -->
+
+<section id="fakta">
+
+    <div class="section-title">
+
+        <h2>💡 50 Fakta FC Barcelona</h2>
+
+        <p>
+            Seberapa banyak yang kamu tahu tentang Barça?
+        </p>
+
+    </div>
+
+    <div class="facts">
+
+        <div class="fact"><strong>01.</strong> FC Barcelona didirikan pada 29 November 1899.</div>
+        <div class="fact"><strong>02.</strong> Joan Gamper merupakan salah satu tokoh pendiri klub.</div>
+        <div class="fact"><strong>03.</strong> Barcelona sering disebut Barça.</div>
+        <div class="fact"><strong>04.</strong> Julukan pendukung Barcelona adalah Culers.</div>
+        <div class="fact"><strong>05.</strong> Slogan terkenal klub adalah "Més que un club".</div>
+        <div class="fact"><strong>06.</strong> Warna utama Barça adalah biru dan merah.</div>
+        <div class="fact"><strong>07.</strong> Barcelona berasal dari kota Barcelona, Catalonia.</div>
+        <div class="fact"><strong>08.</strong> Camp Nou dibuka pada 24 September 1957.</div>
+        <div class="fact"><strong>09.</strong> Camp Nou merupakan salah satu stadion paling terkenal di Eropa.</div>
+        <div class="fact"><strong>10.</strong> Barcelona memiliki akademi terkenal bernama La Masia.</div>
+
+        <div class="fact"><strong>11.</strong> La Masia menghasilkan banyak pemain hebat.</div>
+        <div class="fact"><strong>12.</strong> Lionel Messi berkembang melalui akademi Barcelona.</div>
+        <div class="fact"><strong>13.</strong> Xavi merupakan produk akademi Barcelona.</div>
+        <div class="fact"><strong>14.</strong> Andrés Iniesta pernah menjadi bagian penting La Masia.</div>
+        <div class="fact"><strong>15.</strong> Sergio Busquets juga berkembang dari sistem akademi Barça.</div>
+        <div class="fact"><strong>16.</strong> Johan Cruyff sangat berpengaruh terhadap filosofi Barcelona.</div>
+        <div class="fact"><strong>17.</strong> Cruyff pernah menjadi pemain sekaligus pelatih Barça.</div>
+        <div class="fact"><strong>18.</strong> Barcelona memenangkan European Cup pertamanya pada 1992.</div>
+        <div class="fact"><strong>19.</strong> Barcelona memenangkan UEFA Champions League pada 2006.</div>
+        <div class="fact"><strong>20.</strong> Barcelona memenangkan Champions League pada 2009.</div>
+
+        <div class="fact"><strong>21.</strong> Barcelona memenangkan Champions League pada 2011.</div>
+        <div class="fact"><strong>22.</strong> Barcelona memenangkan Champions League pada 2015.</div>
+        <div class="fact"><strong>23.</strong> Barcelona memenangkan treble pada musim 2008/09.</div>
+        <div class="fact"><strong>24.</strong> Barcelona kembali meraih treble pada 2014/15.</div>
+        <div class="fact"><strong>25.</strong> Lionel Messi merupakan salah satu pencetak gol terbesar Barça.</div>
+        <div class="fact"><strong>26.</strong> Messi pernah memakai nomor punggung 10.</div>
+        <div class="fact"><strong>27.</strong> Xavi terkenal dengan kemampuan passing-nya.</div>
+        <div class="fact"><strong>28.</strong> Iniesta terkenal dengan kontrol bola dan dribbling-nya.</div>
+        <div class="fact"><strong>29.</strong> Busquets dikenal sebagai gelandang bertahan elite.</div>
+        <div class="fact"><strong>30.</strong> Neymar, Messi dan Suárez membentuk trio MSN.</div>
+
+        <div class="fact"><strong>31.</strong> MSN merupakan singkatan dari Messi, Suárez dan Neymar.</div>
+        <div class="fact"><strong>32.</strong> Barcelona pernah memenangkan banyak trofi domestik Spanyol.</div>
+        <div class="fact"><strong>33.</strong> Copa del Rey adalah salah satu kompetisi utama yang pernah dimenangkan Barça.</div>
+        <div class="fact"><strong>34.</strong> Barcelona juga memiliki tim sepakbola wanita.</div>
+        <div class="fact"><strong>35.</strong> Barça memiliki tim futsal.</div>
+        <div class="fact"><strong>36.</strong> Barça juga memiliki cabang olahraga basket.</div>
+        <div class="fact"><strong>37.</strong> Logo Barcelona memiliki simbol salib St. George.</div>
+        <div class="fact"><strong>38.</strong> Logo Barça juga memiliki warna Catalonia.</div>
+        <div class="fact"><strong>39.</strong> Bagian bawah logo menampilkan warna biru-merah dengan bola.</div>
+        <div class="fact"><strong>40.</strong> Nama "Barça" telah digunakan selama lebih dari satu abad.</div>
+
+        <div class="fact"><strong>41.</strong> Referensi awal nama Barça dalam bentuk tulisan muncul pada 1921.</div>
+        <div class="fact"><strong>42.</strong> Barcelona dikenal dengan gaya bermain berbasis penguasaan bola.</div>
+        <div class="fact"><strong>43.</strong> Tiki-taka sangat identik dengan era emas Barcelona.</div>
+        <div class="fact"><strong>44.</strong> Pep Guardiola pernah melatih Barcelona.</div>
+        <div class="fact"><strong>45.</strong> Guardiola merupakan mantan pemain Barcelona.</div>
+        <div class="fact"><strong>46.</strong> Barcelona memiliki rivalitas besar dengan Real Madrid.</div>
+        <div class="fact"><strong>47.</strong> Pertandingan Barcelona vs Real Madrid dikenal sebagai El Clásico.</div>
+        <div class="fact"><strong>48.</strong> Pedri menjadi salah satu gelandang generasi baru Barça.</div>
+        <div class="fact"><strong>49.</strong> Gavi juga menjadi salah satu pemain muda penting Barcelona.</div>
+        <div class="fact"><strong>50.</strong> Lamine Yamal menjadi salah satu simbol generasi muda Barça.</div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     MINI GAME BARU
+===================================================== -->
+
+<section id="game" class="game-section">
+
+    <div class="section-title">
+
+        <h2>🌎⚽ World Football Quiz</h2>
+
+        <p>
+            Uji pengetahuanmu tentang sepak bola dunia!
+            Ada 25 soal dengan timer, nyawa, streak, dan bonus.
+        </p>
+
+    </div>
+
+    <div class="game-box">
+
+        <!-- START SCREEN -->
+
+        <div id="startScreen">
+
+            <div class="game-icon">🏆⚽🌎</div>
+
+            <h3>WORLD FOOTBALL QUIZ</h3>
+
+            <p>
+                Apakah kamu benar-benar pecinta sepak bola?
+            </p>
+
+            <div class="rules">
+
+                <ul>
+                    <li>🌎 Total <strong>25 soal</strong> sepak bola dunia.</li>
+                    <li>🎯 Setiap jawaban benar = <strong>100 poin</strong>.</li>
+                    <li>🔥 Streak berturut-turut memberikan bonus poin.</li>
+                    <li>❤️ Kamu memiliki <strong>3 nyawa</strong>.</li>
+                    <li>⏱️ Setiap soal memiliki waktu <strong>15 detik</strong>.</li>
+                    <li>💡 Gunakan Joker <strong>50:50</strong> jika kesulitan.</li>
+                    <li>⏭️ Kamu juga bisa melewati soal.</li>
+                </ul>
+
+            </div>
+
+            <button class="game-control-btn start-btn"
+                    onclick="startQuiz()">
+                🚀 MULAI KUIS
+            </button>
+
+        </div>
+
+        <!-- QUIZ SCREEN -->
+
+        <div id="quizScreen">
+
+            <div class="game-header">
+
+                <div class="game-stat">
+                    <span>SOAL</span>
+                    <strong>
+                        <span id="questionNumber">1</span>/25
+                    </strong>
+                </div>
+
+                <div class="game-stat">
+                    <span>SKOR</span>
+                    <strong id="score">0</strong>
+                </div>
+
+                <div class="game-stat">
+                    <span>NYAWA</span>
+                    <strong id="lives">❤️❤️❤️</strong>
+                </div>
+
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="timer-box" id="timer">
+                15
+            </div>
+
+            <div class="question-number" id="category">
+                🌎 WORLD FOOTBALL
+            </div>
+
+            <div id="question">
+                Pertanyaan akan muncul di sini.
+            </div>
+
+            <div id="answers" class="answer-buttons"></div>
+
+            <div class="powerups">
+
+                <button
+                    id="fiftyButton"
+                    class="powerup-btn"
+                    onclick="useFiftyFifty()">
+                    💡 50:50
+                </button>
+
+            </div>
+
+            <div class="game-controls">
+
+                <button
+                    class="game-control-btn skip-btn"
+                    onclick="skipQuestion()">
+                    ⏭️ Lewati
+                </button>
+
+            </div>
+
+            <div id="gameMessage"></div>
+
+            <div id="explanation"
+                 class="explanation">
+            </div>
+
+        </div>
+
+        <!-- GAME OVER -->
+
+        <div id="gameOver">
+
+            <div class="game-icon">🏆</div>
+
+            <h3>QUIZ SELESAI!</h3>
+
+            <p>
+                Perjalananmu di dunia sepak bola telah selesai.
+            </p>
+
+            <div class="final-score"
+                 id="finalScore">
+                0
+            </div>
+
+            <div class="rank"
+                 id="rank">
+                Football Fan
+            </div>
+
+            <p id="finalStats"></p>
+
+            <p class="high-score"
+               id="highScoreText">
+            </p>
+
+            <button
+                class="game-control-btn start-btn"
+                onclick="startQuiz()">
+                🔄 MAIN LAGI
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>🔵🔴 FORÇA BARÇA! 🔴🔵</h2>
+
+    <p>
+        Website Biodata Gerrard Faiq Syahreza Rizki
+    </p>
+
+    <p>
+        ⚽ Football • 💙 Barcelona • 🏆 Champions
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 Gerrard Faiq Syahreza Rizki
+    </p>
+
+</footer>
+
+<script>
+
+/* =====================================================
+   WORLD FOOTBALL QUIZ
+   25 SOAL SEPAK BOLA DUNIA
+===================================================== */
+
+const questions = [
+
+    {
+        category: "🌎 Piala Dunia",
+        question: "Negara manakah yang memenangkan Piala Dunia 2022?",
+        answers: [
+            "Argentina",
+            "Prancis",
+            "Brasil",
+            "Jerman"
+        ],
+        correct: 0,
+        explanation: "Argentina menjadi juara Piala Dunia 2022 setelah mengalahkan Prancis melalui adu penalti."
+    },
+
+    {
+        category: "🌎 Piala Dunia",
+        question: "Siapa pemain yang mencetak dua gol untuk Argentina di final Piala Dunia 2022?",
+        answers: [
+            "Ángel Di María",
+            "Lionel Messi",
+            "Julián Álvarez",
+            "Lautaro Martínez"
+        ],
+        correct: 1,
+        explanation: "Lionel Messi mencetak dua gol dalam final Piala Dunia 2022 melawan Prancis."
+    },
+
+    {
+        category: "🏆 Champions League",
+        question: "Klub mana yang memenangkan UEFA Champions League 2023/24?",
+        answers: [
+            "Manchester City",
+            "Real Madrid",
+            "Bayern München",
+            "Borussia Dortmund"
+        ],
+        correct: 1,
+        explanation: "Real Madrid mengalahkan Borussia Dortmund 2-0 di final dan meraih trofi Champions League."
+    },
+
+    {
+        category: "🇧🇷 Brasil",
+        question: "Siapa legenda Brasil yang dikenal dengan julukan 'O Rei'?",
+        answers: [
+            "Ronaldo",
+            "Ronaldinho",
+            "Pelé",
+            "Kaká"
+        ],
+        correct: 2,
+        explanation: "Pelé dikenal sebagai 'O Rei', yang berarti 'Sang Raja'."
+    },
+
+    {
+        category: "🇵🇹 Portugal",
+        question: "Cristiano Ronaldo berasal dari negara mana?",
+        answers: [
+            "Spanyol",
+            "Portugal",
+            "Brasil",
+            "Italia"
+        ],
+        correct: 1,
+        explanation: "Cristiano Ronaldo berasal dari Portugal dan lahir di Madeira."
+    },
+
+    {
+        category: "🇦🇷 Argentina",
+        question: "Siapa kapten Argentina ketika memenangkan Piala Dunia 2022?",
+        answers: [
+            "Lionel Messi",
+            "Ángel Di María",
+            "Julián Álvarez",
+            "Emiliano Martínez"
+        ],
+        correct: 0,
+        explanation: "Lionel Messi menjadi kapten Argentina saat memenangkan Piala Dunia 2022."
+    },
+
+    {
+        category: "🏟️ Stadion",
+        question: "Stadion Wembley berada di kota mana?",
+        answers: [
+            "Manchester",
+            "Liverpool",
+            "London",
+            "Birmingham"
+        ],
+        correct: 2,
+        explanation: "Wembley Stadium berada di London, Inggris."
+    },
+
+    {
+        category: "🇪🇸 Spanyol",
+        question: "Apa nama pertandingan antara Barcelona dan Real Madrid?",
+        answers: [
+            "Derby Madrid",
+            "El Clásico",
+            "Super Derby",
+            "La Final"
+        ],
+        correct: 1,
+        explanation: "Pertandingan Barcelona melawan Real Madrid dikenal sebagai El Clásico."
+    },
+
+    {
+        category: "🇳🇱 Belanda",
+        question: "Siapa legenda Belanda yang sangat terkenal dengan konsep Total Football?",
+        answers: [
+            "Johan Cruyff",
+            "Ruud Gullit",
+            "Arjen Robben",
+            "Dennis Bergkamp"
+        ],
+        correct: 0,
+        explanation: "Johan Cruyff merupakan salah satu tokoh terpenting dalam perkembangan Total Football."
+    },
+
+    {
+        category: "🇫🇷 Prancis",
+        question: "Siapa pemain Prancis yang mencetak hat-trick di final Piala Dunia 2022?",
+        answers: [
+            "Olivier Giroud",
+            "Antoine Griezmann",
+            "Kylian Mbappé",
+            "Karim Benzema"
+        ],
+        correct: 2,
+        explanation: "Kylian Mbappé mencetak tiga gol untuk Prancis dalam final Piala Dunia 2022."
+    },
+
+    {
+        category: "🇮🇹 Italia",
+        question: "Italia memenangkan Piala Dunia 2006 setelah mengalahkan negara mana di final?",
+        answers: [
+            "Brasil",
+            "Jerman",
+            "Prancis",
+            "Spanyol"
+        ],
+        correct: 2,
+        explanation: "Italia mengalahkan Prancis melalui adu penalti pada final Piala Dunia 2006."
+    },
+
+    {
+        category: "🇩🇪 Jerman",
+        question: "Siapa pencetak gol kemenangan Jerman di final Piala Dunia 2014?",
+        answers: [
+            "Thomas Müller",
+            "Mario Götze",
+            "Miroslav Klose",
+            "Toni Kroos"
+        ],
+        correct: 1,
+        explanation: "Mario Götze mencetak gol kemenangan Jerman melawan Argentina pada final 2014."
+    },
+
+    {
+        category: "🏆 Champions League",
+        question: "Klub mana yang dikenal dengan julukan 'The Reds'?",
+        answers: [
+            "Chelsea",
+            "Arsenal",
+            "Liverpool",
+            "Tottenham"
+        ],
+        correct: 2,
+        explanation: "Liverpool FC terkenal dengan julukan The Reds."
+    },
+
+    {
+        category: "🏴 Inggris",
+        question: "Siapa pemain Inggris yang dikenal sebagai legenda Manchester United dan memakai nomor 7?",
+        answers: [
+            "Wayne Rooney",
+            "David Beckham",
+            "Frank Lampard",
+            "Steven Gerrard"
+        ],
+        correct: 1,
+        explanation: "David Beckham merupakan salah satu legenda Manchester United yang terkenal dengan nomor 7."
+    },
+
+    {
+        category: "🇧🇷 Brasil",
+        question: "Ronaldinho pernah bermain untuk klub mana?",
+        answers: [
+            "Barcelona",
+            "Arsenal",
+            "Manchester City",
+            "Borussia Dortmund"
+        ],
+        correct: 0,
+        explanation: "Ronaldinho menjadi salah satu pemain penting Barcelona pada pertengahan 2000-an."
+    },
+
+    {
+        category: "🇪🇸 Barcelona",
+        question: "Siapa pemain yang dikenal sebagai salah satu pencetak gol terbesar dalam sejarah Barcelona?",
+        answers: [
+            "Xavi",
+            "Lionel Messi",
+            "Sergio Busquets",
+            "Carles Puyol"
+        ],
+        correct: 1,
+        explanation: "Lionel Messi adalah pencetak gol terbanyak sepanjang sejarah Barcelona."
+    },
+
+    {
+        category: "🇬🇧 Premier League",
+        question: "Klub mana yang bermarkas di Anfield?",
+        answers: [
+            "Liverpool",
+            "Chelsea",
+            "Arsenal",
+            "Manchester United"
+        ],
+        correct: 0,
+        explanation: "Anfield adalah stadion kandang Liverpool FC."
+    },
+
+    {
+        category: "🇮🇹 Italia",
+        question: "Klub mana yang dikenal dengan julukan 'The Old Lady'?",
+        answers: [
+            "AC Milan",
+            "Inter Milan",
+            "Juventus",
+            "AS Roma"
+        ],
+        correct: 2,
+        explanation: "Juventus dikenal dengan julukan La Vecchia Signora atau The Old Lady."
+    },
+
+    {
+        category: "🇩🇪 Jerman",
+        question: "Klub mana yang bermarkas di Allianz Arena?",
+        answers: [
+            "Borussia Dortmund",
+            "Bayern München",
+            "RB Leipzig",
+            "Bayer Leverkusen"
+        ],
+        correct: 1,
+        explanation: "Allianz Arena merupakan stadion kandang Bayern München."
+    },
+
+    {
+        category: "🇪🇸 Spanyol",
+        question: "Kompetisi liga utama sepak bola Spanyol disebut...",
+        answers: [
+            "Serie A",
+            "Bundesliga",
+            "La Liga",
+            "Ligue 1"
+        ],
+        correct: 2,
+        explanation: "La Liga adalah kompetisi liga utama sepak bola Spanyol."
+    },
+
+    {
+        category: "🇫🇷 Prancis",
+        question: "Kompetisi liga utama sepak bola Prancis disebut...",
+        answers: [
+            "Ligue 1",
+            "La Liga",
+            "Eredivisie",
+            "Primeira Liga"
+        ],
+        correct: 0,
+        explanation: "Ligue 1 merupakan kompetisi liga utama Prancis."
+    },
+
+    {
+        category: "🇳🇱 Belanda",
+        question: "Kompetisi liga utama sepak bola Belanda disebut...",
+        answers: [
+            "Eredivisie",
+            "Bundesliga",
+            "Super Lig",
+            "Primeira Liga"
+        ],
+        correct: 0,
+        explanation: "Eredivisie adalah kasta tertinggi sepak bola Belanda."
+    },
+
+    {
+        category: "🇵🇹 Portugal",
+        question: "Cristiano Ronaldo pernah menjadi bintang utama klub mana di Inggris?",
+        answers: [
+            "Liverpool",
+            "Chelsea",
+            "Manchester United",
+            "Arsenal"
+        ],
+        correct: 2,
+        explanation: "Cristiano Ronaldo menjadi salah satu bintang terbesar Manchester United."
+    },
+
+    {
+        category: "🌎 Piala Dunia",
+        question: "Negara mana yang memenangkan Piala Dunia 2018?",
+        answers: [
+            "Kroasia",
+            "Prancis",
+            "Brasil",
+            "Argentina"
+        ],
+        correct: 1,
+        explanation: "Prancis memenangkan Piala Dunia 2018 setelah mengalahkan Kroasia 4-2 di final."
+    },
+
+    {
+        category: "🌎 Piala Dunia",
+        question: "Negara mana yang paling banyak memenangkan Piala Dunia hingga sejarah turnamen?",
+        answers: [
+            "Jerman",
+            "Italia",
+            "Argentina",
+            "Brasil"
+        ],
+        correct: 3,
+        explanation: "Brasil merupakan negara dengan jumlah gelar Piala Dunia terbanyak, yaitu lima kali."
+    },
+
+    {
+        category: "🏆 Champions League",
+        question: "Apa nama trofi utama yang diperebutkan dalam UEFA Champions League?",
+        answers: [
+            "The Golden Ball",
+            "European Champion Clubs' Cup / Champions League Trophy",
+            "World Cup",
+            "FA Cup"
+        ],
+        correct: 1,
+        explanation: "Pemenang Champions League mendapatkan trofi kompetisi klub utama Eropa tersebut."
+    }
+
+];
+
+/* =====================================================
+   VARIABLE GAME
+===================================================== */
+
+let quizQuestions = [];
+let currentQuestion = 0;
+
+let score = 0;
+let lives = 3;
+let streak = 0;
+
+let correctAnswers = 0;
+let wrongAnswers = 0;
+let skippedAnswers = 0;
+
+let timeLeft = 15;
+let timerInterval = null;
+
+let fiftyUsed = false;
+let questionLocked = false;
+
+/* =====================================================
+   START QUIZ
+===================================================== */
+
+function startQuiz() {
+
+    clearInterval(timerInterval);
+
+    quizQuestions = [...questions];
+
+    /*
+       Acak semua soal
+    */
+
+    quizQuestions.sort(() => Math.random() - 0.5);
+
+    currentQuestion = 0;
+    score = 0;
+    lives = 3;
+    streak = 0;
+
+    correctAnswers = 0;
+    wrongAnswers = 0;
+    skippedAnswers = 0;
+
+    fiftyUsed = false;
+    questionLocked = false;
+
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameOver").style.display = "none";
+    document.getElementById("quizScreen").style.display = "block";
+
+    document.getElementById("score").innerText = "0";
+
+    updateLives();
+
+    document.getElementById("fiftyButton").disabled = false;
+
+    showQuestion();
+}
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion() {
+
+    clearInterval(timerInterval);
+
+    questionLocked = false;
+
+    if (currentQuestion >= quizQuestions.length) {
+        endQuiz();
+        return;
+    }
+
+    const q = quizQuestions[currentQuestion];
+
+    document.getElementById("questionNumber").innerText =
+        currentQuestion + 1;
+
+    document.getElementById("category").innerText =
+        q.category;
+
+    document.getElementById("question").innerText =
+        q.question;
+
+    document.getElementById("gameMessage").innerHTML = "";
+
+    document.getElementById("explanation").style.display =
+        "none";
+
+    document.getElementById("explanation").innerHTML = "";
+
+    const progress =
+        ((currentQuestion) / quizQuestions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    createAnswers(q);
+
+    startTimer();
+}
+
+/* =====================================================
+   CREATE ANSWERS
+===================================================== */
+
+function createAnswers(q) {
+
+    const container =
+        document.getElementById("answers");
+
+    container.innerHTML = "";
+
+    q.answers.forEach((answer, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer-btn";
+
+        button.innerText =
+            String.fromCharCode(65 + index) +
+            ". " +
+            answer;
+
+        button.onclick = function() {
+            checkAnswer(index, button);
+        };
+
+        container.appendChild(button);
+
+    });
+}
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer() {
+
+    timeLeft = 15;
+
+    const timer =
+        document.getElementById("timer");
+
+    timer.innerText =
+        timeLeft;
+
+    timer.classList.remove("timer-danger");
+
+    timerInterval =
+        setInterval(() => {
+
+            timeLeft--;
+
+            timer.innerText =
+                timeLeft;
+
+            if (timeLeft <= 5) {
+                timer.classList.add("timer-danger");
+            }
+
+            if (timeLeft <= 0) {
+
+                clearInterval(timerInterval);
+
+                timeOut();
+
+            }
+
+        }, 1000);
+}
+
+/* =====================================================
+   TIME OUT
+===================================================== */
+
+function timeOut() {
+
+    if (questionLocked) return;
+
+    questionLocked = true;
+
+    lives--;
+    wrongAnswers++;
+    streak = 0;
+
+    updateLives();
+
+    const q =
+        quizQuestions[currentQuestion];
+
+    revealCorrectAnswer();
+
+    document.getElementById("gameMessage").innerHTML =
+        "⏰ WAKTU HABIS!";
+
+    document.getElementById("gameMessage").style.color =
+        "#ff5757";
+
+    showExplanation(q);
+
+    setTimeout(() => {
+
+        if (lives <= 0) {
+            endQuiz();
+        } else {
+            nextQuestion();
+        }
+
+    }, 1800);
+}
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function checkAnswer(index, button) {
+
+    if (questionLocked) return;
+
+    questionLocked = true;
+
+    clearInterval(timerInterval);
+
+    const q =
+        quizQuestions[currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(".answer-btn");
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    if (index === q.correct) {
+
+        button.classList.add("correct");
+
+        correctAnswers++;
+
+        streak++;
+
+        /*
+           Skor dasar 100.
+           Bonus streak maksimal +100.
+        */
+
+        let bonus =
+            Math.min((streak - 1) * 25, 100);
+
+        let earned =
+            100 + bonus;
+
+        /*
+           Bonus waktu
+        */
+
+        if (timeLeft >= 10) {
+            earned += 25;
+        }
+
+        score += earned;
+
+        document.getElementById("score").innerText =
+            score;
+
+        document.getElementById("gameMessage").innerHTML =
+            "🎉 BENAR! +" +
+            earned +
+            " poin 🔥 Streak: " +
+            streak;
+
+        document.getElementById("gameMessage").style.color =
+            "#35e06f";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        lives--;
+
+        wrongAnswers++;
+
+        streak = 0;
+
+        updateLives();
+
+        document.getElementById("gameMessage").innerHTML =
+            "❌ SALAH! Jawaban yang benar: " +
+            q.answers[q.correct];
+
+        document.getElementById("gameMessage").style.color =
+            "#ff5757";
+
+        revealCorrectAnswer();
+
+    }
+
+    showExplanation(q);
+
+    setTimeout(() => {
+
+        if (lives <= 0) {
+            endQuiz();
+        } else {
+            nextQuestion();
+        }
+
+    }, 2200);
+}
+
+/* =====================================================
+   SHOW CORRECT ANSWER
+===================================================== */
+
+function revealCorrectAnswer() {
+
+    const q =
+        quizQuestions[currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(".answer-btn");
+
+    buttons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === q.correct) {
+            button.classList.add("correct");
+        }
+
+    });
+}
+
+/* =====================================================
+   EXPLANATION
+===================================================== */
+
+function showExplanation(q) {
+
+    const explanation =
+        document.getElementById("explanation");
+
+    explanation.innerHTML =
+        "📖 <strong>Penjelasan:</strong> " +
+        q.explanation;
+
+    explanation.style.display =
+        "block";
+}
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    showQuestion();
+}
+
+/* =====================================================
+   SKIP QUESTION
+===================================================== */
+
+function skipQuestion() {
+
+    if (questionLocked) return;
+
+    clearInterval(timerInterval);
+
+    questionLocked = true;
+
+    skippedAnswers++;
+
+    streak = 0;
+
+    const q =
+        quizQuestions[currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(".answer-btn");
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    revealCorrectAnswer();
+
+    document.getElementById("gameMessage").innerHTML =
+        "⏭️ Soal dilewati! Jawabannya: " +
+        q.answers[q.correct];
+
+    document.getElementById("gameMessage").style.color =
+        "#ffcc00";
+
+    showExplanation(q);
+
+    setTimeout(() => {
+
+        nextQuestion();
+
+    }, 1800);
+}
+
+/* =====================================================
+   JOKER 50:50
+===================================================== */
+
+function useFiftyFifty() {
+
+    if (fiftyUsed || questionLocked) {
+        return;
+    }
+
+    fiftyUsed = true;
+
+    document.getElementById("fiftyButton").disabled =
+        true;
+
+    const q =
+        quizQuestions[currentQuestion];
+
+    const buttons =
+        [...document.querySelectorAll(".answer-btn")];
+
+    let wrongButtons =
+        buttons.filter((button, index) =>
+            index !== q.correct
+        );
+
+    /*
+       Acak pilihan jawaban salah
+    */
+
+    wrongButtons.sort(() => Math.random() - 0.5);
+
+    /*
+       Hilangkan 2 jawaban salah
+    */
+
+    wrongButtons
+        .slice(0, 2)
+        .forEach(button => {
+
+            button.disabled = true;
+
+            button.style.visibility =
+                "hidden";
+
+        });
+
+}
+
+/* =====================================================
+   LIVES
+===================================================== */
+
+function updateLives() {
+
+    let heart = "";
+
+    for (let i = 0; i < lives; i++) {
+        heart += "❤️";
+    }
+
+    for (let i = lives; i < 3; i++) {
+        heart += "🖤";
+    }
+
+    document.getElementById("lives").innerText =
+        heart;
+}
+
+/* =====================================================
+   GAME OVER
+===================================================== */
+
+function endQuiz() {
+
+    clearInterval(timerInterval);
+
+    document.getElementById("quizScreen").style.display =
+        "none";
+
+    document.getElementById("gameOver").style.display =
+        "block";
+
+    document.getElementById("progressBar").style.width =
+        "100%";
+
+    document.getElementById("finalScore").innerText =
+        score;
+
+    let rank = "";
+
+    if (score >= 2500) {
+        rank = "👑 FOOTBALL MASTER";
+    }
+    else if (score >= 2000) {
+        rank = "🏆 FOOTBALL EXPERT";
+    }
+    else if (score >= 1500) {
+        rank = "⭐ FOOTBALL PRO";
+    }
+    else if (score >= 1000) {
+        rank = "⚽ FOOTBALL FAN";
+    }
+    else {
+        rank = "🥅 PEMULA SEPAK BOLA";
+    }
+
+    document.getElementById("rank").innerText =
+        rank;
+
+    document.getElementById("finalStats").innerHTML =
+        "✅ Benar: " +
+        correctAnswers +
+        " &nbsp; | &nbsp; " +
+        "❌ Salah: " +
+        wrongAnswers +
+        " &nbsp; | &nbsp; " +
+        "⏭️ Dilewati: " +
+        skippedAnswers;
+
+    /*
+       High Score menggunakan localStorage
+    */
+
+    let highScore =
+        Number(localStorage.getItem("gerrardFootballHighScore")) || 0;
+
+    if (score > highScore) {
+
+        localStorage.setItem(
+            "gerrardFootballHighScore",
+            score
+        );
+
+        document.getElementById("highScoreText").innerHTML =
+            "🎉 HIGH SCORE BARU! Rekor kamu: " +
+            score +
+            " poin!";
+
+    } else {
+
+        document.getElementById("highScoreText").innerHTML =
+            "🏅 High Score: " +
+            highScore +
+            " poin";
+
+    }
+
+}
+
+/* =====================================================
+   KEYBOARD SHORTCUT
+===================================================== */
+
+document.addEventListener("keydown", function(event) {
+
+    if (
+        document.getElementById("quizScreen").style.display !== "block"
+        ||
+        questionLocked
+    ) {
+        return;
+    }
+
+    /*
+       Tombol 1-4 untuk menjawab
+    */
+
+    if (
+        event.key >= "1" &&
+        event.key <= "4"
+    ) {
+
+        const index =
+            Number(event.key) - 1;
+
+        const buttons =
+            document.querySelectorAll(".answer-btn");
+
+        if (
+            buttons[index] &&
+            !buttons[index].disabled
+        ) {
+
+            buttons[index].click();
+
+        }
+
+    }
+
+    /*
+       Tombol S untuk skip
+    */
+
+    if (
+        event.key.toLowerCase() === "s"
+    ) {
+        skipQuestion();
+    }
+
+});
+
+</script>
 
 </body>
 </html>
