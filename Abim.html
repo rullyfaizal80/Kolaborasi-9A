@@ -3,18 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata & Arcade Seniman - Abimanyu</title>
+    <title>Biodata & Car Race - Abimanyu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* CSS Variables untuk Tema Gelap dan Terang */
+        :root {
+            --bg-main: #f4efe6;
+            --bg-dots: #d8cebe;
+            --card-bg: #ffffff;
+            --text-main: #3d405b;
+            --text-sub: #8d8d8d;
+            --border-color: #e8decb;
+            --item-bg: #fdfbf7;
+            --accent-green: #81b29a;
+            --accent-orange: #e07a5f;
+            --arcade-bg: #3d405b;
+            --canvas-bg: #f4efe6;
+            --canvas-border: #2b2d42;
+        }
+
+        /* Override Variables saat mode gelap (dark-mode) aktif */
+        body.dark-mode {
+            --bg-main: #1a1a24;
+            --bg-dots: #2a2a3a;
+            --card-bg: #2b2d42;
+            --text-main: #f4efe6;
+            --text-sub: #a0a0b5;
+            --border-color: #3d405b;
+            --item-bg: #1f2130;
+            --accent-green: #59987b;
+            --accent-orange: #d66447;
+            --arcade-bg: #1a1a24;
+            --canvas-bg: #2b2d42;
+            --canvas-border: #f4efe6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s, color 0.3s; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f4efe6;
-            background-image: radial-gradient(#d8cebe 1px, transparent 1px);
+            background-color: var(--bg-main);
+            background-image: radial-gradient(var(--bg-dots) 1px, transparent 1px);
             background-size: 20px 20px;
             display: flex;
             flex-direction: column;
@@ -22,17 +54,38 @@
             min-height: 100vh;
             padding: 40px 20px;
             gap: 30px;
+            color: var(--text-main);
+        }
+
+        /* Tombol Tema */
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
         /* Biodata Card Styles */
         .art-card {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             border-radius: 16px;
             padding: 35px 30px;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 15px 35px rgba(80, 65, 45, 0.1);
-            border: 1px solid #e8decb;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
             position: relative;
         }
 
@@ -40,68 +93,54 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 15px auto;
-            background: #fdfbf7;
-            border: 3px solid #3d405b;
+            background: var(--item-bg);
+            border: 3px solid var(--text-main);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 32px;
-            box-shadow: 4px 4px 0px #3d405b;
+            box-shadow: 4px 4px 0px var(--text-main);
         }
 
-        h1 {
-            font-family: 'Caveat', cursive;
-            color: #3d405b;
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 13px;
-            color: #8d8d8d;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        h1 { font-family: 'Caveat', cursive; text-align: center; font-size: 36px; margin-bottom: 5px; }
+        .subtitle { text-align: center; font-size: 13px; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 600; }
 
         .info-group { display: flex; flex-direction: column; gap: 12px; }
         .info-item {
-            background: #fdfbf7;
+            background: var(--item-bg);
             padding: 10px 15px;
             border-radius: 10px;
-            border-left: 4px solid #81b29a;
+            border-left: 4px solid var(--accent-green);
         }
-        .info-item.highlight { border-left-color: #e07a5f; }
-        .label { font-size: 11px; text-transform: uppercase; color: #999; font-weight: 700; }
-        .value { font-size: 14px; color: #2b2d42; font-weight: 600; }
+        .info-item.highlight { border-left-color: var(--accent-orange); }
+        .label { font-size: 11px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; }
+        .value { font-size: 14px; font-weight: 600; }
 
         /* Arcade Styles */
         .arcade-container {
-            background-color: #3d405b;
+            background-color: var(--arcade-bg);
             padding: 20px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             width: 100%;
             max-width: 400px;
             text-align: center;
-            border: 4px solid #e07a5f;
+            border: 4px solid var(--accent-orange);
         }
 
         .arcade-title {
-            color: #f2cc8f;
+            color: var(--accent-orange);
             font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
+            font-size: 14px;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 0px var(--canvas-border);
         }
 
         canvas {
-            background-color: #f4efe6;
-            border: 4px solid #2b2d42;
+            background-color: var(--canvas-bg);
+            border: 4px solid var(--canvas-border);
             border-radius: 8px;
             margin-bottom: 15px;
             display: block;
@@ -110,47 +149,28 @@
             cursor: pointer;
         }
 
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            background-color: #81b29a;
+        button.btn-start {
+            background-color: var(--accent-green);
             color: white;
-            border: 2px solid #2b2d42;
-            padding: 10px;
+            border: 2px solid var(--canvas-border);
+            padding: 12px 20px;
             border-radius: 8px;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 2px 2px 0 #2b2d42;
-            transition: transform 0.1s, box-shadow 0.1s;
+            box-shadow: 2px 2px 0 var(--canvas-border);
+            width: 100%;
         }
+        button.btn-start:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0 var(--canvas-border); }
 
-        button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0 #2b2d42;
-        }
-
-        .instructions {
-            color: white;
-            font-size: 12px;
-            margin-top: 10px;
-            line-height: 1.5;
-        }
-        
-        #scoreBoard {
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 10px;
-            margin-bottom: 10px;
-        }
+        .instructions { color: #8d8d8d; font-size: 12px; margin-top: 10px; line-height: 1.5; }
+        #scoreBoard { color: white; font-family: 'Press Start 2P', cursive; font-size: 12px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
+
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
 
     <div class="art-card">
         <div class="profile-frame">🎨</div>
@@ -167,156 +187,63 @@
             </div>
             <div class="info-item highlight">
                 <div class="label">Minat & Hobi</div>
-                <div class="value">✏️ Menggambar & 🎮 Gaming</div>
+                <div class="value">✏️ Menggambar & 🏎️ Balapan</div>
             </div>
         </div>
     </div>
 
     <div class="arcade-container">
-        <h2 class="arcade-title">SKETCHBOOK ARCADE</h2>
+        <h2 class="arcade-title">CAR RACE</h2>
         <div id="scoreBoard">Score: 0</div>
         
         <canvas id="gameCanvas" width="300" height="300"></canvas>
 
-        <div class="controls">
-            <button onclick="startGame('flappy')">Flappy Cube</button>
-            <button onclick="startGame('snake')">Snake</button>
-            <button onclick="startGame('parkour')">Parkour Run</button>
-            <button onclick="startGame('racing')">Car Race</button>
-        </div>
-        
-        <div class="instructions" id="instructionText">
-            Pilih game di atas untuk mulai bermain!
+        <button class="btn-start" onclick="startGame()">Mulai Balapan</button>
+        <div class="instructions">
+            Gunakan tombol <b>PANAH KIRI & KANAN</b> (atau <b>TAP</b> sisi kiri/kanan layar) untuk menghindari rintangan!
         </div>
     </div>
 
     <script>
+        // Tema Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.innerText = '☀️';
+            } else {
+                btn.innerText = '🌙';
+            }
+            
+            // Render ulang frame terakhir agar warna canvas ikut berubah saat game berhenti
+            if(!gameLoop && !gameOver) drawStartScreen();
+            if(gameOver) drawGameOver();
+        }
+
+        // Game Setup
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreBoard = document.getElementById('scoreBoard');
-        const instructionText = document.getElementById('instructionText');
 
         let gameLoop;
-        let currentGame = '';
         let score = 0;
         let gameOver = false;
+        let frames = 0;
 
-        let player, entities, frames;
+        let player = { x: 135, y: 240, width: 30, height: 45 };
+        let entities = [];
         let keys = {};
 
-        // Mencegah layar ter-scroll saat main game
+        // Mencegah scroll layar & mencatat tombol
         window.addEventListener('keydown', function(e) {
-            if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
-                e.preventDefault();
-            }
+            if(['ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
             keys[e.code] = true;
         }, { passive: false });
-
         window.addEventListener('keyup', e => { keys[e.code] = false; });
 
-        // Dukungan klik & sentuh untuk loncat
-        function handleJump() {
-            keys['Space'] = true; 
-            setTimeout(() => keys['Space'] = false, 100);
-            
-            // Restart game jika game over dan layar ditekan
-            if(gameOver && currentGame) {
-                startGame(currentGame);
-            }
-        }
-        canvas.addEventListener('mousedown', handleJump);
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleJump(); }, { passive: false });
-
-        function stopGame() {
-            if (gameLoop) cancelAnimationFrame(gameLoop);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            gameOver = false;
-            score = 0;
-            frames = 0;
-            keys = {}; // Reset tombol
-            updateScore();
-        }
-
-        function updateScore() {
-            scoreBoard.innerText = `Score: ${score}`;
-        }
-
-        function drawGameOver() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "white";
-            ctx.font = "bold 24px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 10);
-            ctx.font = "14px Arial";
-            ctx.fillText("Klik layar untuk mengulang", canvas.width/2, canvas.height/2 + 20);
-        }
-
-        function startGame(gameName) {
-            stopGame();
-            currentGame = gameName;
-            
-            if (gameName === 'flappy') {
-                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompat hindari pipa.";
-                player = { x: 50, y: 150, size: 20, velocity: 0, gravity: 0.4, jump: -7 };
-                entities = []; 
-                loopFlappy();
-            } else if (gameName === 'snake') {
-                instructionText.innerText = "Gunakan tombol PANAH untuk mengarahkan ular memakan apel merah.";
-                player = { body: [{x: 140, y: 140}], dx: 20, dy: 0, size: 20 };
-                entities = { x: 60, y: 60 }; 
-                frames = 0; 
-                loopSnake();
-            } else if (gameName === 'parkour') {
-                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompati rintangan hitam.";
-                player = { x: 50, y: 250, size: 20, velocity: 0, gravity: 0.6, jump: -10, grounded: true };
-                entities = []; 
-                loopParkour();
-            } else if (gameName === 'racing') {
-                instructionText.innerText = "Gunakan tombol PANAH KIRI/KANAN untuk menghindari mobil hitam.";
-                player = { x: 135, y: 240, width: 30, height: 45 };
-                entities = []; 
-                loopRacing();
-            }
-        }
-
-        // --- 1. FLAPPY CUBE ---
-        function loopFlappy() {
-            if (gameOver) return drawGameOver();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            frames++;
-
-            if (keys['Space']) { player.velocity = player.jump; keys['Space'] = false; }
-            player.velocity += player.gravity;
-            player.y += player.velocity;
-
-            ctx.fillStyle = '#e07a5f';
-            ctx.fillRect(player.x, player.y, player.size, player.size);
-
-            if (frames % 100 === 0) {
-                let gapPosition = Math.random() * 120 + 60;
-                entities.push({ x: canvas.width, y: 0, width: 40, height: gapPosition - 50 }); // Pipa Atas
-                entities.push({ x: canvas.width, y: gapPosition + 50, width: 40, height: canvas.height }); // Pipa Bawah
-            }
-
-            ctx.fillStyle = '#81b29a';
-            entities.forEach((pipe) => {
-                pipe.x -= 2;
-                ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
-                
-                // Deteksi Tabrakan
-                if (player.x < pipe.x + pipe.width && player.x + player.size > pipe.x &&
-                    player.y < pipe.y + pipe.height && player.y + player.size > pipe.y) {
-                    gameOver = true;
-                }
-                
-                if (pipe.x === player.x && pipe.y === 0) { score++; updateScore(); }
-            });
-            entities = entities.filter(p => p.x > -50);
-
-            if (player.y > canvas.height || player.y < 0) gameOver = true;
-
-            gameLoop = requestAnimationFrame(loopFlappy);
-        }
-
-        // --- 2. SNA
+        // Kontrol Sentuh Layar Kiri/Kanan
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if(gameOver) return
