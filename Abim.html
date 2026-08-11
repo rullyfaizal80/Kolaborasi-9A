@@ -3,247 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata & Car Race - Abimanyu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+    <title>Biodata Artistik Abimanyu</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS Variables untuk Tema Gelap dan Terang */
+        /* CSS Variables - Tema Terang (Industrial Sketch) */
         :root {
-            --bg-main: #f4efe6;
-            --bg-dots: #d8cebe;
+            --bg-color: #e5e7eb;
             --card-bg: #ffffff;
-            --text-main: #3d405b;
-            --text-sub: #8d8d8d;
-            --border-color: #e8decb;
-            --item-bg: #fdfbf7;
-            --accent-green: #81b29a;
-            --accent-orange: #e07a5f;
-            --arcade-bg: #3d405b;
-            --canvas-bg: #f4efe6;
-            --canvas-border: #2b2d42;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --accent-color: #2563eb; /* Biru Elektrik */
+            --border-color: #111827;
+            --shadow: 8px 8px 0px #111827; /* Bayangan keras gaya komik/street style */
         }
 
-        /* Override Variables saat mode gelap (dark-mode) aktif */
+        /* CSS Variables - Tema Gelap (Dark Graphite) */
         body.dark-mode {
-            --bg-main: #1a1a24;
-            --bg-dots: #2a2a3a;
-            --card-bg: #2b2d42;
-            --text-main: #f4efe6;
-            --text-sub: #a0a0b5;
-            --border-color: #3d405b;
-            --item-bg: #1f2130;
-            --accent-green: #59987b;
-            --accent-orange: #d66447;
-            --arcade-bg: #1a1a24;
-            --canvas-bg: #2b2d42;
-            --canvas-border: #f4efe6;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8; /* Cyan Neon */
+            --border-color: #38bdf8;
+            --shadow: 8px 8px 0px #0284c7;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s, color 0.3s; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-main);
-            background-image: radial-gradient(var(--bg-dots) 1px, transparent 1px);
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: all 0.3s ease;
+            /* Pola Latar Belakang Kertas Kotak-Kotak (Grid Blueprint) */
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
             background-size: 20px 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 35px;
+            border-radius: 4px; /* Sudut lebih tegas/tajam */
+            border: 3px solid var(--border-color);
+            box-shadow: var(--shadow);
+            width: 350px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Tombol Mode Gelap/Terang */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--border-color);
+            color: var(--card-bg);
+            border: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif; /* Font tegas & bold */
+            color: var(--text-main);
+            text-align: left;
+            margin: 0 0 20px 0;
+            font-size: 42px;
+            letter-spacing: 2px;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .info-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-            gap: 30px;
-            color: var(--text-main);
+            gap: 12px;
         }
 
-        /* Tombol Tema */
-        #themeToggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            color: var(--text-main);
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-
-        /* Biodata Card Styles */
-        .art-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .profile-frame {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px auto;
-            background: var(--item-bg);
-            border: 3px solid var(--text-main);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            box-shadow: 4px 4px 0px var(--text-main);
-        }
-
-        h1 { font-family: 'Caveat', cursive; text-align: center; font-size: 36px; margin-bottom: 5px; }
-        .subtitle { text-align: center; font-size: 13px; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 600; }
-
-        .info-group { display: flex; flex-direction: column; gap: 12px; }
-        .info-item {
-            background: var(--item-bg);
-            padding: 10px 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-green);
-        }
-        .info-item.highlight { border-left-color: var(--accent-orange); }
-        .label { font-size: 11px; text-transform: uppercase; color: var(--text-sub); font-weight: 700; }
-        .value { font-size: 14px; font-weight: 600; }
-
-        /* Arcade Styles */
-        .arcade-container {
-            background-color: var(--arcade-bg);
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            border: 4px solid var(--accent-orange);
-        }
-
-        .arcade-title {
-            color: var(--accent-orange);
-            font-family: 'Press Start 2P', cursive;
+        .info {
             font-size: 14px;
-            margin-bottom: 15px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 8px;
+        }
+
+        strong {
+            color: var(--text-main);
+            display: inline-block;
+            width: 120px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 0px var(--canvas-border);
         }
 
-        canvas {
-            background-color: var(--canvas-bg);
-            border: 4px solid var(--canvas-border);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            cursor: pointer;
-        }
-
-        button.btn-start {
-            background-color: var(--accent-green);
-            color: white;
-            border: 2px solid var(--canvas-border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
+        .accent-text {
+            color: var(--accent-color);
             font-weight: bold;
-            cursor: pointer;
-            box-shadow: 2px 2px 0 var(--canvas-border);
-            width: 100%;
         }
-        button.btn-start:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0 var(--canvas-border); }
-
-        .instructions { color: #8d8d8d; font-size: 12px; margin-top: 10px; line-height: 1.5; }
-        #scoreBoard { color: white; font-family: 'Press Start 2P', cursive; font-size: 12px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
-
-    <div class="art-card">
-        <div class="profile-frame">🎨</div>
-        <h1>Abimanyu Putra Radana</h1>
-        <p class="subtitle">Art & Creative Profile</p>
-        <div class="info-group">
-            <div class="info-item">
-                <div class="label">Tanggal Lahir</div>
-                <div class="value">25 Maret 2012</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Alamat</div>
-                <div class="value">Desa Cikajahilir, Sindanglaya</div>
-            </div>
-            <div class="info-item highlight">
-                <div class="label">Minat & Hobi</div>
-                <div class="value">✏️ Menggambar & 🏎️ Balapan</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="arcade-container">
-        <h2 class="arcade-title">CAR RACE</h2>
-        <div id="scoreBoard">Score: 0</div>
+    <div class="card">
+        <button class="theme-toggle" id="toggleBtn">MODE: DARK</button>
         
-        <canvas id="gameCanvas" width="300" height="300"></canvas>
-
-        <button class="btn-start" onclick="startGame()">Mulai Balapan</button>
-        <div class="instructions">
-            Gunakan tombol <b>PANAH KIRI & KANAN</b> (atau <b>TAP</b> sisi kiri/kanan layar) untuk menghindari rintangan!
+        <div class="tag">ARTIST PROFILE</div>
+        <h1>BIODATA DIRI</h1>
+        
+        <div class="info-container">
+            <div class="info"><strong>Nama:</strong> Abimanyu Putra Radana</div>
+            <div class="info"><strong>Tgl Lahir:</strong> 25 Maret 2012</div>
+            <div class="info"><strong>Alamat:</strong> Cilajahilir, Sindanglaya</div>
+            <div class="info"><strong>Hobi:</strong> <span class="accent-text">Menggambar / Drawing ✍️</span></div>
         </div>
     </div>
 
     <script>
-        // Tema Toggle Logic
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeToggle');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
-                btn.innerText = '☀️';
+                toggleBtn.textContent = 'MODE: LIGHT';
             } else {
-                btn.innerText = '🌙';
+                toggleBtn.textContent = 'MODE: DARK';
             }
-            
-            // Render ulang frame terakhir agar warna canvas ikut berubah saat game berhenti
-            if(!gameLoop && !gameOver) drawStartScreen();
-            if(gameOver) drawGameOver();
-        }
+        });
+    </script>
 
-        // Game Setup
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreBoard = document.getElementById('scoreBoard');
-
-        let gameLoop;
-        let score = 0;
-        let gameOver = false;
-        let frames = 0;
-
-        let player = { x: 135, y: 240, width: 30, height: 45 };
-        let entities = [];
-        let keys = {};
-
-        // Mencegah scroll layar & mencatat tombol
-        window.addEventListener('keydown', function(e) {
-            if(['ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
-            keys[e.code] = true;
-        }, { passive: false });
-        window.addEventListener('keyup', e => { keys[e.code] = false; });
-
-        // Kontrol Sentuh Layar Kiri/Kanan
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if(gameOver) return
+</body>
+</html>
