@@ -3,320 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata & Arcade Seniman - Abimanyu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+    <title>Biodata Artistik Abimanyu</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* CSS Variables untuk Mode Terang (Default) */
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #555555;
+            --accent-color: #ff6b6b; /* Warna aksen merah seniman */
+            --border-color: #e1e1e1;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* CSS Variables untuk Mode Gelap */
+        body.dark-mode {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-main: #f5f5f5;
+            --text-muted: #b0b0b0;
+            --accent-color: #e94560;
+            --border-color: #2a365f;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f4efe6;
-            background-image: radial-gradient(#d8cebe 1px, transparent 1px);
-            background-size: 20px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-            gap: 30px;
-        }
-
-        /* Biodata Card Styles */
-        .art-card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            padding: 35px 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(80, 65, 45, 0.1);
-            border: 1px solid #e8decb;
-            position: relative;
-        }
-
-        .profile-frame {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px auto;
-            background: #fdfbf7;
-            border: 3px solid #3d405b;
-            border-radius: 50%;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 32px;
-            box-shadow: 4px 4px 0px #3d405b;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px; /* Motif titik-titik seperti kertas gambar */
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 350px;
+            position: relative;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+            border: 2px dashed var(--accent-color); /* Garis putus-putus ala sketsa */
+        }
+
+        /* Tombol Mode Gelap/Terang */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
         }
 
         h1 {
-            font-family: 'Caveat', cursive;
-            color: #3d405b;
+            font-family: 'Caveat', cursive; /* Font yang terlihat seperti tulisan tangan/kuas */
+            color: var(--accent-color);
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 38px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            letter-spacing: 2px;
         }
 
-        .subtitle {
-            text-align: center;
-            font-size: 13px;
-            color: #8d8d8d;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info {
+            font-size: 15px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            transition: border-color 0.4s ease, color 0.4s ease;
+        }
+
+        .info:last-child {
+            border-bottom: none;
+        }
+
+        strong {
+            color: var(--text-main);
+            display: inline-block;
+            width: 120px;
             font-weight: 600;
         }
 
-        .info-group { display: flex; flex-direction: column; gap: 12px; }
-        .info-item {
-            background: #fdfbf7;
-            padding: 10px 15px;
-            border-radius: 10px;
-            border-left: 4px solid #81b29a;
-        }
-        .info-item.highlight { border-left-color: #e07a5f; }
-        .label { font-size: 11px; text-transform: uppercase; color: #999; font-weight: 700; }
-        .value { font-size: 14px; color: #2b2d42; font-weight: 600; }
-
-        /* Arcade Styles */
-        .arcade-container {
-            background-color: #3d405b;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
+        /* Ikon palet warna kecil di sudut */
+        .art-icon {
             text-align: center;
-            border: 4px solid #e07a5f;
-        }
-
-        .arcade-title {
-            color: #f2cc8f;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        canvas {
-            background-color: #f4efe6;
-            border: 4px solid #2b2d42;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            cursor: pointer;
-        }
-
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            background-color: #81b29a;
-            color: white;
-            border: 2px solid #2b2d42;
-            padding: 10px;
-            border-radius: 8px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 2px 2px 0 #2b2d42;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0 #2b2d42;
-        }
-
-        .instructions {
-            color: white;
-            font-size: 12px;
-            margin-top: 10px;
-            line-height: 1.5;
-        }
-        
-        #scoreBoard {
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 10px;
+            font-size: 40px;
             margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="art-card">
-        <div class="profile-frame">🎨</div>
-        <h1>Abimanyu Putra Radana</h1>
-        <p class="subtitle">Art & Creative Profile</p>
-        <div class="info-group">
-            <div class="info-item">
-                <div class="label">Tanggal Lahir</div>
-                <div class="value">25 Maret 2012</div>
-            </div>
-            <div class="info-item">
-                <div class="label">Alamat</div>
-                <div class="value">Desa Cikajahilir, Sindanglaya</div>
-            </div>
-            <div class="info-item highlight">
-                <div class="label">Minat & Hobi</div>
-                <div class="value">✏️ Menggambar & 🎮 Gaming</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="arcade-container">
-        <h2 class="arcade-title">SKETCHBOOK ARCADE</h2>
-        <div id="scoreBoard">Score: 0</div>
+    <div class="card">
+        <button class="theme-toggle" id="toggleBtn" title="Ubah Tema">🎨</button>
         
-        <canvas id="gameCanvas" width="300" height="300"></canvas>
-
-        <div class="controls">
-            <button onclick="startGame('flappy')">Flappy Cube</button>
-            <button onclick="startGame('snake')">Snake</button>
-            <button onclick="startGame('parkour')">Parkour Run</button>
-            <button onclick="startGame('racing')">Car Race</button>
-        </div>
+        <div class="art-icon">🖌️</div>
+        <h1>Biodata Diri</h1>
         
-        <div class="instructions" id="instructionText">
-            Pilih game di atas untuk mulai bermain!
+        <div class="info-container">
+            <div class="info"><strong>Nama:</strong> Abimanyu Putra Radana</div>
+            <div class="info"><strong>Tanggal Lahir:</strong> 25 Maret 2012</div>
+            <div class="info"><strong>Alamat:</strong> Cilajahilir, Sindanglaya</div>
+            <div class="info"><strong>Hobi:</strong> Menggambar ✏️</div>
         </div>
     </div>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreBoard = document.getElementById('scoreBoard');
-        const instructionText = document.getElementById('instructionText');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const body = document.body;
 
-        let gameLoop;
-        let currentGame = '';
-        let score = 0;
-        let gameOver = false;
-
-        let player, entities, frames;
-        let keys = {};
-
-        // Mencegah layar ter-scroll saat main game
-        window.addEventListener('keydown', function(e) {
-            if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
-                e.preventDefault();
-            }
-            keys[e.code] = true;
-        }, { passive: false });
-
-        window.addEventListener('keyup', e => { keys[e.code] = false; });
-
-        // Dukungan klik & sentuh untuk loncat
-        function handleJump() {
-            keys['Space'] = true; 
-            setTimeout(() => keys['Space'] = false, 100);
+        toggleBtn.addEventListener('click', () => {
+            // Menambah atau menghapus class 'dark-mode' pada elemen body
+            body.classList.toggle('dark-mode');
             
-            // Restart game jika game over dan layar ditekan
-            if(gameOver && currentGame) {
-                startGame(currentGame);
+            // Ubah ikon tombol berdasarkan tema
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.textContent = '💡'; // Ikon lampu menyala untuk kembali ke mode terang
+            } else {
+                toggleBtn.textContent = '🎨'; // Ikon palet untuk mode terang
             }
-        }
-        canvas.addEventListener('mousedown', handleJump);
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleJump(); }, { passive: false });
+        });
+    </script>
 
-        function stopGame() {
-            if (gameLoop) cancelAnimationFrame(gameLoop);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            gameOver = false;
-            score = 0;
-            frames = 0;
-            keys = {}; // Reset tombol
-            updateScore();
-        }
-
-        function updateScore() {
-            scoreBoard.innerText = `Score: ${score}`;
-        }
-
-        function drawGameOver() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "white";
-            ctx.font = "bold 24px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 10);
-            ctx.font = "14px Arial";
-            ctx.fillText("Klik layar untuk mengulang", canvas.width/2, canvas.height/2 + 20);
-        }
-
-        function startGame(gameName) {
-            stopGame();
-            currentGame = gameName;
-            
-            if (gameName === 'flappy') {
-                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompat hindari pipa.";
-                player = { x: 50, y: 150, size: 20, velocity: 0, gravity: 0.4, jump: -7 };
-                entities = []; 
-                loopFlappy();
-            } else if (gameName === 'snake') {
-                instructionText.innerText = "Gunakan tombol PANAH untuk mengarahkan ular memakan apel merah.";
-                player = { body: [{x: 140, y: 140}], dx: 20, dy: 0, size: 20 };
-                entities = { x: 60, y: 60 }; 
-                frames = 0; 
-                loopSnake();
-            } else if (gameName === 'parkour') {
-                instructionText.innerText = "Tekan SPASI atau TAP kanvas untuk melompati rintangan hitam.";
-                player = { x: 50, y: 250, size: 20, velocity: 0, gravity: 0.6, jump: -10, grounded: true };
-                entities = []; 
-                loopParkour();
-            } else if (gameName === 'racing') {
-                instructionText.innerText = "Gunakan tombol PANAH KIRI/KANAN untuk menghindari mobil hitam.";
-                player = { x: 135, y: 240, width: 30, height: 45 };
-                entities = []; 
-                loopRacing();
-            }
-        }
-
-        // --- 1. FLAPPY CUBE ---
-        function loopFlappy() {
-            if (gameOver) return drawGameOver();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            frames++;
-
-            if (keys['Space']) { player.velocity = player.jump; keys['Space'] = false; }
-            player.velocity += player.gravity;
-            player.y += player.velocity;
-
-            ctx.fillStyle = '#e07a5f';
-            ctx.fillRect(player.x, player.y, player.size, player.size);
-
-            if (frames % 100 === 0) {
-                let gapPosition = Math.random() * 120 + 60;
-                entities.push({ x: canvas.width, y: 0, width: 40, height: gapPosition - 50 }); // Pipa Atas
-                entities.push({ x: canvas.width, y: gapPosition + 50, width: 40, height: canvas.height }); // Pipa Bawah
-            }
-
-            ctx.fillStyle = '#81b29a';
-            entities.forEach((pipe) => {
-                pipe.x -= 2;
-                ctx.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
-                
-                // Deteksi Tabrakan
-                if (player.x < pipe.x + pipe.width && player.x + player.size > pipe.x &&
-                    player.y < pipe.y + pipe.height && player.y + player.size > pipe.y) {
-                    gameOver = true;
-                }
-                
-                if (pipe.x === player.x && pipe.y === 0) { score++; updateScore(); }
-            });
-            entities = entities.filter(p => p.x > -50);
-
-            if (player.y > canvas.height || player.y < 0) gameOver = true;
-
-            gameLoop = requestAnimationFrame(loopFlappy);
-        }
-
-        // --- 2. SNA
+</body>
+</html>
