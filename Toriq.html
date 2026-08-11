@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ BIODATA PEMAIN - RED DEVIL PROFILE ⚽</title>
+    <style>
+        :root {
+            --mu-red: #da020e;
+            --mu-dark-red: #8b0000;
+            --mu-yellow: #ffe600;
+            --mu-dark: #111111;
+            --card-bg: rgba(20, 20, 20, 0.92);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Background Stadion Old Trafford */
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            border: 2px solid var(--mu-red);
+            border-radius: 20px;
+            /* Efek Neon Red Devil Glow */
+            box-shadow: 0 0 25px rgba(218, 2, 14, 0.4), 0 0 50px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 0 35px rgba(218, 2, 14, 0.7), 0 0 15px rgba(255, 230, 0, 0.3);
+        }
+
+        /* Pita Hiasan di Atas */
+        .mu-badge-ribbon {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--mu-yellow);
+            color: var(--mu-dark);
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 4px 30px;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #da020e 0%, #8b0000 70%, #4a0000 100%);
+            padding: 30px 20px 20px 20px;
+            position: relative;
+            border-bottom: 2px solid var(--mu-yellow);
+        }
+
+        .logo-container {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 12px auto;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.6);
+            border: 3px solid var(--mu-yellow);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(255, 230, 0, 0.4); }
+            100% { box-shadow: 0 0 22px rgba(255, 230, 0, 0.8); }
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .ggmu-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--mu-yellow);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .player-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .jersey-number {
+            display: inline-block;
+            margin-top: 8px;
+            background: linear-gradient(45deg, var(--mu-yellow), #ffd700);
+            color: var(--mu-dark);
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 3px 16px;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+            border: 1px solid #ffffff;
+        }
+
+        .motto {
+            font-style: italic;
+            color: var(--mu-yellow);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Seksi Biodata Ringkas */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(139,0,0,0.3), rgba(0,0,0,0.6));
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(218, 2, 14, 0.4);
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--mu-yellow);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            padding: 15px 20px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background-color 0.2s ease;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table tr:hover {
+            background-color: rgba(218, 2, 14, 0.2);
+        }
+
+        .info-table td {
+            padding: 9px 8px;
+            font-size: 0.88rem;
+        }
+
+        .label {
+            text-align: left;
+            font-weight: 600;
+            color: #cccccc;
+            width: 50%;
+        }
+
+        .value {
+            text-align: right;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .highlight {
+            color: var(--mu-yellow);
+            font-weight: 700;
+        }
+
+        .social-link {
+            color: var(--mu-yellow);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .social-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Hiasan Slogan */
+        .card-footer {
+            background: #0a0a0a;
+            padding: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--mu-red);
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(218, 2, 14, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="mu-badge-ribbon">RED DEVIL</div>
+
+        <div class="card-header">
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg" alt="Manchester United Logo">
+            </div>
+            <div class="ggmu-tag">⚡ GLORY GLORY MAN UNITED ⚡</div>
+            <h2 class="player-name">😈 Muhammad Toriq Dzikrulloh</h2>
+            <div class="jersey-number">#29</div>
+            <p class="motto">"Manchester United Till I Die"</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-value">14 Thn</div>
+                <div class="stat-label">Umur</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">Pelajar</div>
+                <div class="stat-label">Status</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">Gaming</div>
+                <div class="stat-label">Hobi</div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="info-table">
+                <tr>
+                    <td class="label">👹 Julukan Tim</td>
+                    <td class="value highlight">The Red Devils</td>
+                </tr>
+                <tr>
+                    <td class="label">⚽ Fans Mu Sejak tahun</td>
+                    <td class="value">2017</td>
+                </tr>
+                <tr>
+                    <td class="label">🦶 Kaki Dominan</td>
+                    <td class="value">Kanan</td>
+                </tr>
+                <tr>
+                    <td class="label">📏 Tinggi / Berat</td>
+                    <td class="value">165 cm / 52 kg</td>
+                </tr>
+                <tr>
+                    <td class="label">🏟️ Teater Impian</td>
+                    <td class="value">Old Trafford</td>
+                </tr>
+                <tr>
+                    <td class="label">🏆 Klub Favorit</td>
+                    <td class="value highlight">Manchester United</td>
+                </tr>
+                <tr>
+                    <td class="label">⭐ Pemain Idola</td>
+                    <td class="value">Marcus Rashford</td>
+                </tr>
+                <tr>
+                    <td class="label">📍 Asal Kota</td>
+                    <td class="value">Bandung, Indonesia</td>
+                </tr>
+                <tr>
+                    <td class="label">🎂 Tgl Lahir</td>
+                    <td class="value">29 November 2011</td>
+                </tr>
+                <tr>
+                    <td class="label">📱 Instagram</td>
+                    <td class="value"><a href="#" class="social-link">@Dzirull29</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card-footer">
+            THE THEATRE OF DREAMS
+        </div>
+    </div>
+
+</body>
+</html>

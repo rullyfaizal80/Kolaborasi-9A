@@ -1,223 +1,4912 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ Biodata Ridho ✨</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>✨ M. Ridho Luqmanulhakim | Ultimate Profile ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+    --cyan:#00eaff;
+    --blue:#5865ff;
+    --purple:#9b4dff;
+    --pink:#ff2bd6;
+    --green:#00ff9d;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:linear-gradient(-45deg,#00c6ff,#0072ff,#6a11cb,#ff0099,#00ff88);
-background-size:500% 500%;
-animation:bg 12s ease infinite;
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(0,234,255,.25),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,0,200,.25),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #03001c,
+            #090047,
+            #15005c,
+            #02001b
+        );
 }
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.bg-orb{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.35;
+    z-index:-2;
+    animation:orb 12s infinite alternate ease-in-out;
 }
 
-/* Bintang */
+.orb1{
+    background:#00eaff;
+    top:-100px;
+    left:-100px;
+}
+
+.orb2{
+    background:#ff00cc;
+    right:-100px;
+    bottom:-100px;
+    animation-delay:3s;
+}
+
+.orb3{
+    background:#694dff;
+    left:40%;
+    top:30%;
+    width:250px;
+    height:250px;
+    animation-delay:6s;
+}
+
+@keyframes orb{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(100px,-70px) scale(1.3);
+    }
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
 
 .star{
-position:absolute;
-width:3px;
-height:3px;
-background:white;
-border-radius:50%;
-animation:fall linear infinite;
-opacity:.8;
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 10px white;
+    animation:starFall linear infinite;
 }
 
-@keyframes fall{
-0%{
-transform:translateY(-100vh);
-}
-100%{
-transform:translateY(100vh);
-}
+@keyframes starFall{
+
+    from{
+        transform:translateY(-20px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 }
 
-.card{
-position:relative;
-width:430px;
-padding:35px;
-border-radius:30px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(18px);
-border:2px solid rgba(255,255,255,.3);
-box-shadow:
-0 0 25px cyan,
-0 0 50px #00e5ff,
-0 0 80px #7c4dff;
-animation:float 4s ease-in-out infinite;
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+    position:sticky;
+    top:15px;
+    z-index:100;
+
+    width:min(1100px,94%);
+    margin:15px auto 30px;
+
+    padding:12px 18px;
+
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:25px;
+
+    background:rgba(5,5,30,.65);
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 0 30px rgba(0,234,255,.12);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0px);
+.logo{
+    font-size:20px;
+    font-weight:800;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            white,
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
 }
-50%{
-transform:translateY(-15px);
+
+.nav-buttons{
+    display:flex;
+    gap:8px;
 }
+
+.nav-btn{
+    border:0;
+    color:white;
+    background:transparent;
+
+    padding:10px 15px;
+
+    border-radius:15px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--purple)
+        );
+
+    box-shadow:
+        0 0 20px rgba(88,101,255,.5);
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+}
+
+.section{
+    display:none;
+    animation:pageIn .5s ease;
+}
+
+.section.active{
+    display:block;
+}
+
+@keyframes pageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile{
+    position:relative;
+    overflow:hidden;
+
+    padding:45px;
+
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:35px;
+
+    background:rgba(255,255,255,.07);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.4),
+        inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.profile:before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    filter:blur(100px);
+
+    opacity:.15;
+
+    top:-100px;
+    right:-100px;
+}
+
+.hero{
+    text-align:center;
 }
 
 .avatar{
-width:150px;
-height:150px;
-margin:auto;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:70px;
-background:linear-gradient(45deg,#FFD700,#ff9800,#ff00cc);
-box-shadow:
-0 0 20px gold,
-0 0 40px orange,
-0 0 70px deeppink;
-animation:spin 8s linear infinite;
+    width:165px;
+    height:165px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:75px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd700,
+            #ff8a00,
+            #ff00cc
+        );
+
+    border:5px solid rgba(255,255,255,.5);
+
+    box-shadow:
+        0 0 20px #ffd700,
+        0 0 50px #ff00cc,
+        0 0 100px rgba(0,234,255,.4);
+
+    animation:avatar 5s ease-in-out infinite;
 }
 
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
+@keyframes avatar{
+
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-12px) rotate(5deg);
+    }
 }
 
-h1{
-margin-top:20px;
-text-align:center;
-font-size:33px;
-color:white;
-text-shadow:
-0 0 10px cyan,
-0 0 20px cyan,
-0 0 40px blue;
+.hero h1{
+    margin-top:25px;
+
+    font-size:clamp(28px,5vw,48px);
+
+    font-weight:800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #00eaff,
+            #fff,
+            #ff45dc
+        );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:textGradient 5s linear infinite;
 }
 
-.sub{
-text-align:center;
-margin:10px;
-font-size:18px;
-color:#fff176;
+@keyframes textGradient{
+
+    to{
+        background-position:300%;
+    }
 }
 
-.info{
-margin-top:25px;
+.subtitle{
+    margin-top:10px;
+
+    color:#fff176;
+
+    font-size:18px;
+
+    font-weight:600;
 }
 
-.box{
-margin:12px 0;
-padding:15px;
-border-radius:15px;
-background:rgba(255,255,255,.15);
-transition:.4s;
-color:white;
-font-size:17px;
+.badges{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:10px;
 }
 
-.box:hover{
-transform:translateX(10px) scale(1.05);
-background:rgba(255,255,255,.3);
-box-shadow:0 0 20px white;
+.badge{
+    padding:8px 15px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.1);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    font-size:13px;
 }
 
-span{
-color:#ffe600;
-font-weight:bold;
+.info-grid{
+    margin-top:35px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.info-box{
+    padding:20px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    transition:.3s;
+}
+
+.info-box:hover{
+    transform:translateY(-5px);
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 25px rgba(0,234,255,.2);
+}
+
+.info-box .label{
+    color:var(--cyan);
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+.info-box .value{
+    margin-top:5px;
+
+    font-size:17px;
+
+    font-weight:600;
+}
+
+.quote{
+    margin-top:25px;
+
+    padding:20px;
+
+    border-left:4px solid var(--pink);
+
+    border-radius:15px;
+
+    background:rgba(255,0,200,.06);
+
+    text-align:center;
+
+    font-style:italic;
 }
 
 .footer{
-text-align:center;
-margin-top:20px;
-font-weight:bold;
-font-size:15px;
-color:white;
-animation:blink 2s infinite;
+    text-align:center;
+
+    margin:25px 0;
+
+    opacity:.7;
 }
 
-@keyframes blink{
-50%{
-opacity:.4;
+
+/* =====================================================
+   GAMES
+===================================================== */
+
+.section-title{
+    text-align:center;
+    margin-bottom:25px;
 }
+
+.section-title h2{
+    font-size:32px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            white,
+            var(--pink)
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
 }
+
+.section-title p{
+    opacity:.7;
+    margin-top:5px;
+}
+
+.games-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+}
+
+.game{
+    min-height:270px;
+
+    padding:22px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+}
+
+.game:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.3);
+
+    border-color:
+        rgba(0,234,255,.5);
+}
+
+.game h3{
+    margin-bottom:15px;
+}
+
+.game-area{
+    text-align:center;
+}
+
+.game button,
+.camera-btn{
+    border:0;
+
+    padding:10px 16px;
+
+    margin:5px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5865ff,
+            #9b4dff
+        );
+
+    transition:.2s;
+}
+
+.game button:hover,
+.camera-btn:hover{
+    transform:scale(1.05);
+
+    box-shadow:
+        0 0 18px rgba(130,100,255,.6);
+}
+
+.game input{
+    width:120px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    outline:none;
+
+    background:rgba(0,0,0,.3);
+
+    color:white;
+
+    text-align:center;
+}
+
+.score{
+    color:#fff176;
+
+    font-weight:bold;
+
+    margin:10px;
+}
+
+.message{
+    min-height:28px;
+
+    margin:10px;
+}
+
+
+/* SNAKE */
+
+#snake{
+    background:#020817;
+
+    border:2px solid var(--cyan);
+
+    border-radius:10px;
+
+    max-width:100%;
+}
+
+
+/* MEMORY */
+
+.memory-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:7px;
+
+    max-width:230px;
+
+    margin:auto;
+}
+
+.memory-card{
+    height:50px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#342a68;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.memory-card.open{
+    background:
+        linear-gradient(
+            135deg,
+            #00bfff,
+            #9b4dff
+        );
+}
+
+
+/* REACTION */
+
+.reaction-box{
+    height:100px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#24203d;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.reaction-box.ready{
+    background:#00b894;
+}
+
+.reaction-box.wait{
+    background:#d63031;
+}
+
+
+/* TIC TAC TOE */
+
+.ttt{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,55px);
+
+    justify-content:center;
+
+    gap:6px;
+}
+
+.ttt button{
+    width:55px;
+    height:55px;
+
+    padding:0;
+    margin:0;
+
+    font-size:25px;
+}
+
+
+/* DODGE */
+
+#dodgeArea{
+    position:relative;
+
+    height:160px;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+    background:#050518;
+
+    border:1px solid #444;
+}
+
+.player{
+    position:absolute;
+
+    bottom:10px;
+    left:50%;
+
+    width:35px;
+    height:35px;
+
+    transform:translateX(-50%);
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff,
+            #5865ff
+        );
+
+    border-radius:8px;
+}
+
+
+/* COLOR */
+
+.color-display{
+    width:100px;
+    height:100px;
+
+    margin:10px auto;
+
+    border-radius:20px;
+}
+
+
+/* MOLE */
+
+.mole-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,55px);
+
+    gap:7px;
+
+    justify-content:center;
+}
+
+.hole{
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:#17142e;
+
+    border:2px solid #403b6c;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:25px;
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+.camera-layout{
+    display:grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap:22px;
+}
+
+.camera-card{
+    padding:22px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.camera-preview{
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:#000;
+
+    aspect-ratio:4/3;
+
+    border:2px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 30px rgba(0,234,255,.15),
+        inset 0 0 40px rgba(0,0,0,.5);
+}
+
+#video,
+#photo{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.35s;
+}
+
+#photo{
+    display:none;
+}
+
+
+/* =====================================================
+   EFFECT LAYERS
+===================================================== */
+
+.effect-layer{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:5;
+}
+
+.vignette{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 35%,
+            rgba(0,0,0,.7) 100%
+        );
+
+    opacity:0;
+
+    transition:.3s;
+}
+
+.vignette.active{
+    opacity:1;
+}
+
+.grain{
+    position:absolute;
+
+    inset:-50%;
+
+    opacity:0;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+
+    animation:
+        grainMove .2s steps(2) infinite;
+
+    mix-blend-mode:screen;
+}
+
+.grain.active{
+    opacity:.25;
+}
+
+@keyframes grainMove{
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(5%,-5%);
+    }
+
+    50%{
+        transform:translate(-5%,5%);
+    }
+
+    75%{
+        transform:translate(5%,5%);
+    }
+
+    100%{
+        transform:translate(-5%,-5%);
+    }
+}
+
+.scanlines{
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(0,255,120,.13) 4px
+        );
+}
+
+.scanlines.active{
+    opacity:1;
+}
+
+.cyber-hud{
+    position:absolute;
+
+    inset:15px;
+
+    border:1px solid
+        rgba(0,255,255,.35);
+
+    opacity:0;
+}
+
+.cyber-hud.active{
+    opacity:1;
+}
+
+.cyber-hud:before,
+.cyber-hud:after{
+    content:"";
+
+    position:absolute;
+
+    width:35px;
+    height:35px;
+
+    border-color:#00ffff;
+}
+
+.cyber-hud:before{
+    left:-2px;
+    top:-2px;
+
+    border-left:3px solid;
+    border-top:3px solid;
+}
+
+.cyber-hud:after{
+    right:-2px;
+    bottom:-2px;
+
+    border-right:3px solid;
+    border-bottom:3px solid;
+}
+
+.flare{
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9),
+            rgba(0,220,255,.25) 25%,
+            transparent 70%
+        );
+
+    filter:blur(5px);
+
+    top:20%;
+    left:60%;
+
+    opacity:0;
+
+    animation:
+        flareMove 3s ease-in-out infinite;
+}
+
+.flare.active{
+    opacity:.7;
+}
+
+@keyframes flareMove{
+
+    0%,100%{
+        transform:translate(-20px,10px);
+    }
+
+    50%{
+        transform:translate(25px,-20px);
+    }
+}
+
+.rainbow{
+    position:absolute;
+
+    inset:-30%;
+
+    background:
+        conic-gradient(
+            from 180deg,
+            rgba(255,0,0,.25),
+            rgba(255,255,0,.2),
+            rgba(0,255,255,.25),
+            rgba(0,100,255,.25),
+            rgba(255,0,255,.25),
+            rgba(255,0,0,.25)
+        );
+
+    filter:blur(30px);
+
+    opacity:0;
+
+    animation:
+        rainbowSpin 8s linear infinite;
+}
+
+.rainbow.active{
+    opacity:.55;
+}
+
+@keyframes rainbowSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle{
+    position:absolute;
+
+    pointer-events:none;
+
+    animation:
+        particleFloat linear infinite;
+}
+
+.sparkle{
+    color:#fff;
+
+    font-size:20px;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px cyan,
+        0 0 25px white;
+}
+
+.heart{
+    color:#ff4fcf;
+
+    font-size:22px;
+
+    text-shadow:
+        0 0 10px #ff1493,
+        0 0 20px #ff69b4;
+}
+
+.snow{
+    color:white;
+
+    font-size:18px;
+
+    text-shadow:0 0 10px #fff;
+}
+
+.fire{
+    font-size:20px;
+
+    filter:
+        drop-shadow(
+            0 0 8px orange
+        );
+}
+
+.galaxy{
+    color:#c77dff;
+
+    font-size:20px;
+
+    text-shadow:
+        0 0 8px #9d4edd,
+        0 0 18px #5a189a;
+}
+
+@keyframes particleFloat{
+
+    0%{
+        transform:
+            translateY(110%)
+            rotate(0deg)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-120%)
+            rotate(360deg)
+            scale(1.2);
+
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   CAMERA FILTER BUTTONS
+===================================================== */
+
+.camera-filters{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:9px;
+
+    margin-top:15px;
+}
+
+.camera-filter{
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:75px;
+
+    border:1px solid
+        rgba(255,255,255,.15);
+
+    border-radius:16px;
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.07);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:12px;
+}
+
+.camera-filter:hover{
+    transform:
+        translateY(-3px)
+        scale(1.02);
+
+    border-color:white;
+}
+
+.camera-filter.active{
+    background:
+        linear-gradient(
+            135deg,
+            #5865ff,
+            #ff2bd6
+        );
+
+    border-color:white;
+
+    box-shadow:
+        0 0 18px
+        rgba(255,0,220,.35);
+}
+
+.filter-icon{
+    display:block;
+
+    font-size:24px;
+
+    margin-bottom:3px;
+}
+
+
+/* =====================================================
+   CAMERA CONTROLS
+===================================================== */
+
+.camera-controls{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:5px;
+
+    margin-top:15px;
+}
+
+.camera-btn{
+    border:1px solid
+        rgba(255,255,255,.15);
+
+    padding:11px 14px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5865ff,
+            #9b4dff
+        );
+
+    transition:.2s;
+}
+
+.camera-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(130,100,255,.6);
+}
+
+.camera-btn.secondary{
+    background:
+        rgba(255,255,255,.08);
+}
+
+.camera-status{
+    text-align:center;
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    opacity:.75;
+}
+
+.camera-options{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.camera-option{
+    padding:11px;
+
+    border:1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.camera-option:hover{
+    background:
+        rgba(255,255,255,.15);
+}
+
+.camera-option.active{
+    background:#5865ff;
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+.countdown{
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:110px;
+
+    font-weight:800;
+
+    color:white;
+
+    text-shadow:
+        0 0 20px cyan,
+        0 0 50px #ff00cc;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.countdown.show{
+    opacity:1;
+
+    animation:
+        countPop .8s ease;
+}
+
+@keyframes countPop{
+
+    from{
+        transform:scale(1.7);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px){
+
+    .games-grid,
+    .camera-layout{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile{
+        padding:25px 18px;
+    }
+
+    .navbar{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .nav-buttons{
+        width:100%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+    }
+
+    .camera-filters{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+}
+
+@media(max-width:480px){
+
+    .nav-btn{
+        padding:8px 10px;
+
+        font-size:12px;
+    }
+
+    .avatar{
+        width:125px;
+        height:125px;
+
+        font-size:55px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .game{
+        padding:16px;
+    }
+
+    .camera-filters{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .camera-btn{
+        font-size:12px;
+
+        padding:9px 11px;
+    }
+}
+
 </style>
-
 </head>
+
 
 <body>
 
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+<div class="stars" id="stars"></div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        👑 RIDHO.DEV
+    </div>
+
+    <div class="nav-buttons">
+
+        <button
+            class="nav-btn active"
+            onclick="showSection('home',this)">
+            🏠 Profil
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('games',this)">
+            🎮 Games
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('camera',this)">
+            📸 Camera
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    id="home"
+    class="section active">
+
+<div class="profile">
+
+    <div class="hero">
+
+        <div class="avatar">
+            👑
+        </div>
+
+        <h1>
+            M. Ridho Luqmanulhakim
+        </h1>
+
+        <div class="subtitle">
+            🚀 BIODATA SUPER GG 🚀
+        </div>
+
+        <div class="badges">
+
+            <div class="badge">
+                🔥 Never Give Up
+            </div>
+
+            <div class="badge">
+                🎮 Gamer
+            </div>
+
+            <div class="badge">
+                💻 Future Developer
+            </div>
+
+            <div class="badge">
+                🚀 Future YouTuber
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <div class="info-box">
+
+            <div class="label">
+                🏫 SEKOLAH
+            </div>
+
+            <div class="value">
+                MTs MIFTAHUL HUDA
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                📚 KELAS
+            </div>
+
+            <div class="value">
+                9 Al-Himmah
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                🎂 TANGGAL LAHIR
+            </div>
+
+            <div class="value">
+                10 Maret 2012
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                📍 TEMPAT LAHIR
+            </div>
+
+            <div class="value">
+                Kota Bandung
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                🎯 CITA-CITA
+            </div>
+
+            <div class="value">
+                YouTuber 🎥 / Pengusaha 💼
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                ⚡ STATUS
+            </div>
+
+            <div class="value">
+                Sedang Upgrade Skill 🚀
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="quote">
+        ✨ "Belajar hari ini, jadi hebat di masa depan." ✨
+    </div>
+
+
+    <div class="footer">
+        🔥 NEVER GIVE UP • KEEP LEARNING • STAY AWESOME 🔥
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GAMES
+===================================================== -->
+
+<section
+    id="games"
+    class="section">
+
+<div class="section-title">
+
+    <h2>
+        🎮 RIDHO GAME ZONE
+    </h2>
+
+    <p>
+        10 mini-game buat menguji skill kamu!
+    </p>
+
+</div>
+
+
+<div class="games-grid">
+
+
+<!-- ================= GAME 1 ================= -->
+
+<div class="game">
+
+<h3>
+    🐍 Snake Neon
+</h3>
+
+<div class="game-area">
+
+<canvas
+    id="snake"
+    width="220"
+    height="220">
+</canvas>
+
+<div class="score">
+
+    Score:
+    <span id="snakeScore">
+        0
+    </span>
+
+</div>
+
+<button onclick="startSnake()">
+    ▶ Mulai
+</button>
+
+<button onclick="stopSnake()">
+    ⏹ Stop
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 2 ================= -->
+
+<div class="game">
+
+<h3>
+    ⚡ Tap Rush
+</h3>
+
+<div class="game-area">
+
+<p>
+    Klik sebanyak mungkin dalam 10 detik!
+</p>
+
+<div class="score">
+
+    Score:
+    <span id="tapScore">
+        0
+    </span>
+
+</div>
+
+<div
+    class="message"
+    id="tapTime">
+    10 detik
+</div>
+
+<button onclick="startTap()">
+    🚀 Mulai
+</button>
+
+<button onclick="tapGame()">
+    👆 TAP!
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 3 ================= -->
+
+<div class="game">
+
+<h3>
+    🧠 Memory Cards
+</h3>
+
+<div class="game-area">
+
+<div
+    class="memory-grid"
+    id="memoryGrid">
+</div>
+
+<div
+    class="message"
+    id="memoryMsg">
+
+    Cari pasangan yang sama!
+
+</div>
+
+<button onclick="startMemory()">
+    🔄 Reset
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 4 ================= -->
+
+<div class="game">
+
+<h3>
+    🔢 Tebak Angka
+</h3>
+
+<div class="game-area">
+
+<p>
+    Aku punya angka 1–100.
+</p>
+
+<input
+    id="guessInput"
+    type="number"
+    placeholder="Angka">
+
+<button onclick="guessNumber()">
+    Tebak
+</button>
+
+<div
+    class="message"
+    id="guessMsg">
+</div>
+
+<button onclick="newGuess()">
+    🔄 Game Baru
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 5 ================= -->
+
+<div class="game">
+
+<h3>
+    ⚡ Reaction Test
+</h3>
+
+<div class="game-area">
+
+<p>
+    Tekan kotak saat berubah hijau!
+</p>
+
+<div
+    class="reaction-box"
+    id="reactionBox"
+    onclick="reactionClick()">
+
+    Tekan START
+
+</div>
+
+<div
+    class="message"
+    id="reactionMsg">
+</div>
+
+<button onclick="startReaction()">
+    ▶ START
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 6 ================= -->
+
+<div class="game">
+
+<h3>
+    ⭕ Tic-Tac-Toe
+</h3>
+
+<div class="game-area">
+
+<div
+    class="ttt"
+    id="ttt">
+</div>
+
+<div
+    class="message"
+    id="tttMsg">
+
+    Giliran X
+
+</div>
+
+<button onclick="startTTT()">
+    🔄 Reset
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 7 ================= -->
+
+<div class="game">
+
+<h3>
+    ☄️ Dodge Meteor
+</h3>
+
+<div class="game-area">
+
+<p>
+    Gerakkan kotak dan hindari meteor!
+</p>
+
+<div id="dodgeArea">
+
+    <div
+        class="player"
+        id="player">
+    </div>
+
+</div>
+
+<div class="score">
+
+    Score:
+    <span id="dodgeScore">
+        0
+    </span>
+
+</div>
+
+<button onclick="startDodge()">
+    🚀 Mulai
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 8 ================= -->
+
+<div class="game">
+
+<h3>
+    🧮 Math Challenge
+</h3>
+
+<div class="game-area">
+
+<div class="score">
+
+    Soal:
+    <span id="mathQuestion">
+    </span>
+
+</div>
+
+<input
+    id="mathInput"
+    type="number">
+
+<button onclick="checkMath()">
+    Jawab
+</button>
+
+<div
+    class="message"
+    id="mathMsg">
+</div>
+
+<button onclick="newMath()">
+    🔄 Soal Baru
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 9 ================= -->
+
+<div class="game">
+
+<h3>
+    🎨 Color Match
+</h3>
+
+<div class="game-area">
+
+<p>
+    Klik warna yang benar!
+</p>
+
+<div
+    class="color-display"
+    id="colorDisplay">
+</div>
+
+<div id="colorButtons">
+</div>
+
+<div class="score">
+
+    Score:
+    <span id="colorScore">
+        0
+    </span>
+
+</div>
+
+<button onclick="newColor()">
+    🎨 Mulai
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GAME 10 ================= -->
+
+<div class="game">
+
+<h3>
+    🐹 Whack-a-Mole
+</h3>
+
+<div class="game-area">
+
+<p>
+    Pukul 🐹 sebanyak mungkin!
+</p>
+
+<div
+    class="mole-grid"
+    id="moleGrid">
+</div>
+
+<div class="score">
+
+    Score:
+    <span id="moleScore">
+        0
+    </span>
+
+</div>
+
+<button onclick="startMole()">
+    🔥 Mulai
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAMERA STUDIO
+===================================================== -->
+
+<section
+    id="camera"
+    class="section">
+
+<div class="section-title">
+
+    <h2>
+        📸 RIDHO CAMERA STUDIO
+    </h2>
+
+    <p>
+        Jadikan kamera HP kamu lebih seru ✨
+    </p>
+
+</div>
+
+
+<div class="camera-layout">
+
+
+<!-- =====================================================
+     CAMERA PREVIEW
+===================================================== -->
+
+<div class="camera-card">
+
+<div class="camera-preview">
+
+
+<video
+    id="video"
+    autoplay
+    playsinline>
+</video>
+
+
+<img
+    id="photo">
+
+
+<!-- EFFECT LAYER -->
+
+<div
+    class="effect-layer"
+    id="effectLayer">
+
+
+    <div
+        class="vignette"
+        id="vignette">
+    </div>
+
+
+    <div
+        class="grain"
+        id="grain">
+    </div>
+
+
+    <div
+        class="scanlines"
+        id="scanlines">
+    </div>
+
+
+    <div
+        class="cyber-hud"
+        id="cyberHud">
+    </div>
+
+
+    <div
+        class="flare"
+        id="flare">
+    </div>
+
+
+    <div
+        class="rainbow"
+        id="rainbow">
+    </div>
+
+
+    <div
+        id="particles">
+    </div>
+
+
+</div>
+
+
+<div
+    class="countdown"
+    id="countdown">
+</div>
+
+
+</div>
+
+
+
+<!-- CAMERA CONTROLS -->
+
+<div class="camera-controls">
+
+<button
+    class="camera-btn"
+    onclick="startCamera()">
+
+    📷 Kamera
+
+</button>
+
+
+<button
+    class="camera-btn"
+    onclick="captureWithCountdown()">
+
+    📸 FOTO
+
+</button>
+
+
+<button
+    class="camera-btn secondary"
+    onclick="switchCamera()">
+
+    🔄 Ganti Kamera
+
+</button>
+
+
+<button
+    class="camera-btn secondary"
+    onclick="toggleMirror()">
+
+    🪞 Mirror
+
+</button>
+
+
+<button
+    class="camera-btn secondary"
+    onclick="stopCamera()">
+
+    ⛔ Tutup
+
+</button>
+
+</div>
+
+
+
+<!-- CAMERA OPTIONS -->
+
+<div class="camera-options">
+
+<button
+    class="camera-option active"
+    id="mirrorBtn"
+    onclick="toggleMirror()">
+
+    🪞 Mirror ON
+
+</button>
+
+
+<button
+    class="camera-option"
+    id="vignetteBtn"
+    onclick="toggleVignette()">
+
+    🌑 Vignette
+
+</button>
+
+
+<button
+    class="camera-option"
+    id="grainBtn"
+    onclick="toggleGrain()">
+
+    🎞️ Film Grain
+
+</button>
+
+
+<button
+    class="camera-option"
+    id="cyberBtn"
+    onclick="toggleCyber()">
+
+    🤖 Cyber HUD
+
+</button>
+
+</div>
+
+
+<div
+    class="camera-status"
+    id="cameraStatus">
+
+    🔴 Kamera belum aktif
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MAGIC EFFECTS
+===================================================== -->
+
+<div class="camera-card">
+
+<h3>
+    ✨ MAGIC EFFECTS
+</h3>
+
+<p
+    style="
+        opacity:.65;
+        font-size:13px;
+        margin-top:5px;
+    ">
+
+    Pilih efek keren untuk kamera kamu.
+
+</p>
+
+
+<div class="camera-filters">
+
+
+<button
+    class="camera-filter active"
+    onclick="selectEffect('normal',this)">
+
+    <span class="filter-icon">
+        🌟
+    </span>
+
+    Normal
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('sparkle',this)">
+
+    <span class="filter-icon">
+        ✨
+    </span>
+
+    Sparkle
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('heart',this)">
+
+    <span class="filter-icon">
+        💖
+    </span>
+
+    Love
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('snow',this)">
+
+    <span class="filter-icon">
+        ❄️
+    </span>
+
+    Snow
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('fire',this)">
+
+    <span class="filter-icon">
+        🔥
+    </span>
+
+    Fire
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('galaxy',this)">
+
+    <span class="filter-icon">
+        🌌
+    </span>
+
+    Galaxy
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('rainbow',this)">
+
+    <span class="filter-icon">
+        🌈
+    </span>
+
+    Rainbow
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('flare',this)">
+
+    <span class="filter-icon">
+        💫
+    </span>
+
+    Lens Flare
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('cyber',this)">
+
+    <span class="filter-icon">
+        🤖
+    </span>
+
+    Cyber
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('vhs',this)">
+
+    <span class="filter-icon">
+        📺
+    </span>
+
+    VHS
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('dream',this)">
+
+    <span class="filter-icon">
+        ☁️
+    </span>
+
+    Dream
+
+</button>
+
+
+<button
+    class="camera-filter"
+    onclick="selectEffect('royal',this)">
+
+    <span class="filter-icon">
+        👑
+    </span>
+
+    Royal
+
+</button>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+
 <script>
-for(let i=0;i<120;i++){
-let star=document.createElement("div");
-star.className="star";
-star.style.left=Math.random()*100+"vw";
-star.style.animationDuration=2+Math.random()*6+"s";
-star.style.animationDelay=Math.random()*5+"s";
-document.body.appendChild(star);
+
+
+/* =====================================================
+   BACKGROUND STARS
+===================================================== */
+
+const stars=
+    document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+
+    const star=
+        document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=
+        Math.random()*100+"%";
+
+    star.style.top=
+        Math.random()*100+"%";
+
+    const size=
+        Math.random()*3+1;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.animationDuration=
+        (3+Math.random()*7)+"s";
+
+    star.style.animationDelay=
+        Math.random()*5+"s";
+
+    stars.appendChild(star);
 }
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showSection(id,button){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(
+            s=>s.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(
+            b=>b.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =====================================================
+   1. SNAKE
+===================================================== */
+
+const snakeCanvas=
+    document.getElementById("snake");
+
+const ctx=
+    snakeCanvas.getContext("2d");
+
+let snake=[];
+let food={x:0,y:0};
+
+let snakeDir={
+    x:1,
+    y:0
+};
+
+let snakeLoop=null;
+let snakeScore=0;
+
+
+function startSnake(){
+
+    clearInterval(snakeLoop);
+
+    snake=[
+        {x:100,y:100},
+        {x:80,y:100},
+        {x:60,y:100}
+    ];
+
+    snakeDir={
+        x:1,
+        y:0
+    };
+
+    snakeScore=0;
+
+    document
+        .getElementById("snakeScore")
+        .textContent=0;
+
+    randomFood();
+
+    snakeLoop=
+        setInterval(
+            updateSnake,
+            100
+        );
+}
+
+
+function stopSnake(){
+
+    clearInterval(snakeLoop);
+
+    snakeLoop=null;
+}
+
+
+function randomFood(){
+
+    food={
+        x:
+            Math.floor(
+                Math.random()*11
+            )*20,
+
+        y:
+            Math.floor(
+                Math.random()*11
+            )*20
+    };
+}
+
+
+function updateSnake(){
+
+    const head={
+        x:
+            snake[0].x+
+            snakeDir.x*20,
+
+        y:
+            snake[0].y+
+            snakeDir.y*20
+    };
+
+    if(
+        head.x<0 ||
+        head.y<0 ||
+        head.x>=220 ||
+        head.y>=220 ||
+        snake.some(
+            s=>
+                s.x===head.x &&
+                s.y===head.y
+        )
+    ){
+
+        stopSnake();
+
+        alert(
+            "💥 Game Over! Score: "+
+            snakeScore
+        );
+
+        return;
+    }
+
+    snake.unshift(head);
+
+    if(
+        head.x===food.x &&
+        head.y===food.y
+    ){
+
+        snakeScore++;
+
+        document
+            .getElementById("snakeScore")
+            .textContent=snakeScore;
+
+        randomFood();
+
+    }else{
+
+        snake.pop();
+    }
+
+    drawSnake();
+}
+
+
+function drawSnake(){
+
+    ctx.fillStyle="#020817";
+
+    ctx.fillRect(
+        0,
+        0,
+        220,
+        220
+    );
+
+    ctx.fillStyle="#ff2bd6";
+
+    ctx.shadowBlur=20;
+
+    ctx.shadowColor="#ff2bd6";
+
+    ctx.fillRect(
+        food.x,
+        food.y,
+        18,
+        18
+    );
+
+    ctx.shadowBlur=0;
+
+
+    snake.forEach(
+        (s,i)=>{
+
+            ctx.fillStyle=
+                i===0
+                    ? "#00ffff"
+                    : "#5865ff";
+
+            ctx.shadowBlur=15;
+
+            ctx.shadowColor="#00eaff";
+
+            ctx.fillRect(
+                s.x,
+                s.y,
+                18,
+                18
+            );
+        }
+    );
+
+    ctx.shadowBlur=0;
+}
+
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            e.key==="ArrowUp" &&
+            snakeDir.y!==1
+        ){
+
+            snakeDir={
+                x:0,
+                y:-1
+            };
+        }
+
+        if(
+            e.key==="ArrowDown" &&
+            snakeDir.y!==-1
+        ){
+
+            snakeDir={
+                x:0,
+                y:1
+            };
+        }
+
+        if(
+            e.key==="ArrowLeft" &&
+            snakeDir.x!==1
+        ){
+
+            snakeDir={
+                x:-1,
+                y:0
+            };
+        }
+
+        if(
+            e.key==="ArrowRight" &&
+            snakeDir.x!==-1
+        ){
+
+            snakeDir={
+                x:1,
+                y:0
+            };
+        }
+
+    }
+);
+
+
+/* =====================================================
+   2. TAP RUSH
+===================================================== */
+
+let tapScore=0;
+let tapRunning=false;
+let tapTimer=null;
+let tapSeconds=10;
+
+
+function startTap(){
+
+    tapScore=0;
+    tapSeconds=10;
+    tapRunning=true;
+
+    document
+        .getElementById("tapScore")
+        .textContent=0;
+
+    document
+        .getElementById("tapTime")
+        .textContent="10 detik";
+
+    clearInterval(tapTimer);
+
+    tapTimer=
+        setInterval(
+            ()=>{
+
+                tapSeconds--;
+
+                document
+                    .getElementById("tapTime")
+                    .textContent=
+                    tapSeconds+
+                    " detik";
+
+                if(tapSeconds<=0){
+
+                    clearInterval(
+                        tapTimer
+                    );
+
+                    tapRunning=false;
+
+                    document
+                        .getElementById("tapTime")
+                        .textContent=
+                        "🔥 SELESAI!";
+
+                    alert(
+                        "Tap Rush Score: "+
+                        tapScore
+                    );
+                }
+
+            },
+            1000
+        );
+}
+
+
+function tapGame(){
+
+    if(!tapRunning) return;
+
+    tapScore++;
+
+    document
+        .getElementById("tapScore")
+        .textContent=tapScore;
+}
+
+
+/* =====================================================
+   3. MEMORY
+===================================================== */
+
+let memoryValues=[
+    "🔥","🔥",
+    "⭐","⭐",
+    "🚀","🚀",
+    "👑","👑"
+];
+
+let memoryFirst=null;
+let memoryLock=false;
+let memoryFound=0;
+
+
+function startMemory(){
+
+    const grid=
+        document.getElementById(
+            "memoryGrid"
+        );
+
+    grid.innerHTML="";
+
+    memoryFirst=null;
+    memoryLock=false;
+    memoryFound=0;
+
+    memoryValues.sort(
+        ()=>Math.random()-.5
+    );
+
+    memoryValues.forEach(
+        value=>{
+
+            const btn=
+                document.createElement(
+                    "button"
+                );
+
+            btn.className=
+                "memory-card";
+
+            btn.textContent="❓";
+
+            btn.dataset.value=value;
+
+            btn.onclick=()=>{
+
+                if(
+                    memoryLock ||
+                    btn.classList.contains(
+                        "open"
+                    )
+                ){
+
+                    return;
+                }
+
+                btn.classList.add("open");
+
+                btn.textContent=value;
+
+                if(!memoryFirst){
+
+                    memoryFirst=btn;
+
+                }else{
+
+                    if(
+                        memoryFirst.dataset.value
+                        ===value
+                    ){
+
+                        memoryFound++;
+
+                        memoryFirst=null;
+
+                        if(
+                            memoryFound===4
+                        ){
+
+                            document
+                                .getElementById(
+                                    "memoryMsg"
+                                )
+                                .textContent=
+                                "🏆 Semua pasangan ditemukan!";
+                        }
+
+                    }else{
+
+                        memoryLock=true;
+
+                        setTimeout(
+                            ()=>{
+
+                                memoryFirst
+                                    .classList
+                                    .remove(
+                                        "open"
+                                    );
+
+                                btn.classList
+                                    .remove(
+                                        "open"
+                                    );
+
+                                memoryFirst
+                                    .textContent="❓";
+
+                                btn.textContent="❓";
+
+                                memoryFirst=null;
+
+                                memoryLock=false;
+
+                            },
+                            700
+                        );
+                    }
+                }
+            };
+
+            grid.appendChild(btn);
+        }
+    );
+}
+
+startMemory();
+
+
+/* =====================================================
+   4. TEBAK ANGKA
+===================================================== */
+
+let secretNumber=
+    Math.floor(
+        Math.random()*100
+    )+1;
+
+
+function newGuess(){
+
+    secretNumber=
+        Math.floor(
+            Math.random()*100
+        )+1;
+
+    document
+        .getElementById("guessMsg")
+        .textContent=
+        "Angka baru sudah dipilih!";
+}
+
+
+function guessNumber(){
+
+    const guess=
+        Number(
+            document
+                .getElementById(
+                    "guessInput"
+                )
+                .value
+        );
+
+    const msg=
+        document.getElementById(
+            "guessMsg"
+        );
+
+    if(!guess){
+
+        msg.textContent=
+            "Masukkan angka dulu!";
+
+        return;
+    }
+
+    if(
+        guess===secretNumber
+    ){
+
+        msg.textContent=
+            "🎉 BENAR! Kamu GG!";
+
+    }else if(
+        guess<secretNumber
+    ){
+
+        msg.textContent=
+            "⬆️ Terlalu kecil!";
+
+    }else{
+
+        msg.textContent=
+            "⬇️ Terlalu besar!";
+    }
+}
+
+
+/* =====================================================
+   5. REACTION TEST
+===================================================== */
+
+let reactionStart=0;
+let reactionTimer=null;
+let reactionWaiting=false;
+
+
+function startReaction(){
+
+    const box=
+        document.getElementById(
+            "reactionBox"
+        );
+
+    box.className=
+        "reaction-box wait";
+
+    box.textContent=
+        "⏳ TUNGGU...";
+
+    reactionWaiting=true;
+
+    const delay=
+        1000+
+        Math.random()*4000;
+
+    clearTimeout(
+        reactionTimer
+    );
+
+    reactionTimer=
+        setTimeout(
+            ()=>{
+
+                box.className=
+                    "reaction-box ready";
+
+                box.textContent=
+                    "🟢 KLIK SEKARANG!";
+
+                reactionStart=
+                    performance.now();
+
+            },
+            delay
+        );
+}
+
+
+function reactionClick(){
+
+    const box=
+        document.getElementById(
+            "reactionBox"
+        );
+
+    const msg=
+        document.getElementById(
+            "reactionMsg"
+        );
+
+    if(!reactionWaiting)
+        return;
+
+    if(
+        box.classList.contains(
+            "wait"
+        )
+    ){
+
+        clearTimeout(
+            reactionTimer
+        );
+
+        msg.textContent=
+            "❌ Terlalu cepat!";
+
+        reactionWaiting=false;
+
+        return;
+    }
+
+    const time=
+        Math.round(
+            performance.now()-
+            reactionStart
+        );
+
+    msg.textContent=
+        "⚡ Reaksi kamu: "+
+        time+
+        " ms";
+
+    reactionWaiting=false;
+}
+
+
+/* =====================================================
+   6. TIC TAC TOE
+===================================================== */
+
+let tttBoard=[];
+let tttTurn="X";
+
+
+function startTTT(){
+
+    tttBoard=[
+        "","","",
+        "","","",
+        "","",""
+    ];
+
+    tttTurn="X";
+
+    const grid=
+        document.getElementById(
+            "ttt"
+        );
+
+    grid.innerHTML="";
+
+    tttBoard.forEach(
+        (_,i)=>{
+
+            const btn=
+                document.createElement(
+                    "button"
+                );
+
+            btn.textContent="";
+
+            btn.onclick=()=>
+                playTTT(
+                    i,
+                    btn
+                );
+
+            grid.appendChild(btn);
+        }
+    );
+
+    document
+        .getElementById("tttMsg")
+        .textContent=
+        "Giliran X";
+}
+
+
+function playTTT(index,btn){
+
+    if(tttBoard[index])
+        return;
+
+    tttBoard[index]=tttTurn;
+
+    btn.textContent=tttTurn;
+
+    if(checkTTT()){
+
+        document
+            .getElementById(
+                "tttMsg"
+            )
+            .textContent=
+            "🏆 "+
+            tttTurn+
+            " MENANG!";
+
+        return;
+    }
+
+    if(
+        tttBoard.every(Boolean)
+    ){
+
+        document
+            .getElementById(
+                "tttMsg"
+            )
+            .textContent=
+            "🤝 Seri!";
+
+        return;
+    }
+
+    tttTurn=
+        tttTurn==="X"
+            ?"O"
+            :"X";
+
+    document
+        .getElementById(
+            "tttMsg"
+        )
+        .textContent=
+        "Giliran "+
+        tttTurn;
+}
+
+
+function checkTTT(){
+
+    const wins=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
+
+    return wins.some(
+        w=>
+            w.every(
+                i=>
+                    tttBoard[i]===
+                    tttTurn
+            )
+    );
+}
+
+startTTT();
+
+
+/* =====================================================
+   7. DODGE METEOR
+===================================================== */
+
+let dodgeInterval=null;
+let dodgeScore=0;
+let playerX=50;
+
+
+function startDodge(){
+
+    clearInterval(
+        dodgeInterval
+    );
+
+    dodgeScore=0;
+    playerX=50;
+
+    document
+        .getElementById(
+            "dodgeScore"
+        )
+        .textContent=0;
+
+    const area=
+        document.getElementById(
+            "dodgeArea"
+        );
+
+    const player=
+        document.getElementById(
+            "player"
+        );
+
+    player.style.left="50%";
+
+    dodgeInterval=
+        setInterval(
+            ()=>{
+
+                const meteor=
+                    document.createElement(
+                        "div"
+                    );
+
+                meteor.textContent="☄️";
+
+                meteor.style.position=
+                    "absolute";
+
+                meteor.style.top="-30px";
+
+                meteor.style.left=
+                    Math.random()*90+
+                    "%";
+
+                meteor.style.fontSize=
+                    "25px";
+
+                area.appendChild(meteor);
+
+                let y=-30;
+
+                const fall=
+                    setInterval(
+                        ()=>{
+
+                            y+=5;
+
+                            meteor.style.top=
+                                y+"px";
+
+                            const mRect=
+                                meteor
+                                    .getBoundingClientRect();
+
+                            const pRect=
+                                player
+                                    .getBoundingClientRect();
+
+                            if(
+                                mRect.left<
+                                pRect.right &&
+
+                                mRect.right>
+                                pRect.left &&
+
+                                mRect.top<
+                                pRect.bottom &&
+
+                                mRect.bottom>
+                                pRect.top
+                            ){
+
+                                clearInterval(
+                                    fall
+                                );
+
+                                clearInterval(
+                                    dodgeInterval
+                                );
+
+                                alert(
+                                    "💥 Kena Meteor! Score: "+
+                                    dodgeScore
+                                );
+
+                                meteor.remove();
+                            }
+
+                            if(y>170){
+
+                                clearInterval(
+                                    fall
+                                );
+
+                                meteor.remove();
+
+                                dodgeScore++;
+
+                                document
+                                    .getElementById(
+                                        "dodgeScore"
+                                    )
+                                    .textContent=
+                                    dodgeScore;
+                            }
+
+                        },
+                        30
+                    );
+
+            },
+            700
+        );
+}
+
+
+document
+    .getElementById(
+        "dodgeArea"
+    )
+    .addEventListener(
+        "mousemove",
+        e=>{
+
+            const rect=
+                e.currentTarget
+                    .getBoundingClientRect();
+
+            playerX=
+                (
+                    (e.clientX-
+                    rect.left)/
+                    rect.width
+                )*100;
+
+            document
+                .getElementById(
+                    "player"
+                )
+                .style.left=
+                playerX+"%";
+        }
+    );
+
+
+document
+    .getElementById(
+        "dodgeArea"
+    )
+    .addEventListener(
+        "touchmove",
+        e=>{
+
+            const rect=
+                e.currentTarget
+                    .getBoundingClientRect();
+
+            playerX=
+                (
+                    (e.touches[0].clientX-
+                    rect.left)/
+                    rect.width
+                )*100;
+
+            document
+                .getElementById(
+                    "player"
+                )
+                .style.left=
+                playerX+"%";
+        }
+    );
+
+
+/* =====================================================
+   8. MATH
+===================================================== */
+
+let mathAnswer=0;
+
+
+function newMath(){
+
+    const a=
+        Math.floor(
+            Math.random()*20
+        )+1;
+
+    const b=
+        Math.floor(
+            Math.random()*20
+        )+1;
+
+    const operations=[
+        "+",
+        "-",
+        "×"
+    ];
+
+    const op=
+        operations[
+            Math.floor(
+                Math.random()*
+                operations.length
+            )
+        ];
+
+    if(op==="+")
+        mathAnswer=a+b;
+
+    if(op==="-")
+        mathAnswer=a-b;
+
+    if(op==="×")
+        mathAnswer=a*b;
+
+    document
+        .getElementById(
+            "mathQuestion"
+        )
+        .textContent=
+        a+
+        " "+
+        op+
+        " "+
+        b+
+        " = ?";
+
+    document
+        .getElementById(
+            "mathInput"
+        )
+        .value="";
+
+    document
+        .getElementById(
+            "mathMsg"
+        )
+        .textContent="";
+}
+
+
+function checkMath(){
+
+    const answer=
+        Number(
+            document
+                .getElementById(
+                    "mathInput"
+                )
+                .value
+        );
+
+    const msg=
+        document
+            .getElementById(
+                "mathMsg"
+            );
+
+    if(
+        answer===mathAnswer
+    ){
+
+        msg.textContent=
+            "🎉 BENAR! Otak GG!";
+
+        setTimeout(
+            newMath,
+            800
+        );
+
+    }else{
+
+        msg.textContent=
+            "❌ Salah! Coba lagi.";
+    }
+}
+
+newMath();
+
+
+/* =====================================================
+   9. COLOR MATCH
+===================================================== */
+
+let colorAnswer="";
+let colorScore=0;
+
+const colors={
+    Merah:"#ff1744",
+    Biru:"#2979ff",
+    Hijau:"#00e676",
+    Kuning:"#ffea00",
+    Ungu:"#d500f9",
+    Orange:"#ff9100"
+};
+
+
+function newColor(){
+
+    const names=
+        Object.keys(colors);
+
+    colorAnswer=
+        names[
+            Math.floor(
+                Math.random()*
+                names.length
+            )
+        ];
+
+    document
+        .getElementById(
+            "colorDisplay"
+        )
+        .style.background=
+        colors[colorAnswer];
+
+    const buttons=
+        document.getElementById(
+            "colorButtons"
+        );
+
+    buttons.innerHTML="";
+
+    names.sort(
+        ()=>Math.random()-.5
+    );
+
+    names.forEach(
+        name=>{
+
+            const btn=
+                document.createElement(
+                    "button"
+                );
+
+            btn.textContent=name;
+
+            btn.onclick=()=>{
+
+                if(
+                    name===colorAnswer
+                ){
+
+                    colorScore++;
+
+                    document
+                        .getElementById(
+                            "colorScore"
+                        )
+                        .textContent=
+                        colorScore;
+
+                    newColor();
+
+                }else{
+
+                    colorScore=0;
+
+                    document
+                        .getElementById(
+                            "colorScore"
+                        )
+                        .textContent=0;
+
+                    alert(
+                        "❌ Salah! Score kembali 0."
+                    );
+                }
+            };
+
+            buttons.appendChild(btn);
+        }
+    );
+}
+
+newColor();
+
+
+/* =====================================================
+   10. WHACK A MOLE
+===================================================== */
+
+let moleScore=0;
+let moleTimer=null;
+
+
+function createMoles(){
+
+    const grid=
+        document.getElementById(
+            "moleGrid"
+        );
+
+    grid.innerHTML="";
+
+    for(
+        let i=0;
+        i<9;
+        i++
+    ){
+
+        const hole=
+            document.createElement(
+                "div"
+            );
+
+        hole.className="hole";
+
+        hole.onclick=()=>{
+
+            if(
+                hole.textContent==="🐹"
+            ){
+
+                moleScore++;
+
+                document
+                    .getElementById(
+                        "moleScore"
+                    )
+                    .textContent=
+                    moleScore;
+
+                hole.textContent="";
+            }
+        };
+
+        grid.appendChild(hole);
+    }
+}
+
+
+function startMole(){
+
+    clearInterval(
+        moleTimer
+    );
+
+    moleScore=0;
+
+    document
+        .getElementById(
+            "moleScore"
+        )
+        .textContent=0;
+
+    createMoles();
+
+    moleTimer=
+        setInterval(
+            ()=>{
+
+                const holes=
+                    document.querySelectorAll(
+                        ".hole"
+                    );
+
+                holes.forEach(
+                    h=>
+                        h.textContent=""
+                );
+
+                const random=
+                    Math.floor(
+                        Math.random()*
+                        holes.length
+                    );
+
+                holes[random]
+                    .textContent="🐹";
+
+            },
+            600
+        );
+}
+
+createMoles();
+
+
+/* =====================================================
+   CAMERA ENGINE
+===================================================== */
+
+let stream=null;
+
+let cameraFacing="user";
+
+let mirrorEnabled=true;
+
+let activeEffect="normal";
+
+
+const video=
+    document.getElementById(
+        "video"
+    );
+
+const photo=
+    document.getElementById(
+        "photo"
+    );
+
+const cameraStatus=
+    document.getElementById(
+        "cameraStatus"
+    );
+
+const particles=
+    document.getElementById(
+        "particles"
+    );
+
+const countdown=
+    document.getElementById(
+        "countdown"
+    );
+
+
+/* =====================================================
+   START CAMERA
+===================================================== */
+
+async function startCamera(){
+
+    try{
+
+        if(stream){
+
+            stream
+                .getTracks()
+                .forEach(
+                    track=>
+                        track.stop()
+                );
+        }
+
+        stream=
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+
+                    video:{
+                        facingMode:
+                            cameraFacing,
+
+                        width:{
+                            ideal:1280
+                        },
+
+                        height:{
+                            ideal:720
+                        }
+                    },
+
+                    audio:false
+                });
+
+        video.srcObject=stream;
+
+        video.style.display="block";
+
+        photo.style.display="none";
+
+        updateMirror();
+
+        cameraStatus.textContent=
+            "🟢 Kamera aktif • "+
+            getCameraName();
+
+    }catch(error){
+
+        cameraStatus.textContent=
+            "❌ Kamera tidak bisa digunakan. Izinkan akses kamera.";
+
+        console.error(error);
+    }
+}
+
+
+/* =====================================================
+   CAMERA NAME
+===================================================== */
+
+function getCameraName(){
+
+    return cameraFacing==="user"
+        ? "Kamera Depan"
+        : "Kamera Belakang";
+}
+
+
+/* =====================================================
+   SWITCH CAMERA
+===================================================== */
+
+async function switchCamera(){
+
+    cameraFacing=
+        cameraFacing==="user"
+            ?"environment"
+            :"user";
+
+    await startCamera();
+}
+
+
+/* =====================================================
+   STOP CAMERA
+===================================================== */
+
+function stopCamera(){
+
+    if(stream){
+
+        stream
+            .getTracks()
+            .forEach(
+                track=>
+                    track.stop()
+            );
+
+        stream=null;
+    }
+
+    video.srcObject=null;
+
+    cameraStatus.textContent=
+        "🔴 Kamera dimatikan";
+}
+
+
+/* =====================================================
+   MIRROR
+===================================================== */
+
+function toggleMirror(){
+
+    mirrorEnabled=
+        !mirrorEnabled;
+
+    updateMirror();
+
+    const btn=
+        document.getElementById(
+            "mirrorBtn"
+        );
+
+    btn.classList.toggle(
+        "active",
+        mirrorEnabled
+    );
+
+    btn.textContent=
+        mirrorEnabled
+            ?"🪞 Mirror ON"
+            :"🪞 Mirror OFF";
+}
+
+
+function updateMirror(){
+
+    video.style.transform=
+        mirrorEnabled
+            ?"scaleX(-1)"
+            :"scaleX(1)";
+}
+
+
+/* =====================================================
+   SELECT EFFECT
+===================================================== */
+
+function selectEffect(
+    effect,
+    button
+){
+
+    activeEffect=effect;
+
+    document
+        .querySelectorAll(
+            ".camera-filter"
+        )
+        .forEach(
+            btn=>
+                btn.classList.remove(
+                    "active"
+                )
+        );
+
+    button.classList.add(
+        "active"
+    );
+
+    clearEffects();
+
+
+    switch(effect){
+
+        case "normal":
+            break;
+
+
+        case "sparkle":
+
+            createParticles(
+                "✨",
+                "sparkle",
+                18
+            );
+
+            break;
+
+
+        case "heart":
+
+            createParticles(
+                "💖",
+                "heart",
+                15
+            );
+
+            break;
+
+
+        case "snow":
+
+            createParticles(
+                "❄️",
+                "snow",
+                25
+            );
+
+            break;
+
+
+        case "fire":
+
+            createParticles(
+                "🔥",
+                "fire",
+                15
+            );
+
+            break;
+
+
+        case "galaxy":
+
+            createParticles(
+                "✦",
+                "galaxy",
+                25
+            );
+
+            break;
+
+
+        case "rainbow":
+
+            document
+                .getElementById(
+                    "rainbow"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            break;
+
+
+        case "flare":
+
+            document
+                .getElementById(
+                    "flare"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            break;
+
+
+        case "cyber":
+
+            document
+                .getElementById(
+                    "cyberHud"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            document
+                .getElementById(
+                    "scanlines"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            break;
+
+
+        case "vhs":
+
+            document
+                .getElementById(
+                    "scanlines"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            document
+                .getElementById(
+                    "grain"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            break;
+
+
+        case "dream":
+
+            document
+                .getElementById(
+                    "rainbow"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            document
+                .getElementById(
+                    "flare"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            break;
+
+
+        case "royal":
+
+            document
+                .getElementById(
+                    "vignette"
+                )
+                .classList
+                .add(
+                    "active"
+                );
+
+            createParticles(
+                "👑",
+                "sparkle",
+                8
+            );
+
+            break;
+    }
+
+    cameraStatus.textContent=
+        "✨ Effect: "+
+        effect.toUpperCase();
+}
+
+
+/* =====================================================
+   CLEAR EFFECTS
+===================================================== */
+
+function clearEffects(){
+
+    particles.innerHTML="";
+
+    document
+        .getElementById(
+            "vignette"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "grain"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "scanlines"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "cyberHud"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "flare"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+
+    document
+        .getElementById(
+            "rainbow"
+        )
+        .classList
+        .remove(
+            "active"
+        );
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function createParticles(
+    symbol,
+    className,
+    count
+){
+
+    particles.innerHTML="";
+
+    for(
+        let i=0;
+        i<count;
+        i++
+    ){
+
+        const p=
+            document.createElement(
+                "div"
+            );
+
+        p.className=
+            "particle "+
+            className;
+
+        p.textContent=symbol;
+
+        p.style.left=
+            Math.random()*100+
+            "%";
+
+        p.style.top=
+            Math.random()*100+
+            "%";
+
+        p.style.animationDuration=
+            (3+Math.random()*5)+
+            "s";
+
+        p.style.animationDelay=
+            Math.random()*4+
+            "s";
+
+        p.style.fontSize=
+            (14+
+            Math.random()*16)+
+            "px";
+
+        particles.appendChild(p);
+    }
+}
+
+
+/* =====================================================
+   VIGNETTE
+===================================================== */
+
+function toggleVignette(){
+
+    const element=
+        document.getElementById(
+            "vignette"
+        );
+
+    element.classList.toggle(
+        "active"
+    );
+
+    document
+        .getElementById(
+            "vignetteBtn"
+        )
+        .classList.toggle(
+            "active",
+            element.classList.contains(
+                "active"
+            )
+        );
+}
+
+
+/* =====================================================
+   GRAIN
+===================================================== */
+
+function toggleGrain(){
+
+    const element=
+        document.getElementById(
+            "grain"
+        );
+
+    element.classList.toggle(
+        "active"
+    );
+
+    document
+        .getElementById(
+            "grainBtn"
+        )
+        .classList.toggle(
+            "active",
+            element.classList.contains(
+                "active"
+            )
+        );
+}
+
+
+/* =====================================================
+   CYBER HUD
+===================================================== */
+
+function toggleCyber(){
+
+    const hud=
+        document.getElementById(
+            "cyberHud"
+        );
+
+    const scan=
+        document.getElementById(
+            "scanlines"
+        );
+
+    hud.classList.toggle(
+        "active"
+    );
+
+    scan.classList.toggle(
+        "active"
+    );
+
+    document
+        .getElementById(
+            "cyberBtn"
+        )
+        .classList.toggle(
+            "active",
+            hud.classList.contains(
+                "active"
+            )
+        );
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+async function captureWithCountdown(){
+
+    if(!stream){
+
+        cameraStatus.textContent=
+            "⚠️ Buka kamera terlebih dahulu!";
+
+        return;
+    }
+
+    for(
+        let i=3;
+        i>=1;
+        i--
+    ){
+
+        countdown.textContent=i;
+
+        countdown.classList.remove(
+            "show"
+        );
+
+        void countdown.offsetWidth;
+
+        countdown.classList.add(
+            "show"
+        );
+
+        await wait(1000);
+    }
+
+    countdown.textContent="📸";
+
+    countdown.classList.add(
+        "show"
+    );
+
+    await wait(300);
+
+    takePhoto();
+}
+
+
+/* =====================================================
+   TAKE PHOTO
+===================================================== */
+
+function takePhoto(){
+
+    if(!stream)
+        return;
+
+    const canvas=
+        document.createElement(
+            "canvas"
+        );
+
+    canvas.width=
+        video.videoWidth;
+
+    canvas.height=
+        video.videoHeight;
+
+    const ctx=
+        canvas.getContext("2d");
+
+
+    /*
+       Mirror hasil foto
+    */
+
+    ctx.save();
+
+    if(mirrorEnabled){
+
+        ctx.translate(
+            canvas.width,
+            0
+        );
+
+        ctx.scale(
+            -1,
+            1
+        );
+    }
+
+
+    ctx.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    ctx.restore();
+
+
+    /*
+       Tambahkan efek foto
+    */
+
+    applyPhotoEffect(
+        ctx,
+        canvas.width,
+        canvas.height
+    );
+
+
+    photo.src=
+        canvas.toDataURL(
+            "image/png"
+        );
+
+    video.style.display=
+        "none";
+
+    photo.style.display=
+        "block";
+
+    cameraStatus.textContent=
+        "📸 Foto berhasil! ✨";
+
+    createDownloadButton();
+}
+
+
+/* =====================================================
+   PHOTO EFFECT ENGINE
+===================================================== */
+
+function applyPhotoEffect(
+    ctx,
+    width,
+    height
+){
+
+    /*
+       Vignette
+    */
+
+    const gradient=
+        ctx.createRadialGradient(
+            width/2,
+            height/2,
+            width*.2,
+            width/2,
+            height/2,
+            width*.75
+        );
+
+
+    if(
+        activeEffect==="royal"
+    ){
+
+        gradient.addColorStop(
+            0,
+            "rgba(255,215,0,0)"
+        );
+
+        gradient.addColorStop(
+            1,
+            "rgba(20,0,40,.65)"
+        );
+
+    }else{
+
+        gradient.addColorStop(
+            0,
+            "rgba(0,0,0,0)"
+        );
+
+        gradient.addColorStop(
+            1,
+            "rgba(0,0,0,.35)"
+        );
+    }
+
+
+    ctx.fillStyle=gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+       Film Frame
+    */
+
+    if(
+        activeEffect==="vhs" ||
+        activeEffect==="royal"
+    ){
+
+        ctx.strokeStyle=
+            "rgba(255,255,255,.7)";
+
+        ctx.lineWidth=8;
+
+        ctx.strokeRect(
+            12,
+            12,
+            width-24,
+            height-24
+        );
+    }
+
+
+    /*
+       Cyber HUD
+    */
+
+    if(
+        activeEffect==="cyber"
+    ){
+
+        ctx.strokeStyle=
+            "#00ffff";
+
+        ctx.lineWidth=5;
+
+        const size=80;
+
+
+        /* kiri atas */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            20,
+            20+size
+        );
+
+        ctx.lineTo(
+            20,
+            20
+        );
+
+        ctx.lineTo(
+            20+size,
+            20
+        );
+
+        ctx.stroke();
+
+
+        /* kanan atas */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            width-20-size,
+            20
+        );
+
+        ctx.lineTo(
+            width-20,
+            20
+        );
+
+        ctx.lineTo(
+            width-20,
+            20+size
+        );
+
+        ctx.stroke();
+
+
+        /* kiri bawah */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            20,
+            height-20-size
+        );
+
+        ctx.lineTo(
+            20,
+            height-20
+        );
+
+        ctx.lineTo(
+            20+size,
+            height-20
+        );
+
+        ctx.stroke();
+
+
+        /* kanan bawah */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            width-20-size,
+            height-20
+        );
+
+        ctx.lineTo(
+            width-20,
+            height-20
+        );
+
+        ctx.lineTo(
+            width-20,
+            height-20-size
+        );
+
+        ctx.stroke();
+    }
+}
+
+
+/* =====================================================
+   DOWNLOAD BUTTON
+===================================================== */
+
+function createDownloadButton(){
+
+    let box=
+        document.getElementById(
+            "cameraDownload"
+        );
+
+    if(!box){
+
+        box=
+            document.createElement(
+                "div"
+            );
+
+        box.id=
+            "cameraDownload";
+
+        box.style.textAlign=
+            "center";
+
+        box.style.marginTop=
+            "12px";
+
+        document
+            .querySelector(
+                ".camera-preview"
+            )
+            .parentElement
+            .appendChild(box);
+    }
+
+
+    box.innerHTML=`
+
+        <button
+            class="camera-btn"
+            onclick="downloadPhoto()">
+
+            💾 Download Foto
+
+        </button>
+
+        <button
+            class="camera-btn secondary"
+            onclick="retakePhoto()">
+
+            🔄 Foto Lagi
+
+        </button>
+
+    `;
+}
+
+
+/* =====================================================
+   DOWNLOAD PHOTO
+===================================================== */
+
+function downloadPhoto(){
+
+    if(!photo.src)
+        return;
+
+    const link=
+        document.createElement(
+            "a"
+        );
+
+    link.download=
+        "Ridho-Camera-"+
+        Date.now()+
+        ".png";
+
+    link.href=
+        photo.src;
+
+    link.click();
+}
+
+
+/* =====================================================
+   RETAKE
+===================================================== */
+
+function retakePhoto(){
+
+    photo.style.display=
+        "none";
+
+    video.style.display=
+        "block";
+
+    cameraStatus.textContent=
+        "📷 Siap mengambil foto lagi!";
+}
+
+
+/* =====================================================
+   WAIT
+===================================================== */
+
+function wait(ms){
+
+    return new Promise(
+        resolve=>
+            setTimeout(
+                resolve,
+                ms
+            )
+    );
+}
+
+
+/* =====================================================
+   SPACE = TAKE PHOTO
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            e.code==="Space" &&
+            document
+                .getElementById(
+                    "camera"
+                )
+                .classList
+                .contains(
+                    "active"
+                )
+        ){
+
+            e.preventDefault();
+
+            captureWithCountdown();
+        }
+
+    }
+);
+
 </script>
-
-<div class="card">
-
-<div class="avatar">👑</div>
-
-<h1>M. Ridho Luqmanulhakim</h1>
-
-<div class="sub">
-🚀 BIODATA SUPER GG 🚀
-</div>
-
-<div class="info">
-
-<div class="box">
-<span>🏫 Sekolah</span><br>
-MTs MIFTAHUL HUDA
-</div>
-
-<div class="box">
-<span>📚 Kelas</span><br>
-9 Al-Himmah
-</div>
-
-<div class="box">
-<span>🎂 Tanggal Lahir</span><br>
-10 Maret 2012
-</div>
-
-<div class="box">
-<span>📍 Tempat Lahir</span><br>
-Kota Bandung
-</div>
-
-<div class="box">
-<span>🎯 Cita-cita</span><br>
-YouTuber 🎥 / Pengusaha 💼
-</div>
-
-</div>
-
-<div class="footer">
-🔥 NEVER GIVE UP • KEEP LEARNING • STAY AWESOME 🔥
-</div>
-
-</div>
 
 </body>
 </html>
+```

@@ -2,19 +2,33 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biodata | Muhammad Bilal Azzikri</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bilal Digital Hub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+:root{
+    --bg:#050711;
+    --panel:#0c0e18;
+    --panel2:#111321;
+    --cyan:#00eaff;
+    --pink:#ff2ea6;
+    --purple:#8b5cf6;
+    --green:#28e67b;
+    --text:#f5f7ff;
+    --muted:#9096aa;
+    --border:rgba(255,255,255,.09);
+    --radius:22px;
+}
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
 }
 
 html{
@@ -22,461 +36,3358 @@ html{
 }
 
 body{
-    background:linear-gradient(-45deg,#4facfe,#00f2fe,#6a11cb,#2575fc);
-    background-size:400% 400%;
-    animation:bg 12s ease infinite;
-    color:white;
+    min-height:100vh;
+    font-family:"Outfit",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 15% 20%,rgba(0,234,255,.08),transparent 25%),
+        radial-gradient(circle at 85% 30%,rgba(139,92,246,.09),transparent 28%),
+        linear-gradient(135deg,#03050d,#090817 50%,#050711);
+    overflow-x:hidden;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.35;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:48px 48px;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
 }
 
 .container{
-    width:90%;
-    max-width:1100px;
+    width:min(1100px,calc(100% - 30px));
     margin:auto;
 }
 
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+section{
+    padding:85px 0 20px;
 }
 
-.card{
-    width:100%;
-    background:rgba(255,255,255,.12);
+.logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+.nav{
+    display:flex;
+    gap:24px;
+}
+
+.nav a{
+    color:#aeb4c8;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav a:hover{
+    color:var(--cyan);
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
     backdrop-filter:blur(18px);
-    border-radius:25px;
-    padding:40px;
+    background:rgba(4,6,15,.78);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.menu{
+    display:none;
+    background:transparent;
+    color:white;
+    font-size:22px;
+}
+
+.hero{
+    min-height:calc(100vh - 70px);
+    display:grid;
+    place-items:center;
+    padding:50px 0;
+}
+
+.heroCard{
+    width:min(800px,100%);
     text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,.3);
+    padding:50px 30px;
+    border:1px solid var(--border);
+    border-radius:30px;
+    background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+    box-shadow:0 30px 100px rgba(0,0,0,.4);
+}
+
+.profileBox{
+    width:125px;
+    height:125px;
+    margin:0 auto 20px;
+    position:relative;
 }
 
 .profile{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:6px solid white;
+    width:100%;
+    height:100%;
     object-fit:cover;
-    box-shadow:0 0 30px rgba(255,255,255,.5);
-    transition:.4s;
+    border-radius:50%;
+    border:3px solid var(--cyan);
+    box-shadow:0 0 35px rgba(0,234,255,.3);
 }
 
-.profile:hover{
-    transform:scale(1.08);
+.status{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:var(--green);
+    border:3px solid var(--bg);
+    border-radius:50%;
+    right:5px;
+    bottom:8px;
 }
 
-h1{
-    margin-top:20px;
-    font-size:42px;
+.heroBadge,
+.badge,
+.editorBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 12px;
+    border-radius:999px;
+    background:rgba(0,234,255,.08);
+    border:1px solid rgba(0,234,255,.2);
+    color:var(--cyan);
+    font-size:11px;
+    font-weight:800;
+}
+
+.heroTitle{
+    margin-top:17px;
+    font-size:clamp(35px,6vw,65px);
+    line-height:1;
 }
 
 .subtitle{
-    margin-top:10px;
-    font-size:20px;
-    color:#eee;
+    color:var(--muted);
+    margin-top:15px;
 }
 
 .typing{
-    font-size:22px;
-    color:yellow;
-    margin-top:15px;
-    height:35px;
+    min-height:28px;
+    margin:18px 0;
+    color:var(--cyan);
+    font-weight:600;
 }
 
-.social{
-    margin-top:25px;
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:20px 0 28px;
 }
 
-.social a{
-    color:white;
-    font-size:28px;
-    margin:0 10px;
-    transition:.3s;
+.socials a{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--border);
+    border-radius:50%;
+    background:rgba(255,255,255,.04);
+    transition:.25s;
 }
 
-.social a:hover{
-    color:yellow;
+.socials a:hover{
+    color:var(--cyan);
+    transform:translateY(-3px);
+    border-color:var(--cyan);
+}
+
+.heroButtons,
+.cameraControls{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .btn{
-    display:inline-block;
-    margin-top:30px;
-    padding:14px 35px;
-    border-radius:50px;
-    background:white;
-    color:#333;
-    text-decoration:none;
-    font-weight:bold;
+    min-height:48px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:0 19px;
+    color:#001013;
+    background:linear-gradient(90deg,var(--cyan),#5df3ff);
+    border-radius:999px;
+    font-weight:800;
+    transition:.2s;
 }
 
 .btn:hover{
-    background:black;
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(0,234,255,.2);
+}
+
+.btn.secondary{
     color:white;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--border);
 }
 
-section{
-    padding:70px 0;
+.btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
 }
 
-.title{
+.sectionTitle{
     text-align:center;
     margin-bottom:35px;
-    font-size:35px;
+}
+
+.sectionTitle h2{
+    font-size:clamp(28px,5vw,43px);
+}
+
+.sectionTitle h2 span{
+    color:var(--cyan);
+}
+
+.sectionTitle p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+.grid,
+.stats,
+.aiResult,
+.toolGrid,
+.gameGrid{
+    display:grid;
+    gap:18px;
 }
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
+    grid-template-columns:1fr 1fr;
 }
 
-.box{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
+.card,
+.game,
+.quickTool{
     padding:25px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+}
+
+.card h3,
+.game h3,
+.quickTool h3{
+    margin-bottom:18px;
 }
 
 .info{
     display:flex;
     justify-content:space-between;
-    margin:15px 0;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    padding-bottom:10px;
+    gap:20px;
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.skill{
-    margin:18px 0;
+.info:last-child{
+    border-bottom:0;
 }
 
-.bar{
-    width:100%;
-    height:12px;
-    background:rgba(255,255,255,.2);
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:8px;
+.info b{
+    color:#b7bdd0;
 }
 
-.fill{
-    height:100%;
-    background:linear-gradient(90deg,#00ff9d,#00c3ff);
+.info span{
+    text-align:right;
 }
 
-.timeline{
-    border-left:4px solid white;
-    padding-left:20px;
-}
-
-.timeline div{
-    margin-bottom:25px;
+.muted{
+    color:var(--muted);
+    line-height:1.7;
 }
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(4,1fr);
 }
 
 .stat{
-    background:rgba(255,255,255,.12);
-    padding:30px;
-    border-radius:20px;
+    padding:25px;
     text-align:center;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:rgba(255,255,255,.025);
 }
 
-.stat h3{
-    font-size:45px;
+.statIcon{
+    color:var(--cyan);
+    font-size:25px;
+}
+
+.statNumber{
+    margin-top:10px;
+    font-size:38px;
+    font-weight:800;
+}
+
+.stat p{
+    color:var(--muted);
+}
+
+.toolHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.aiStudio{
+    width:100%;
+}
+
+.cameraShell{
+    overflow:hidden;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:#010207;
+}
+
+.cameraStage{
+    position:relative;
+    width:100%;
+    min-height:430px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    background:#010207;
+}
+
+#video{
+    width:100%;
+    height:100%;
+    min-height:430px;
+    display:block;
+    object-fit:cover;
+    transform:scaleX(1);
+}
+
+#scanCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+.faceGuide{
+    position:absolute;
+    width:210px;
+    height:280px;
+    border:2px dashed rgba(0,234,255,.5);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.scanLine{
+    position:absolute;
+    left:10%;
+    right:10%;
+    top:25%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    opacity:.7;
+    animation:scan 2.5s linear infinite;
+}
+
+@keyframes scan{
+    0%{top:20%}
+    50%{top:75%}
+    100%{top:20%}
+}
+
+.cameraHUD{
+    position:absolute;
+    inset:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    pointer-events:none;
+}
+
+.hud{
+    padding:7px 10px;
+    border-radius:8px;
+    background:rgba(0,0,0,.55);
+    font-size:11px;
+    font-weight:800;
+}
+
+.cameraControls{
+    margin:16px 0;
+}
+
+.aiResult{
+    grid-template-columns:1fr 1fr;
+}
+
+.resultBox{
+    padding:22px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:rgba(255,255,255,.02);
+}
+
+.resultLabel{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.resultValue{
+    margin:8px 0;
+    font-size:28px;
+    font-weight:800;
+}
+
+.confidenceBar{
+    height:9px;
+    overflow:hidden;
+    border-radius:99px;
+    background:#202332;
+}
+
+.confidenceFill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    transition:.4s;
+}
+
+.measurements{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:18px;
+}
+
+.measure{
+    text-align:center;
+    padding:12px 5px;
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+}
+
+.measure b{
+    display:block;
+}
+
+.measure small{
+    color:var(--muted);
+}
+
+.hairLab{
+    overflow:hidden;
+}
+
+.toolSection{
+    margin-top:28px;
+}
+
+.toolSection h4{
+    margin-bottom:14px;
+}
+
+.styleGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.styleButton,
+.colorButton{
+    min-height:65px;
+    color:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:rgba(255,255,255,.035);
+    transition:.2s;
+}
+
+.styleButton:hover,
+.styleButton.active{
+    border-color:var(--cyan);
+    background:rgba(0,234,255,.08);
+}
+
+.styleIcon{
+    display:block;
+    font-size:23px;
+    margin-bottom:5px;
+}
+
+.colorGrid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+}
+
+.colorButton{
+    position:relative;
+    overflow:hidden;
+    min-height:55px;
+}
+
+.colorButton::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.65));
+}
+
+.colorButton span{
+    position:relative;
+    z-index:1;
+    font-size:11px;
+    font-weight:700;
+    text-shadow:0 1px 3px #000;
+}
+
+.colorButton.active{
+    outline:3px solid var(--cyan);
+    outline-offset:2px;
+}
+
+.rangeRow{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.rangeRow input{
+    flex:1;
+    accent-color:var(--cyan);
+}
+
+.rangeValue{
+    min-width:55px;
+    color:var(--cyan);
+    font-weight:800;
+    text-align:right;
+}
+
+.editor{
+    position:relative;
+    min-height:450px;
+    margin-top:25px;
+    overflow:hidden;
+    border-radius:20px;
+    background:#010207;
+    border:1px solid var(--border);
+}
+
+#resultCanvas{
+    width:100%;
+    height:450px;
+    display:block;
+    object-fit:contain;
+    background:#010207;
+}
+
+.editorOverlay{
+    position:absolute;
+    inset:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    pointer-events:none;
+}
+
+.recommendation{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.recommendationCard{
+    padding:18px;
+    text-align:center;
+    border-radius:16px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.025);
+}
+
+.recommendationIcon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.toolGrid{
+    grid-template-columns:repeat(4,1fr);
+}
+
+.quickToolIcon{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    margin-bottom:15px;
+    color:var(--cyan);
+    border-radius:14px;
+    background:rgba(0,234,255,.08);
+}
+
+.music{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.album{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+.song{
+    font-size:23px;
+    font-weight:800;
+}
+
+.musicControls{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+.musicControls button{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    color:white;
+    background:rgba(255,255,255,.08);
+}
+
+.progress{
+    height:7px;
+    margin-top:22px;
+    border-radius:99px;
+    overflow:hidden;
+    background:#202332;
+    cursor:pointer;
+}
+
+.progressFill{
+    width:0%;
+    height:100%;
+    background:var(--cyan);
+}
+
+.gameGrid{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.game input{
+    width:100%;
+    height:45px;
+    margin:10px 0;
+    padding:0 12px;
+    color:white;
+    outline:none;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:rgba(255,255,255,.04);
+}
+
+.game button:not(.reaction){
+    padding:10px 16px;
+    color:white;
+    border-radius:10px;
+    background:rgba(0,234,255,.12);
+    border:1px solid rgba(0,234,255,.25);
+}
+
+.reaction{
+    height:130px;
+    display:grid;
+    place-items:center;
+    margin-top:15px;
+    border-radius:15px;
+    color:white;
+    font-weight:800;
+    background:#252839;
+    cursor:pointer;
+    user-select:none;
+}
+
+.reaction.ready{
+    background:#16a34a;
+}
+
+.clickArea{
+    position:relative;
+    height:160px;
+    margin-top:15px;
+    overflow:hidden;
+    border-radius:15px;
+    background:#090b13;
+}
+
+.target{
+    position:absolute;
+    display:none;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:var(--pink);
+    box-shadow:0 0 20px var(--pink);
+    cursor:pointer;
+}
+
+.achievement{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.achievement:last-child{
+    border:0;
+}
+
+.achievementIcon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
 }
 
 footer{
+    padding:70px 15px;
     text-align:center;
-    padding:30px;
-    font-size:15px;
+    color:var(--muted);
 }
 
-@media(max-width:700px){
-
-h1{
-font-size:30px;
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:9999;
+    max-width:320px;
+    padding:14px 18px;
+    color:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#111522;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    transform:translateY(120px);
+    opacity:0;
+    transition:.3s;
 }
 
-.profile{
-width:140px;
-height:140px;
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
 }
 
+@media(max-width:850px){
+    .nav{
+        position:absolute;
+        top:70px;
+        left:15px;
+        right:15px;
+        display:none;
+        flex-direction:column;
+        padding:18px;
+        border:1px solid var(--border);
+        border-radius:16px;
+        background:#0b0e18;
+    }
+
+    .nav.open{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .grid,
+    .aiResult{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .toolGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gameGrid{
+        grid-template-columns:1fr 1fr;
+    }
 }
 
+@media(max-width:600px){
+    section{
+        padding-top:65px;
+    }
+
+    .heroCard{
+        padding:35px 18px;
+    }
+
+    .styleGrid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .colorGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .recommendation{
+        grid-template-columns:1fr;
+    }
+
+    .stats,
+    .toolGrid,
+    .gameGrid{
+        grid-template-columns:1fr;
+    }
+
+    .cameraStage,
+    #video{
+        min-height:330px;
+    }
+
+    .editor{
+        min-height:300px;
+    }
+
+    #resultCanvas{
+        height:300px;
+    }
+
+    .music{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .info{
+        flex-direction:column;
+        gap:4px;
+    }
+
+    .info span{
+        text-align:left;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
+<header>
+    <div class="container navbar">
+
+        <div class="logo">
+            BILAL<span>.</span>
+        </div>
+
+        <div class="nav" id="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#ai">AI Face</a>
+            <a href="#hair">Hair Lab</a>
+            <a href="#music">Music</a>
+            <a href="#games">Games</a>
+        </div>
+
+        <button class="menu" id="menu" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="hero">
 <div class="container">
 
-<div class="hero">
+<div class="heroCard">
 
-<div class="card">
+    <div class="profileBox">
+        <img src="Upin.jpg" id="profile" class="profile" alt="Foto profil">
+        <div class="status"></div>
+    </div>
 
-<img src="images.jpg" class="profile" alt="Foto Bilal">
+    <span class="heroBadge">
+        <i class="fa-solid fa-bolt"></i>
+        DIGITAL CREATOR
+    </span>
 
-<h1>Muhammad Bilal Azzikri</h1>
+    <h1 class="heroTitle">
+        Muhammad Bilal Azzikri
+    </h1>
 
-<p class="subtitle">Siswa MTs Miftahul Huda • Kelas 9A</p>
+    <p class="subtitle">
+        Siswa MTs Miftahul Huda • Kelas 9A
+    </p>
 
-<div class="typing" id="typing"></div>
+    <div class="typing" id="typing"></div>
 
-<div class="social">
+    <div class="socials">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
 
-<a href="#"><i class="fab fa-instagram"></i></a>
+    <div class="heroButtons">
+        <a href="#about" class="btn">
+            <i class="fa-solid fa-user"></i>
+            Biodata
+        </a>
 
-<a href="#"><i class="fab fa-github"></i></a>
+        <a href="#ai" class="btn secondary">
+            <i class="fa-solid fa-face-smile"></i>
+            AI Face Scan
+        </a>
 
-<a href="#"><i class="fab fa-facebook"></i></a>
-
-<a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#hair" class="btn secondary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Hair Lab
+        </a>
+    </div>
 
 </div>
 
-<a href="#about" class="btn">Lihat Biodata</a>
-
 </div>
+</section>
 
-</div>
 
+<!-- ================= ABOUT ================= -->
 <section id="about">
+<div class="container">
 
-<h2 class="title">Biodata Diri</h2>
+<div class="sectionTitle">
+    <h2>Tentang <span>Saya</span></h2>
+    <p>Profil singkat dan informasi pribadi</p>
+</div>
 
 <div class="grid">
 
-<div class="box">
+<div class="card">
+    <h3>
+        <i class="fa-solid fa-id-card" style="color:var(--cyan)"></i>
+        Biodata
+    </h3>
 
-<div class="info">
-<b>Nama</b>
-<span>Muhammad Bilal Azzikri</span>
+    <div class="info"><b>Nama</b><span>Muhammad Bilal Azzikri</span></div>
+    <div class="info"><b>Kelas</b><span>9A</span></div>
+    <div class="info"><b>Sekolah</b><span>MTs Miftahul Huda</span></div>
+    <div class="info"><b>Jenis Kelamin</b><span>Laki-Laki</span></div>
+    <div class="info"><b>Tanggal Lahir</b><span>23 September 2011</span></div>
+    <div class="info"><b>Tempat Tinggal</b><span>Bandung, Cicadas</span></div>
 </div>
 
-<div class="info">
-<b>Kelas</b>
-<span>9A</span>
-</div>
+<div class="card">
+    <h3>
+        <i class="fa-solid fa-rocket" style="color:var(--pink)"></i>
+        Tentang Saya
+    </h3>
 
-<div class="info">
-<b>Sekolah</b>
-<span>MTs Miftahul Huda</span>
-</div>
-
-<div class="info">
-<b>Jenis Kelamin</b>
-<span>Laki-Laki</span>
-</div>
-
-<div class="info">
-<b>Tanggal Lahir</b>
-<span>23 September 2011</span>
-</div>
-
-<div class="info">
-<b>Tempat Tinggal</b>
-<span>Bandung, Cicadas</span>
+    <p class="muted">
+        Halo! Nama saya <b>Muhammad Bilal Azzikri</b>.
+        Saya merupakan siswa <b>MTs Miftahul Huda</b>
+        kelas <b>9A</b>.
+        Saya tertarik dengan teknologi, komputer, website
+        dan pemrograman.
+        Saya suka belajar HTML, CSS, JavaScript dan mencoba
+        membuat project baru.
+    </p>
 </div>
 
 </div>
+</div>
+</section>
 
-<div class="box">
 
-<h2>Tentang Saya</h2>
+<!-- ================= STATS ================= -->
+<section>
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>My <span>Stats</span></h2>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+    <i class="fa-solid fa-code statIcon"></i>
+    <div class="statNumber counter" data-value="15">0</div>
+    <p>Website</p>
+</div>
+
+<div class="stat">
+    <i class="fa-solid fa-gamepad statIcon"></i>
+    <div class="statNumber counter" data-value="7">0</div>
+    <p>Mini Game</p>
+</div>
+
+<div class="stat">
+    <i class="fa-solid fa-face-smile statIcon"></i>
+    <div class="statNumber counter" data-value="100">0</div>
+    <p>AI Scan Ready</p>
+</div>
+
+<div class="stat">
+    <i class="fa-solid fa-fire statIcon"></i>
+    <div class="statNumber counter" data-value="100">0</div>
+    <p>Semangat</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- ================= AI FACE ================= -->
+<section id="ai">
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>AI Face <span>Scanner</span> 🤖</h2>
+    <p>Kamera membaca landmark wajah lalu memperkirakan bentuk wajah.</p>
+</div>
+
+<div class="aiStudio">
+<div class="card">
+
+<div class="toolHeader">
+
+<div>
+    <h3>
+        <i class="fa-solid fa-microchip" style="color:var(--cyan)"></i>
+        Bilal Vision AI
+    </h3>
+
+    <p class="muted">
+        Face tracking + face shape analysis + hair recommendation.
+    </p>
+</div>
+
+<span class="badge" id="aiEngine">
+    READY
+</span>
+
+</div>
 
 <br>
 
-<p>
+<div class="cameraShell">
 
-Halo, nama saya <b>Muhammad Bilal Azzikri</b>. Saya merupakan siswa <b>MTs Miftahul Huda</b> kelas <b>9A</b>. Saya lahir pada tanggal <b>23 September 2011</b> dan tinggal di <b>Bandung, Cicadas</b>.
+<div class="cameraStage">
 
-Saya memiliki minat besar dalam dunia teknologi, komputer, dan pemrograman. Saya senang belajar membuat website menggunakan HTML, CSS, dan JavaScript. Saya percaya bahwa belajar dengan sungguh-sungguh, disiplin, dan terus mencoba hal baru akan membantu saya meraih cita-cita di masa depan.
+    <video id="video" autoplay playsinline muted></video>
 
+    <canvas id="scanCanvas"></canvas>
+
+    <div class="faceGuide"></div>
+    <div class="scanLine"></div>
+
+    <div class="cameraHUD">
+
+        <div class="hud" id="cameraState">
+            🔴 OFFLINE
+        </div>
+
+        <div class="hud" id="detection">
+            AI STANDBY
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<div class="cameraControls">
+
+<button class="btn" id="startCamera">
+    <i class="fa-solid fa-video"></i>
+    Start Scan
+</button>
+
+<button class="btn secondary" id="stopCamera">
+    <i class="fa-solid fa-stop"></i>
+    Stop
+</button>
+
+<button class="btn secondary" id="flipCamera">
+    <i class="fa-solid fa-camera-rotate"></i>
+    Flip
+</button>
+
+<button class="btn secondary" id="scanNow">
+    <i class="fa-solid fa-crosshairs"></i>
+    Scan Now
+</button>
+
+<button class="btn secondary" id="capture">
+    <i class="fa-solid fa-camera"></i>
+    Capture
+</button>
+
+</div>
+
+<div class="aiResult">
+
+<div class="resultBox">
+
+    <div class="resultLabel">Bentuk wajah</div>
+
+    <div class="resultValue" id="faceShape">
+        Belum terdeteksi
+    </div>
+
+    <p class="muted" id="faceDescription">
+        Aktifkan kamera dan posisikan wajah di tengah.
+    </p>
+
+</div>
+
+<div class="resultBox">
+
+    <div class="resultLabel">AI confidence</div>
+
+    <div class="resultValue" id="confidenceText">0%</div>
+
+    <div class="confidenceBar">
+        <div class="confidenceFill" id="confidenceFill"></div>
+    </div>
+
+    <div class="measurements">
+
+        <div class="measure">
+            <b id="faceWidth">—</b>
+            <small>Width</small>
+        </div>
+
+        <div class="measure">
+            <b id="faceHeight">—</b>
+            <small>Height</small>
+        </div>
+
+        <div class="measure">
+            <b id="ratio">—</b>
+            <small>Ratio</small>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px;background:rgba(0,234,255,.025)">
+
+    <h3>🧠 Hasil Analisis</h3>
+
+    <p class="muted" id="scanMessage" style="margin-top:8px">
+        Belum ada hasil scan.
+    </p>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= HAIR LAB ================= -->
+<section id="hair">
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>AI Hair <span>Lab</span> 💇</h2>
+    <p>Pilih gaya, warna, dan intensitas rambut.</p>
+</div>
+
+<div class="card hairLab">
+
+<div class="toolHeader">
+<div>
+    <h3>✨ Virtual Hair Try-On</h3>
+    <p class="muted">
+        Capture foto terlebih dahulu agar rambut dapat diterapkan.
+    </p>
+</div>
+
+<span class="badge">TRY-ON MODE</span>
+</div>
+
+
+<div class="toolSection">
+
+<h4>1. Pilih gaya rambut</h4>
+
+<div class="styleGrid">
+
+<button class="styleButton active" data-style="textured">
+    <span class="styleIcon">🔥</span>
+    Textured Crop
+</button>
+
+<button class="styleButton" data-style="fade">
+    <span class="styleIcon">⚡</span>
+    Fade
+</button>
+
+<button class="styleButton" data-style="quiff">
+    <span class="styleIcon">🧑‍🎤</span>
+    Quiff
+</button>
+
+<button class="styleButton" data-style="fringe">
+    <span class="styleIcon">✂️</span>
+    Fringe
+</button>
+
+<button class="styleButton" data-style="buzz">
+    <span class="styleIcon">💈</span>
+    Buzz Cut
+</button>
+
+<button class="styleButton" data-style="messy">
+    <span class="styleIcon">🌪️</span>
+    Messy
+</button>
+
+</div>
+</div>
+
+
+<div class="toolSection">
+
+<h4>2. Pilih warna rambut</h4>
+
+<div class="colorGrid">
+
+<button class="colorButton active" data-color="#171717" style="background:#171717">
+    <span>Black</span>
+</button>
+
+<button class="colorButton" data-color="#3b2418" style="background:#3b2418">
+    <span>Brown</span>
+</button>
+
+<button class="colorButton" data-color="#6b3f25" style="background:#6b3f25">
+    <span>Chestnut</span>
+</button>
+
+<button class="colorButton" data-color="#8b8b8b" style="background:#8b8b8b">
+    <span>Silver</span>
+</button>
+
+<button class="colorButton" data-color="#e9e9e9" style="background:#e9e9e9">
+    <span>White</span>
+</button>
+
+<button class="colorButton" data-color="#2878ff" style="background:#2878ff">
+    <span>Blue</span>
+</button>
+
+<button class="colorButton" data-color="#8b5cf6" style="background:#8b5cf6">
+    <span>Purple</span>
+</button>
+
+<button class="colorButton" data-color="#ff2ea6" style="background:#ff2ea6">
+    <span>Pink</span>
+</button>
+
+<button class="colorButton" data-color="#00eaff" style="background:#00eaff">
+    <span>Cyan</span>
+</button>
+
+<button class="colorButton" data-color="#ff3131" style="background:#ff3131">
+    <span>Red</span>
+</button>
+
+</div>
+</div>
+
+
+<div class="toolSection">
+
+<h4>3. Intensitas warna</h4>
+
+<div class="rangeRow">
+
+<input type="range" id="hairIntensity" min="10" max="100" value="85">
+
+<span class="rangeValue" id="hairIntensityValue">
+    85%
+</span>
+
+</div>
+
+</div>
+
+
+<div class="editor">
+
+<canvas id="resultCanvas"></canvas>
+
+<div class="editorOverlay">
+
+<span class="editorBadge">
+    AI HAIR PREVIEW
+</span>
+
+<span class="editorBadge" id="editorStatus">
+    WAITING
+</span>
+
+</div>
+
+</div>
+
+
+<div class="cameraControls">
+
+<button class="btn" id="applyHair">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+    Terapkan Rambut
+</button>
+
+<button class="btn secondary" id="resetHair">
+    Reset
+</button>
+
+<button class="btn secondary" id="downloadHair">
+    <i class="fa-solid fa-download"></i>
+    Download
+</button>
+
+<button class="btn secondary" id="setHairProfile">
+    <i class="fa-solid fa-user"></i>
+    Set Profile
+</button>
+
+</div>
+
+
+<div class="recommendation" id="recommendations">
+
+<div class="recommendationCard">
+    <div class="recommendationIcon">🤖</div>
+    <h3>Menunggu Scan</h3>
+    <p class="muted">
+        Setelah wajah terdeteksi, rekomendasi akan dibuat otomatis.
+    </p>
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- ================= TOOLS ================= -->
+<section>
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>Smart <span>Tools</span> ⚡</h2>
+    <p>Fitur tambahan untuk membuat hub lebih interaktif.</p>
+</div>
+
+<div class="toolGrid">
+
+<div class="quickTool">
+    <div class="quickToolIcon"><i class="fa-solid fa-camera-retro"></i></div>
+    <h3>Photo Capture</h3>
+    <p class="muted">Ambil snapshot dari kamera dan edit menggunakan Hair Lab.</p>
+</div>
+
+<div class="quickTool">
+    <div class="quickToolIcon"><i class="fa-solid fa-mobile-screen"></i></div>
+    <h3>Responsive UI</h3>
+    <p class="muted">Tampilan otomatis menyesuaikan HP, tablet, dan desktop.</p>
+</div>
+
+<div class="quickTool">
+    <div class="quickToolIcon"><i class="fa-solid fa-shield-halved"></i></div>
+    <h3>On-Device AI</h3>
+    <p class="muted">Analisis landmark wajah dilakukan di browser.</p>
+</div>
+
+<div class="quickTool">
+    <div class="quickToolIcon"><i class="fa-solid fa-floppy-disk"></i></div>
+    <h3>Local Profile</h3>
+    <p class="muted">Pengaturan gaya terakhir disimpan di browser.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- ================= MUSIC ================= -->
+<section id="music">
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>Music <span>Room</span> 🎵</h2>
+</div>
+
+<div class="card">
+
+<div class="music">
+
+<img src="Upin.jpg" class="album" alt="Album">
+
+<div class="musicInfo">
+
+<div class="song">Sesi Potret</div>
+
+<p class="muted">My favorite music</p>
+
+<div class="musicControls">
+
+<button id="play">
+    <i class="fa-solid fa-play"></i>
+</button>
+
+<button id="stop">
+    <i class="fa-solid fa-stop"></i>
+</button>
+
+</div>
+
+</div>
+</div>
+
+<div class="progress" id="progress">
+    <div class="progressFill" id="progressFill"></div>
+</div>
+
+<audio id="audio" preload="metadata">
+    <source src="Sesi Potret.mp3" type="audio/mpeg">
+</audio>
+
+<p class="muted" id="musicStatus" style="margin-top:10px">
+    Ready.
+</p>
+
+</div>
+</div>
+</section>
+
+
+<!-- ================= GAMES ================= -->
+<section id="games">
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>Game <span>Center</span> 🎮</h2>
+    <p>Mainkan game dan kumpulkan XP.</p>
+</div>
+
+<div class="gameGrid">
+
+<div class="game">
+<h3>🔢 Tebak Angka</h3>
+<p>Cari angka rahasia dari 1 sampai 100.</p>
+
+<input id="guess" type="number" min="1" max="100" placeholder="Masukkan angka">
+
+<button id="guessBtn">Tebak</button>
+
+<p id="guessResult"></p>
+</div>
+
+
+<div class="game">
+
+<h3>⚡ Reaction Test</h3>
+<p>Klik ketika layar berubah hijau.</p>
+
+<div class="reaction" id="reaction">
+    START
+</div>
+
+<p id="reactionResult">Belum mulai</p>
+
+</div>
+
+
+<div class="game">
+
+<h3>🎯 Target Hunter</h3>
+<p>Klik target sebanyak mungkin.</p>
+
+<div class="clickArea" id="clickArea">
+    <div class="target" id="target"></div>
+</div>
+
+<button id="targetStart">Start</button>
+
+<p id="targetScore">Score: 0</p>
+
+</div>
+
+
+<div class="game">
+
+<h3>🧠 Memory</h3>
+<p>Ingat angka yang muncul.</p>
+
+<div id="memory"
+style="
+font-size:35px;
+text-align:center;
+margin:20px;
+color:var(--cyan);
+font-weight:800">
+?
+</div>
+
+<button id="memoryStart">Start</button>
+
+<p id="memoryResult"></p>
+
+</div>
+
+
+<div class="game">
+
+<h3>🖱️ Speed Click</h3>
+<p>Klik sebanyak mungkin dalam 5 detik.</p>
+
+<button id="speedStart">Start</button>
+
+<div id="speedClick"
+style="
+display:none;
+margin-top:15px;
+padding:25px;
+text-align:center;
+border-radius:15px;
+background:var(--pink);
+cursor:pointer">
+KLIK!
+</div>
+
+<p id="speedResult">Score: 0</p>
+
+</div>
+
+
+<div class="game">
+
+<h3>🪙 Coin Flip</h3>
+<p>Tebak hasil koin.</p>
+
+<div id="coin"
+style="
+font-size:60px;
+text-align:center;
+margin:10px">
+🪙
+</div>
+
+<button onclick="flipCoin('Kepala')">Kepala</button>
+<button onclick="flipCoin('Ekor')">Ekor</button>
+
+<p id="coinResult"></p>
+
+</div>
+
+</div>
+
+
+<div class="card" style="margin-top:25px">
+
+<h3>🏆 Achievements</h3>
+
+<div class="achievement">
+    <div class="achievementIcon">🤖</div>
+    <div>
+        <b>AI Explorer</b>
+        <p class="muted">Jalankan AI Face Scanner.</p>
+    </div>
+</div>
+
+<div class="achievement">
+    <div class="achievementIcon">💇</div>
+    <div>
+        <b>Hair Explorer</b>
+        <p class="muted">Coba gaya rambut virtual.</p>
+    </div>
+</div>
+
+<div class="achievement">
+    <div class="achievementIcon">🎨</div>
+    <div>
+        <b>Color Master</b>
+        <p class="muted">Eksperimen dengan warna rambut.</p>
+    </div>
+</div>
+
+<div class="achievement">
+    <div class="achievementIcon">🎮</div>
+    <div>
+        <b>Game Explorer</b>
+        <p class="muted">Mainkan mini game.</p>
+    </div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= EDUCATION ================= -->
+<section>
+<div class="container">
+
+<div class="sectionTitle">
+    <h2>Education <span>Journey</span></h2>
+</div>
+
+<div class="card">
+
+<div style="border-left:4px solid var(--cyan);padding-left:20px">
+
+<h3>MTs Miftahul Huda</h3>
+
+<p class="muted">
+    Kelas 9A • Saat Ini
 </p>
 
 </div>
 
 </div>
 
+</div>
 </section>
 
-<section>
+</main>
 
-<h2 class="title">Kemampuan</h2>
-
-<div class="box">
-
-<div class="skill">
-HTML
-<div class="bar"><div class="fill" style="width:90%"></div></div>
-</div>
-
-<div class="skill">
-CSS
-<div class="bar"><div class="fill" style="width:85%"></div></div>
-</div>
-
-<div class="skill">
-JavaScript
-<div class="bar"><div class="fill" style="width:70%"></div></div>
-</div>
-
-<div class="skill">
-Microsoft Office
-<div class="bar"><div class="fill" style="width:80%"></div></div>
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2 class="title">Riwayat Pendidikan</h2>
-
-<div class="box timeline">
-
-<div>
-
-<h3>MTs Miftahul Huda</h3>
-
-<p>Kelas 9A (Saat Ini)</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2 class="title">Statistik</h2>
-
-<div class="stats">
-
-<div class="stat">
-<h3 id="p1">0</h3>
-<p>Website Dibuat</p>
-</div>
-
-<div class="stat">
-<h3 id="p2">0</h3>
-<p>Bahasa Dipelajari</p>
-</div>
-
-<div class="stat">
-<h3 id="p3">0</h3>
-<p>Target</p>
-</div>
-
-<div class="stat">
-<h3 id="p4">0</h3>
-<p>Semangat</p>
-</div>
-
-</div>
-
-</section>
 
 <footer>
-
 <h2>Terima Kasih Telah Berkunjung ❤️</h2>
-
-<p>© 2026 Muhammad Bilal Azzikri</p>
-
+<p style="margin-top:8px">© 2026 Muhammad Bilal Azzikri</p>
+<p style="margin-top:7px">
+    Built with HTML • CSS • JavaScript • MediaPipe AI
+</p>
 </footer>
 
-</div>
+<div class="toast" id="toast"></div>
+
+
+<!-- MediaPipe Face Mesh -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
 
 <script>
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-const text=[
-"Pelajar",
-"Belajar Web Development",
-"Future Programmer",
-"Terus Berkembang"
+const $ = id => document.getElementById(id);
+
+function toast(message){
+    const el = $("toast");
+    el.textContent = message;
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(()=>{
+        el.classList.remove("show");
+    },2800);
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+$("menu").addEventListener("click",()=>{
+    $("nav").classList.toggle("open");
+});
+
+document.querySelectorAll(".nav a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        $("nav").classList.remove("open");
+    });
+});
+
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+const typingTexts = [
+    "Web Developer",
+    "Digital Creator",
+    "HTML • CSS • JavaScript",
+    "AI & Technology Explorer"
 ];
 
-let i=0;
-let j=0;
-let del=false;
+let typingIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-function ketik(){
+function typeEffect(){
 
-let t=text[i];
+    const current = typingTexts[typingIndex];
 
-document.getElementById("typing").innerHTML=t.substring(0,j);
+    $("typing").textContent =
+        current.substring(0,charIndex);
 
-if(!del){
+    if(!deleting){
+        charIndex++;
 
-j++;
+        if(charIndex > current.length){
+            deleting = true;
+            setTimeout(typeEffect,1200);
+            return;
+        }
+    }else{
+        charIndex--;
 
-if(j>t.length){
+        if(charIndex < 0){
+            charIndex = 0;
+            deleting = false;
+            typingIndex =
+                (typingIndex + 1) % typingTexts.length;
+        }
+    }
 
-del=true;
-
-setTimeout(ketik,1200);
-
-return;
-
+    setTimeout(typeEffect,deleting ? 45 : 80);
 }
 
-}else{
+typeEffect();
 
-j--;
 
-if(j==0){
+/* =========================================================
+   COUNTERS
+========================================================= */
 
-del=false;
+const counters = document.querySelectorAll(".counter");
 
-i++;
+const counterObserver = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
 
-if(i==text.length)i=0;
+        const el = entry.target;
+        const target = Number(el.dataset.value);
+        let value = 0;
 
+        const timer = setInterval(()=>{
+            value += Math.ceil(target / 25);
+
+            if(value >= target){
+                value = target;
+                clearInterval(timer);
+            }
+
+            el.textContent = value;
+        },40);
+
+        counterObserver.unobserve(el);
+    });
+},{threshold:.5});
+
+counters.forEach(c=>counterObserver.observe(c));
+
+
+/* =========================================================
+   AI FACE SCANNER
+========================================================= */
+
+const video = $("video");
+const scanCanvas = $("scanCanvas");
+const scanCtx = scanCanvas.getContext("2d");
+
+let stream = null;
+let facingMode = "user";
+let cameraRunning = false;
+let processing = false;
+let latestLandmarks = null;
+let latestFaceBox = null;
+let faceDetected = false;
+
+const faceMesh = new FaceMesh({
+    locateFile:file =>
+        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`
+});
+
+faceMesh.setOptions({
+    maxNumFaces:1,
+    refineLandmarks:true,
+    minDetectionConfidence:.5,
+    minTrackingConfidence:.5
+});
+
+faceMesh.onResults(results=>{
+
+    scanCanvas.width = video.videoWidth || 640;
+    scanCanvas.height = video.videoHeight || 480;
+
+    scanCtx.clearRect(
+        0,
+        0,
+        scanCanvas.width,
+        scanCanvas.height
+    );
+
+    if(
+        results.multiFaceLandmarks &&
+        results.multiFaceLandmarks.length
+    ){
+
+        latestLandmarks =
+            results.multiFaceLandmarks[0];
+
+        calculateFace();
+
+        drawFaceLandmarks();
+
+        faceDetected = true;
+
+        $("detection").textContent = "🟢 FACE DETECTED";
+
+    }else{
+
+        latestLandmarks = null;
+        latestFaceBox = null;
+        faceDetected = false;
+
+        $("detection").textContent = "🟡 SEARCHING...";
+    }
+});
+
+
+function calculateFace(){
+
+    if(!latestLandmarks) return;
+
+    const xs = latestLandmarks.map(p=>p.x);
+    const ys = latestLandmarks.map(p=>p.y);
+
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+
+    const width = maxX - minX;
+    const height = maxY - minY;
+
+    if(width <= 0 || height <= 0) return;
+
+    latestFaceBox = {
+        x:minX,
+        y:minY,
+        width,
+        height
+    };
+
+    const ratio = width / height;
+
+    let shape = "Oval";
+    let description =
+        "Bentuk wajah terlihat cukup seimbang.";
+
+    if(ratio < .68){
+        shape = "Oblong";
+        description =
+            "Wajah cenderung panjang dengan sisi relatif ramping.";
+    }
+    else if(ratio < .76){
+        shape = "Oval";
+        description =
+            "Proporsi wajah seimbang dan cenderung oval.";
+    }
+    else if(ratio < .86){
+        shape = "Round";
+        description =
+            "Wajah terlihat lebih lebar dengan bentuk membulat.";
+    }
+    else{
+        shape = "Square";
+        description =
+            "Wajah terlihat relatif lebar dan tegas.";
+    }
+
+    const confidence =
+        Math.round(
+            Math.min(
+                99,
+                Math.max(
+                    70,
+                    96 - Math.abs(.75-ratio)*100
+                )
+            )
+        );
+
+    $("faceShape").textContent = shape;
+    $("faceDescription").textContent = description;
+
+    $("confidenceText").textContent =
+        confidence + "%";
+
+    $("confidenceFill").style.width =
+        confidence + "%";
+
+    $("faceWidth").textContent =
+        Math.round(width*100) + "%";
+
+    $("faceHeight").textContent =
+        Math.round(height*100) + "%";
+
+    $("ratio").textContent =
+        ratio.toFixed(2);
+
+    $("scanMessage").textContent =
+        `AI mendeteksi bentuk wajah ${shape} dengan confidence ${confidence}%.`;
+
+    updateRecommendations(shape);
+
+    $("aiEngine").textContent = "AI ONLINE";
 }
 
+
+function drawFaceLandmarks(){
+
+    if(!latestLandmarks) return;
+
+    const w = scanCanvas.width;
+    const h = scanCanvas.height;
+
+    scanCtx.fillStyle = "#00eaff";
+
+    latestLandmarks.forEach((point,index)=>{
+
+        /* Tidak menggambar semua titik agar tidak terlalu ramai */
+        if(index % 5 !== 0) return;
+
+        scanCtx.beginPath();
+
+        scanCtx.arc(
+            point.x*w,
+            point.y*h,
+            1.5,
+            0,
+            Math.PI*2
+        );
+
+        scanCtx.fill();
+    });
+
+    if(latestFaceBox){
+
+        const b = latestFaceBox;
+
+        scanCtx.strokeStyle =
+            "rgba(0,234,255,.75)";
+
+        scanCtx.lineWidth = 2;
+
+        scanCtx.strokeRect(
+            b.x*w,
+            b.y*h,
+            b.width*w,
+            b.height*h
+        );
+    }
 }
 
-setTimeout(ketik,del?60:120);
 
+async function startCamera(){
+
+    if(cameraRunning) return;
+
+    if(!navigator.mediaDevices ||
+       !navigator.mediaDevices.getUserMedia){
+
+        toast("Browser tidak mendukung kamera.");
+        return;
+    }
+
+    try{
+
+        stopCamera(false);
+
+        stream =
+            await navigator.mediaDevices.getUserMedia({
+                video:{
+                    facingMode:{ideal:facingMode},
+                    width:{ideal:1280},
+                    height:{ideal:720}
+                },
+                audio:false
+            });
+
+        video.srcObject = stream;
+
+        await video.play();
+
+        cameraRunning = true;
+
+        $("cameraState").textContent =
+            "🟢 ONLINE";
+
+        $("aiEngine").textContent =
+            "AI STARTING...";
+
+        toast("Kamera berhasil diaktifkan.");
+
+        processCamera();
+
+    }catch(error){
+
+        console.error(error);
+
+        $("cameraState").textContent =
+            "🔴 OFFLINE";
+
+        $("aiEngine").textContent =
+            "AI OFFLINE";
+
+        toast(
+            "Kamera gagal dibuka. Izinkan akses kamera pada browser."
+        );
+    }
 }
 
-ketik();
 
-function angka(id,max){
+function stopCamera(showToast=true){
 
-let n=0;
+    cameraRunning = false;
 
-let x=document.getElementById(id);
+    if(stream){
 
-let a=setInterval(()=>{
+        stream.getTracks().forEach(track=>{
+            track.stop();
+        });
 
-n++;
+        stream = null;
+    }
 
-x.innerHTML=n;
+    video.srcObject = null;
 
-if(n>=max)clearInterval(a);
+    $("cameraState").textContent =
+        "🔴 OFFLINE";
 
-},35);
-
+    if(showToast){
+        toast("Kamera dihentikan.");
+    }
 }
 
-angka("p1",15);
-angka("p2",5);
-angka("p3",100);
-angka("p4",100);
+
+async function processCamera(){
+
+    if(!cameraRunning) return;
+
+    if(
+        video.readyState >= 2 &&
+        !processing
+    ){
+
+        processing = true;
+
+        try{
+            await faceMesh.send({
+                image:video
+            });
+        }catch(error){
+            console.error("FaceMesh:",error);
+        }
+
+        processing = false;
+    }
+
+    requestAnimationFrame(processCamera);
+}
+
+
+$("startCamera").addEventListener(
+    "click",
+    startCamera
+);
+
+$("stopCamera").addEventListener(
+    "click",
+    ()=>stopCamera()
+);
+
+
+$("flipCamera").addEventListener(
+    "click",
+    async ()=>{
+
+        facingMode =
+            facingMode === "user"
+            ? "environment"
+            : "user";
+
+        if(cameraRunning){
+            await startCamera();
+        }else{
+            toast(
+                facingMode === "user"
+                ? "Mode kamera depan dipilih."
+                : "Mode kamera belakang dipilih."
+            );
+        }
+    }
+);
+
+
+$("scanNow").addEventListener(
+    "click",
+    async ()=>{
+
+        if(!cameraRunning){
+            toast("Nyalakan kamera terlebih dahulu.");
+            return;
+        }
+
+        if(video.readyState < 2){
+            toast("Kamera belum siap.");
+            return;
+        }
+
+        try{
+
+            await faceMesh.send({
+                image:video
+            });
+
+            if(faceDetected){
+                toast("Wajah berhasil dianalisis.");
+            }else{
+                toast("Wajah belum terdeteksi.");
+            }
+
+        }catch(error){
+            console.error(error);
+            toast("Scan gagal.");
+        }
+    }
+);
+
+
+/* =========================================================
+   HAIR LAB
+========================================================= */
+
+const resultCanvas = $("resultCanvas");
+const resultCtx = resultCanvas.getContext("2d");
+
+let capturedImage = null;
+
+let hairStyle =
+    localStorage.getItem("hairStyle") || "textured";
+
+let hairColor =
+    localStorage.getItem("hairColor") || "#171717";
+
+let hairIntensity =
+    Number(localStorage.getItem("hairIntensity")) || 85;
+
+
+/* Set UI awal */
+
+$("hairIntensity").value = hairIntensity;
+$("hairIntensityValue").textContent =
+    hairIntensity + "%";
+
+document.querySelectorAll(".styleButton")
+.forEach(button=>{
+
+    button.classList.toggle(
+        "active",
+        button.dataset.style === hairStyle
+    );
+});
+
+document.querySelectorAll(".colorButton")
+.forEach(button=>{
+
+    button.classList.toggle(
+        "active",
+        button.dataset.color === hairColor
+    );
+});
+
+
+/* Style */
+
+document.querySelectorAll(".styleButton")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        document
+        .querySelectorAll(".styleButton")
+        .forEach(x=>x.classList.remove("active"));
+
+        button.classList.add("active");
+
+        hairStyle = button.dataset.style;
+
+        localStorage.setItem(
+            "hairStyle",
+            hairStyle
+        );
+
+        if(capturedImage){
+            renderHair();
+        }
+    });
+});
+
+
+/* Color */
+
+document.querySelectorAll(".colorButton")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        document
+        .querySelectorAll(".colorButton")
+        .forEach(x=>x.classList.remove("active"));
+
+        button.classList.add("active");
+
+        hairColor = button.dataset.color;
+
+        localStorage.setItem(
+            "hairColor",
+            hairColor
+        );
+
+        if(capturedImage){
+            renderHair();
+        }
+    });
+});
+
+
+$("hairIntensity").addEventListener(
+    "input",
+    e=>{
+
+        hairIntensity =
+            Number(e.target.value);
+
+        $("hairIntensityValue").textContent =
+            hairIntensity + "%";
+
+        localStorage.setItem(
+            "hairIntensity",
+            hairIntensity
+        );
+
+        if(capturedImage){
+            renderHair();
+        }
+    }
+);
+
+
+/* =========================================================
+   CAPTURE
+========================================================= */
+
+$("capture").addEventListener(
+    "click",
+    capturePhoto
+);
+
+
+function capturePhoto(){
+
+    if(!cameraRunning ||
+       video.readyState < 2){
+
+        toast(
+            "Nyalakan kamera terlebih dahulu."
+        );
+
+        return;
+    }
+
+    const width =
+        video.videoWidth || 1280;
+
+    const height =
+        video.videoHeight || 720;
+
+    const canvas =
+        document.createElement("canvas");
+
+    canvas.width = width;
+    canvas.height = height;
+
+    const ctx = canvas.getContext("2d");
+
+    /*
+       Jika kamera depan, gambar dibalik
+       supaya foto seperti mirror.
+    */
+
+    if(facingMode === "user"){
+
+        ctx.translate(width,0);
+        ctx.scale(-1,1);
+    }
+
+    ctx.drawImage(
+        video,
+        0,
+        0,
+        width,
+        height
+    );
+
+    capturedImage = new Image();
+
+    capturedImage.onload = ()=>{
+
+        resultCanvas.width =
+            capturedImage.naturalWidth;
+
+        resultCanvas.height =
+            capturedImage.naturalHeight;
+
+        resultCtx.drawImage(
+            capturedImage,
+            0,
+            0
+        );
+
+        $("editorStatus").textContent =
+            "CAPTURED";
+
+        toast(
+            "Foto berhasil diambil. Sekarang pilih gaya rambut."
+        );
+
+        if(latestFaceBox){
+            renderHair();
+        }
+    };
+
+    capturedImage.src =
+        canvas.toDataURL("image/jpeg",.95);
+}
+
+
+/* =========================================================
+   HAIR RENDER
+========================================================= */
+
+function renderHair(){
+
+    if(!capturedImage){
+        toast("Capture foto terlebih dahulu.");
+        return;
+    }
+
+    resultCanvas.width =
+        capturedImage.naturalWidth;
+
+    resultCanvas.height =
+        capturedImage.naturalHeight;
+
+    resultCtx.clearRect(
+        0,
+        0,
+        resultCanvas.width,
+        resultCanvas.height
+    );
+
+    resultCtx.drawImage(
+        capturedImage,
+        0,
+        0
+    );
+
+    /*
+       Jika belum ada landmark,
+       gunakan posisi tengah sebagai fallback.
+       Jadi canvas tidak blank.
+    */
+
+    let box;
+
+    if(latestFaceBox){
+
+        box = {
+            x:latestFaceBox.x * resultCanvas.width,
+            y:latestFaceBox.y * resultCanvas.height,
+            width:latestFaceBox.width * resultCanvas.width,
+            height:latestFaceBox.height * resultCanvas.height
+        };
+
+    }else{
+
+        box = {
+            x:resultCanvas.width*.25,
+            y:resultCanvas.height*.15,
+            width:resultCanvas.width*.5,
+            height:resultCanvas.height*.65
+        };
+    }
+
+    drawHairOverlay(box);
+
+    $("editorStatus").textContent =
+        "APPLIED";
+}
+
+
+function hexToRgb(hex){
+
+    hex = hex.replace("#","");
+
+    if(hex.length === 3){
+        hex = hex
+        .split("")
+        .map(x=>x+x)
+        .join("");
+    }
+
+    return {
+        r:parseInt(hex.substring(0,2),16),
+        g:parseInt(hex.substring(2,4),16),
+        b:parseInt(hex.substring(4,6),16)
+    };
+}
+
+
+function drawHairOverlay(box){
+
+    const ctx = resultCtx;
+
+    const color =
+        hexToRgb(hairColor);
+
+    const alpha =
+        Math.max(.1,Math.min(1,hairIntensity/100));
+
+    const x = box.x;
+    const y = box.y;
+    const w = box.width;
+    const h = box.height;
+
+    /*
+       Hair berada sedikit di atas kepala.
+    */
+
+    const top =
+        y - h*.22;
+
+    const hairW =
+        w*1.18;
+
+    const hairX =
+        x - (hairW-w)/2;
+
+    const hairH =
+        h*.46;
+
+    const cx =
+        hairX + hairW/2;
+
+    ctx.save();
+
+    ctx.globalAlpha = alpha;
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            top,
+            0,
+            top+hairH
+        );
+
+    gradient.addColorStop(
+        0,
+        `rgb(${Math.min(255,color.r+35)},${Math.min(255,color.g+35)},${Math.min(255,color.b+35)})`
+    );
+
+    gradient.addColorStop(
+        .5,
+        `rgb(${color.r},${color.g},${color.b})`
+    );
+
+    gradient.addColorStop(
+        1,
+        `rgba(${color.r},${color.g},${color.b},.7)`
+    );
+
+    ctx.fillStyle = gradient;
+
+    ctx.beginPath();
+
+    /* Bentuk rambut berdasarkan style */
+
+    if(hairStyle === "buzz"){
+
+        ctx.ellipse(
+            cx,
+            y,
+            hairW*.49,
+            hairH*.58,
+            0,
+            Math.PI,
+            Math.PI*2
+        );
+
+    }else if(hairStyle === "quiff"){
+
+        ctx.moveTo(hairX+w*.05, y);
+
+        ctx.bezierCurveTo(
+            hairX,
+            top+hairH*.35,
+            cx-w*.1,
+            top-hairH*.25,
+            cx+w*.18,
+            top-hairH*.05
+        );
+
+        ctx.bezierCurveTo(
+            hairX+hairW*.72,
+            top-hairH*.2,
+            hairX+hairW,
+            top+hairH*.3,
+            hairX+hairW*.95,
+            y
+        );
+
+        ctx.closePath();
+
+    }else if(hairStyle === "fringe"){
+
+        ctx.moveTo(hairX,y);
+
+        ctx.quadraticCurveTo(
+            cx,
+            top-hairH*.1,
+            hairX+hairW,
+            y
+        );
+
+        ctx.lineTo(
+            hairX+hairW*.92,
+            y+hairH*.35
+        );
+
+        ctx.quadraticCurveTo(
+            cx,
+            y-hairH*.05,
+            hairX+hairW*.08,
+            y+hairH*.35
+        );
+
+        ctx.closePath();
+
+    }else if(hairStyle === "fade"){
+
+        ctx.ellipse(
+            cx,
+            y,
+            hairW*.49,
+            hairH*.48,
+            0,
+            Math.PI,
+            Math.PI*2
+        );
+
+    }else if(hairStyle === "messy"){
+
+        ctx.moveTo(hairX,y);
+
+        for(let i=0;i<12;i++){
+
+            const px =
+                hairX +
+                (hairW/11)*i;
+
+            const randomTop =
+                top -
+                (i%2===0 ? hairH*.18 : 0);
+
+            ctx.lineTo(
+                px,
+                randomTop
+            );
+        }
+
+        ctx.lineTo(
+            hairX+hairW,
+            y
+        );
+
+        ctx.quadraticCurveTo(
+            cx,
+            y+hairH*.25,
+            hairX,
+            y
+        );
+
+        ctx.closePath();
+
+    }else{
+
+        /* Textured Crop */
+
+        ctx.moveTo(hairX,y);
+
+        ctx.quadraticCurveTo(
+            hairX+hairW*.1,
+            top+hairH*.2,
+            cx,
+            top
+        );
+
+        ctx.quadraticCurveTo(
+            hairX+hairW*.9,
+            top+hairH*.05,
+            hairX+hairW,
+            y
+        );
+
+        ctx.quadraticCurveTo(
+            cx,
+            y+hairH*.15,
+            hairX,
+            y
+        );
+
+        ctx.closePath();
+    }
+
+    ctx.fill();
+
+    /*
+       Highlight strands.
+    */
+
+    ctx.globalAlpha =
+        Math.min(.35,alpha);
+
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth =
+        Math.max(2,w*.012);
+
+    const strands =
+        hairStyle === "messy" ? 12 : 8;
+
+    for(let i=0;i<strands;i++){
+
+        const sx =
+            hairX + hairW*(i/(strands-1));
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            sx,
+            y-h*.02
+        );
+
+        ctx.quadraticCurveTo(
+            sx + (i%2 ? w*.04 : -w*.04),
+            top+hairH*.35,
+            sx + (i%2 ? w*.02 : -w*.02),
+            top+hairH*.05
+        );
+
+        ctx.stroke();
+    }
+
+    ctx.restore();
+}
+
+
+$("applyHair").addEventListener(
+    "click",
+    ()=>{
+
+        if(!capturedImage){
+            toast(
+                "Capture foto dari kamera terlebih dahulu."
+            );
+            return;
+        }
+
+        renderHair();
+
+        toast(
+            "Gaya rambut berhasil diterapkan."
+        );
+    }
+);
+
+
+/* =========================================================
+   RESET HAIR
+========================================================= */
+
+$("resetHair").addEventListener(
+    "click",
+    ()=>{
+
+        if(!capturedImage){
+
+            resultCtx.clearRect(
+                0,
+                0,
+                resultCanvas.width,
+                resultCanvas.height
+            );
+
+            $("editorStatus").textContent =
+                "WAITING";
+
+            toast("Belum ada foto.");
+            return;
+        }
+
+        resultCanvas.width =
+            capturedImage.naturalWidth;
+
+        resultCanvas.height =
+            capturedImage.naturalHeight;
+
+        resultCtx.drawImage(
+            capturedImage,
+            0,
+            0
+        );
+
+        $("editorStatus").textContent =
+            "CAPTURED";
+
+        toast("Hair overlay di-reset.");
+    }
+);
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+$("downloadHair").addEventListener(
+    "click",
+    ()=>{
+
+        if(!capturedImage){
+
+            toast(
+                "Tidak ada foto untuk didownload."
+            );
+
+            return;
+        }
+
+        const link =
+            document.createElement("a");
+
+        link.download =
+            "bilal-hair-preview.png";
+
+        link.href =
+            resultCanvas.toDataURL(
+                "image/png"
+            );
+
+        link.click();
+
+        toast("Foto berhasil didownload.");
+    }
+);
+
+
+/* =========================================================
+   SET PROFILE
+========================================================= */
+
+$("setHairProfile").addEventListener(
+    "click",
+    ()=>{
+
+        if(!capturedImage){
+
+            toast(
+                "Capture foto terlebih dahulu."
+            );
+
+            return;
+        }
+
+        $("profile").src =
+            resultCanvas.toDataURL(
+                "image/jpeg",
+                .9
+            );
+
+        localStorage.setItem(
+            "bilalProfile",
+            $("profile").src
+        );
+
+        toast(
+            "Foto profile berhasil diperbarui."
+        );
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+    }
+);
+
+
+/* Restore profile */
+
+const savedProfile =
+    localStorage.getItem("bilalProfile");
+
+if(savedProfile){
+    $("profile").src = savedProfile;
+}
+
+
+/* =========================================================
+   RECOMMENDATIONS
+========================================================= */
+
+function updateRecommendations(shape){
+
+    const data = {
+
+        Oval:[
+            ["🔥","Textured Crop","Cocok untuk proporsi wajah oval."],
+            ["⚡","Fade","Memberikan tampilan lebih clean."],
+            ["🧑‍🎤","Quiff","Bagus untuk menambah volume bagian atas."]
+        ],
+
+        Round:[
+            ["⚡","Fade","Sisi pendek membantu wajah terlihat lebih panjang."],
+            ["🧑‍🎤","Quiff","Volume bagian atas memberikan keseimbangan."],
+            ["🔥","Textured Crop","Tekstur membuat bentuk wajah lebih tegas."]
+        ],
+
+        Square:[
+            ["🔥","Textured Crop","Tekstur cocok dengan struktur wajah tegas."],
+            ["🌪️","Messy","Memberikan tampilan lebih natural."],
+            ["⚡","Fade","Sisi pendek menonjolkan rahang."]
+        ],
+
+        Oblong:[
+            ["✂️","Fringe","Membantu membuat wajah terlihat lebih seimbang."],
+            ["🌪️","Messy","Volume samping memberikan proporsi."],
+            ["🔥","Textured Crop","Tekstur pendek cocok untuk wajah panjang."]
+        ]
+    };
+
+    const selected =
+        data[shape] || data.Oval;
+
+    $("recommendations").innerHTML =
+        selected.map(item=>`
+
+            <div class="recommendationCard">
+
+                <div class="recommendationIcon">
+                    ${item[0]}
+                </div>
+
+                <h3>${item[1]}</h3>
+
+                <p class="muted">
+                    ${item[2]}
+                </p>
+
+            </div>
+
+        `).join("");
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const audio = $("audio");
+
+$("play").addEventListener(
+    "click",
+    async ()=>{
+
+        try{
+
+            if(audio.paused){
+
+                await audio.play();
+
+                $("play").innerHTML =
+                    '<i class="fa-solid fa-pause"></i>';
+
+                $("musicStatus").textContent =
+                    "Playing...";
+
+            }else{
+
+                audio.pause();
+
+                $("play").innerHTML =
+                    '<i class="fa-solid fa-play"></i>';
+
+                $("musicStatus").textContent =
+                    "Paused.";
+            }
+
+        }catch(error){
+
+            toast(
+                "File audio tidak ditemukan atau belum diizinkan browser."
+            );
+        }
+    }
+);
+
+
+$("stop").addEventListener(
+    "click",
+    ()=>{
+
+        audio.pause();
+        audio.currentTime = 0;
+
+        $("play").innerHTML =
+            '<i class="fa-solid fa-play"></i>';
+
+        $("musicStatus").textContent =
+            "Stopped.";
+    }
+);
+
+
+audio.addEventListener(
+    "timeupdate",
+    ()=>{
+
+        if(!audio.duration) return;
+
+        $("progressFill").style.width =
+            (audio.currentTime/audio.duration*100)+"%";
+    }
+);
+
+
+audio.addEventListener(
+    "ended",
+    ()=>{
+
+        $("play").innerHTML =
+            '<i class="fa-solid fa-play"></i>';
+
+        $("musicStatus").textContent =
+            "Finished.";
+    }
+);
+
+
+$("progress").addEventListener(
+    "click",
+    e=>{
+
+        if(!audio.duration) return;
+
+        const rect =
+            e.currentTarget.getBoundingClientRect();
+
+        const percent =
+            (e.clientX-rect.left)/rect.width;
+
+        audio.currentTime =
+            percent*audio.duration;
+    }
+);
+
+
+/* =========================================================
+   GAME 1 - GUESS
+========================================================= */
+
+let secretNumber =
+    Math.floor(Math.random()*100)+1;
+
+$("guessBtn").addEventListener(
+    "click",
+    ()=>{
+
+        const value =
+            Number($("guess").value);
+
+        if(!value || value<1 || value>100){
+
+            $("guessResult").textContent =
+                "Masukkan angka 1-100.";
+
+            return;
+        }
+
+        if(value === secretNumber){
+
+            $("guessResult").textContent =
+                "🎉 Benar! Angka rahasianya "+secretNumber+".";
+
+            secretNumber =
+                Math.floor(Math.random()*100)+1;
+
+        }else if(value < secretNumber){
+
+            $("guessResult").textContent =
+                "⬆️ Terlalu kecil.";
+
+        }else{
+
+            $("guessResult").textContent =
+                "⬇️ Terlalu besar.";
+        }
+    }
+);
+
+
+/* =========================================================
+   GAME 2 - REACTION
+========================================================= */
+
+let reactionTimer = null;
+let reactionStart = 0;
+let reactionReady = false;
+
+$("reaction").addEventListener(
+    "click",
+    ()=>{
+
+        if(reactionReady){
+
+            const time =
+                Date.now()-reactionStart;
+
+            $("reactionResult").textContent =
+                `⚡ ${time} ms`;
+
+            reactionReady = false;
+
+            $("reaction").classList.remove("ready");
+            $("reaction").textContent = "START";
+
+            return;
+        }
+
+        clearTimeout(reactionTimer);
+
+        $("reaction").textContent =
+            "TUNGGU...";
+
+        $("reaction").classList.remove("ready");
+
+        const delay =
+            1500 + Math.random()*3500;
+
+        reactionTimer =
+            setTimeout(()=>{
+
+                reactionReady = true;
+                reactionStart = Date.now();
+
+                $("reaction").classList.add("ready");
+                $("reaction").textContent = "KLIK!";
+
+            },delay);
+    }
+);
+
+
+/* =========================================================
+   GAME 3 - TARGET
+========================================================= */
+
+let targetScore = 0;
+let targetTime = null;
+
+$("targetStart").addEventListener(
+    "click",
+    ()=>{
+
+        targetScore = 0;
+
+        $("targetScore").textContent =
+            "Score: 0";
+
+        $("target").style.display =
+            "block";
+
+        moveTarget();
+
+        clearTimeout(targetTime);
+
+        targetTime =
+            setTimeout(()=>{
+
+                $("target").style.display =
+                    "none";
+
+                $("targetScore").textContent =
+                    "Final Score: "+targetScore;
+
+            },10000);
+    }
+);
+
+
+function moveTarget(){
+
+    const area =
+        $("clickArea");
+
+    const target =
+        $("target");
+
+    const maxX =
+        Math.max(
+            0,
+            area.clientWidth-target.offsetWidth
+        );
+
+    const maxY =
+        Math.max(
+            0,
+            area.clientHeight-target.offsetHeight
+        );
+
+    target.style.left =
+        Math.random()*maxX+"px";
+
+    target.style.top =
+        Math.random()*maxY+"px";
+}
+
+
+$("target").addEventListener(
+    "click",
+    e=>{
+
+        e.stopPropagation();
+
+        targetScore++;
+
+        $("targetScore").textContent =
+            "Score: "+targetScore;
+
+        moveTarget();
+    }
+);
+
+
+/* =========================================================
+   GAME 4 - MEMORY
+========================================================= */
+
+$("memoryStart").addEventListener(
+    "click",
+    ()=>{
+
+        const number =
+            Math.floor(1000+Math.random()*9000);
+
+        $("memory").textContent =
+            number;
+
+        $("memoryResult").textContent =
+            "Hafalkan angka...";
+
+        setTimeout(()=>{
+
+            $("memory").textContent =
+                "?";
+
+            const answer =
+                prompt("Masukkan angka yang tadi muncul:");
+
+            if(answer === String(number)){
+
+                $("memoryResult").textContent =
+                    "🎉 Benar!";
+
+            }else{
+
+                $("memoryResult").textContent =
+                    "❌ Salah. Jawaban: "+number;
+            }
+
+        },1500);
+    }
+);
+
+
+/* =========================================================
+   GAME 5 - SPEED CLICK
+========================================================= */
+
+let speedScore = 0;
+let speedTimer = null;
+
+$("speedStart").addEventListener(
+    "click",
+    ()=>{
+
+        speedScore = 0;
+
+        $("speedResult").textContent =
+            "Score: 0";
+
+        $("speedClick").style.display =
+            "block";
+
+        $("speedStart").disabled = true;
+
+        clearTimeout(speedTimer);
+
+        speedTimer =
+            setTimeout(()=>{
+
+                $("speedClick").style.display =
+                    "none";
+
+                $("speedStart").disabled =
+                    false;
+
+                $("speedResult").textContent =
+                    "Final Score: "+speedScore;
+
+            },5000);
+    }
+);
+
+
+$("speedClick").addEventListener(
+    "click",
+    ()=>{
+
+        speedScore++;
+
+        $("speedResult").textContent =
+            "Score: "+speedScore;
+    }
+);
+
+
+/* =========================================================
+   GAME 6 - COIN
+========================================================= */
+
+function flipCoin(choice){
+
+    const result =
+        Math.random() < .5
+        ? "Kepala"
+        : "Ekor";
+
+    $("coin").textContent =
+        result === "Kepala" ? "🙂" : "🔵";
+
+    $("coinResult").textContent =
+        choice === result
+        ? "🎉 Benar! "+result
+        : "❌ Salah. Hasilnya "+result;
+}
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    ()=>{
+        if(stream){
+            stream.getTracks().forEach(
+                track=>track.stop()
+            );
+        }
+    }
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+$("editorStatus").textContent =
+    "TAKE PHOTO FIRST";
+
+$("aiEngine").textContent =
+    "READY";
 
 </script>
 
